@@ -10,6 +10,7 @@ OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 group "Dependencies"
 	include "Lila/vendor/glad"
 	include "Lila/vendor/glfw"
+   include "Lila/vendor/imgui"
 group ""
 
 group "Lila Engine"

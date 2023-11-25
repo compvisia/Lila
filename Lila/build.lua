@@ -10,12 +10,14 @@ project "Lila"
    includedirs {
         "src",
         "%{IncludeDir.glad}",
-        "%{IncludeDir.glfw}"
+        "%{IncludeDir.glfw}",
+        "%{IncludeDir.imgui}"
    }
 
    links {
         "glad",
         "glfw",
+        "imgui"
    }
 
    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
