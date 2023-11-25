@@ -2,6 +2,10 @@
 bin/
 obj/
 
+# Tests
+test/
+*.log
+
 # Hidden Directories
 .vs/
 .vscode/
