@@ -1,0 +1,19 @@
+# Bin Directories
+bin/
+obj/
+
+# Hidden Directories
+.vs/
+.vscode/
+
+### Build systems ##
+# Make
+Makefile
+*.make
+
+# Visual Studio
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+**.csproj
