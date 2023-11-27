@@ -5,6 +5,7 @@
 #include "Lila/renderer/Shader.h"
 #include "Lila/renderer/Vertex.h"
 
-#include "Lila/utils/math.h"
+#include "Lila/utils/Math.h"
 
+#include "Lila/utils/Vectors.h"
 #include "Lila/utils/Mat4.h"

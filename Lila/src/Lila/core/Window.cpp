@@ -28,6 +28,8 @@ void Window::Delete() {
 }
 
 int Window::windowClose() { return glfwWindowShouldClose(m_window); }
+
+Lila::Vec2 Window::getSize() { return Lila::Vec2(m_width, m_height); }
 GLFWwindow* Window::getWindow() { return m_window; }
 
 void Window::Create() {

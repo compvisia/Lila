@@ -3,6 +3,8 @@
 #include "glad/glad.h"
 #include "glfw/glfw3.h"
 
+#include "Lila/utils/Vectors.h"
+
 namespace Lila {
 
 class Window {
@@ -15,6 +17,7 @@ public:
 
 	int windowClose();
 
+	Lila::Vec2 getSize();
 	GLFWwindow* getWindow();
 
 private:
