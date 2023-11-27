@@ -6,6 +6,9 @@ obj/
 test/
 *.log
 
+# Imgui
+*.ini
+
 # Hidden Directories
 .vs/
 .vscode/
