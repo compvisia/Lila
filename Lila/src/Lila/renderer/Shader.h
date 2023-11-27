@@ -8,7 +8,7 @@ namespace Lila {
 
 class Shader {
 public:
-    Shader();
+    Shader(const char* vertexPath, const char* fragmentPath);
     ~Shader();
 
     void Bind();
@@ -16,9 +16,10 @@ public:
     void Delete();
 
     void setUniform(const char* name, Mat4 matrix);
+    void setUniform(const char* name, int integer);
 
 private:
-    void Create();
+    void Create(const char* vertexSource, const char* fragmentSource);
 
     unsigned int m_program;
 

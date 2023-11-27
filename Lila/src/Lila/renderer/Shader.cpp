@@ -5,8 +5,36 @@
 
 namespace Lila {
 
-Shader::Shader() {
-    Create();
+Shader::Shader(const char* vertexPath, const char* fragmentPath) {
+    std::string vertexCode;
+    std::string fragmentCode;
+    std::ifstream vShaderFile;
+    std::ifstream fShaderFile;
+    // ensure ifstream objects can throw exceptions:
+    vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    try
+    {
+        // open files
+        vShaderFile.open(vertexPath);
+        fShaderFile.open(fragmentPath);
+        std::stringstream vShaderStream, fShaderStream;
+        // read file's buffer contents into streams
+        vShaderStream << vShaderFile.rdbuf();
+        fShaderStream << fShaderFile.rdbuf();
+        // close file handlers
+        vShaderFile.close();
+        fShaderFile.close();
+        // convert stream into string
+        vertexCode = vShaderStream.str();
+        fragmentCode = fShaderStream.str();
+    }
+    catch (std::ifstream::failure& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+
+    Create(vertexCode.c_str(), fragmentCode.c_str());
 }
 
 Shader::~Shader() {
@@ -26,40 +54,20 @@ void Shader::setUniform(const char* name, Mat4 matrix) {
         glUniformMatrix4fv(location, 1, GL_FALSE, matrix.getAll());
 }
 
-void Shader::Create() {
+void Shader::setUniform(const char* name, int integer) {
+    int location = glGetUniformLocation(m_program, name);
+    if (location != -1)
+        glUniform1i(location, integer);
+}
+
+void Shader::Create(const char* vertexSource, const char* fragmentSource) {
     m_program = glCreateProgram();
 
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-    const char* vertexChar = 
-        "#version 330 core\n"
-        "\n"
-        "layout(location = 0) in vec3 position;\n"
-        "\n"
-        "uniform mat4 projection;\n"
-        "uniform mat4 model;\n"
-        "\n"
-        "out vec4 color;\n"
-        "\n"
-        "void main() {\n"
-        "   gl_Position = projection * model * vec4(position, 1.0);\n"
-        "   color = vec4(position.x, position.y, position.z, 1.0);\n"
-        "}\n\0";
-
-    const char* fragmentChar = 
-        "#version 330 core\n"
-        "\n"
-        "out vec4 FragColor;\n"
-        "\n"
-        "in vec4 color;\n"
-        "\n"
-        "void main() {\n"
-        "    FragColor = color;\n"
-        "}\n\0";
-
-    glShaderSource(vertexShader, 1, &vertexChar, NULL);
-    glShaderSource(fragmentShader, 1, &fragmentChar, NULL);
+    glShaderSource(vertexShader, 1, &vertexSource, NULL);
+    glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
 
     glCompileShader(vertexShader);
     glCompileShader(fragmentShader);
