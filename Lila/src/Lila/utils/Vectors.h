@@ -2,52 +2,64 @@
 
 namespace Lila {
 
-class Vec2 {
-public:
-    Vec2(float x, float y) { this->x = x; this->y = y; };
+    class Vec2 {
+    public:
+        Vec2(float x, float y) { vec[0] = x; vec[1] = y; };
 
-    float X() { return x; }
-    float Y() { return y; }
+        float X() { return vec[0]; }
+        float Y() { return vec[1]; }
 
-    void setX(float x) { this->x = x; }
-    void setY(float y) { this->y = y; }
+        void setX(float x) { vec[0] = x; }
+        void setY(float y) { vec[1] = y; }
 
-private:
-    float x, y;
-};
+        float* toArray() {
+            return vec;
+        }
 
-class Vec3 {
-public:
-    Vec3(float x, float y, float z) { this->x = x; this->y = y; this->z = z; };
+    private:
+        float vec[2] { 0.0f, 0.0f };
+    };
 
-    float X() { return x; }
-    float Y() { return y; }
-    float Z() { return z; }
+    class Vec3 {
+    public:
+        Vec3(float x, float y, float z) { vec[0] = x; vec[1] = y; vec[2] = z; };
 
-    void setX(float x) { this->x = x; }
-    void setY(float y) { this->y = y; }
-    void setZ(float z) { this->z = z; }
+        float X() { return vec[0]; }
+        float Y() { return vec[1]; }
+        float Z() { return vec[2]; }
 
-private:
-    float x, y, z;
-};
+        void setX(float x) { vec[0] = x; }
+        void setY(float y) { vec[1] = y; }
+        void setZ(float z) { vec[2] = z; }
 
-class Vec4 {
-public:
-    Vec4(float x, float y, float z, float w) { this->x = x; this->y = y; this->z = z; this->w = w; };
+        float* toArray() {
+            return vec;
+        }
 
-    float X() { return x; }
-    float Y() { return y; }
-    float Z() { return z; }
-    float W() { return w; }
+    private:
+        float vec[3] { 0.0f, 0.0f, 0.0f };
+    };
 
-    void setX(float x) { this->x = x; }
-    void setY(float y) { this->y = y; }
-    void setZ(float z) { this->z = z; }
-    void setW(float w) { this->w = w; }
+    class Vec4 {
+    public:
+        Vec4(float x, float y, float z, float w) { vec[0] = x; vec[1] = y; vec[2] = z; vec[3] = w; };
 
-private:
-    float x, y, z, w;
-};
+        float X() { return vec[0]; }
+        float Y() { return vec[1]; }
+        float Z() { return vec[2]; }
+        float W() { return vec[3]; }
+
+        void setX(float x) { vec[0] = x; }
+        void setY(float y) { vec[1] = y; }
+        void setZ(float z) { vec[2] = z; }
+        void setW(float w) { vec[3] = w; }
+
+        float* toArray() {
+            return vec;
+        }
+
+    private:
+        float vec[4] { 0.0f, 0.0f, 0.0f, 0.0f };
+    };
 
 }
