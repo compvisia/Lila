@@ -11,7 +11,8 @@ project "Lila"
         "src",
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
-        "%{IncludeDir.imgui}"
+        "%{IncludeDir.imgui}",
+        "%{IncludeDir.stb}"
    }
 
    links {
