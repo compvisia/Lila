@@ -4,20 +4,20 @@
 
 namespace Lila {
 
-class Vertex {
-public:
-    Vertex();
-    ~Vertex();
+    class Vertex {
+    public:
+        Vertex();
+        ~Vertex();
 
-    void Bind();
-    void Render();
-    void Unbind();
-    void Delete();
+        void Bind();
+        void Render();
+        void Unbind();
+        void Delete();
 
-private:
-    void Create();
+    private:
+        void Create();
 
-    unsigned int vao, vbo, ebo;
-};
+        unsigned int vao, vbo, ebo;
+    };
 
 }

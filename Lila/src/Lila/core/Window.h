@@ -7,29 +7,29 @@
 
 namespace Lila {
 
-class Window {
-public:
-	Window(char* title, int width, int height);
-	~Window();
+	class Window {
+	public:
+		Window(char* title, int width, int height);
+		~Window();
 
-	void Update();
-	void Delete();
+		void Update();
+		void Delete();
 
-	int windowClose();
+		int windowClose();
 
-	Lila::Vec2 getSize();
-	GLFWwindow* getWindow();
+		Lila::Vec2 getSize();
+		GLFWwindow* getWindow();
 
-private:
-	void Create();
+	private:
+		void Create();
 
-	char* m_title;
-	int m_width, m_height;
+		char* m_title;
+		int m_width, m_height;
 
-	GLFWwindow* m_window;
+		GLFWwindow* m_window;
 
 
-};
+	};
 
 }
 
