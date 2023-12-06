@@ -32,15 +32,17 @@ namespace Lila {
 
 
     void Vertex::Create() {
+
+        // 3D Cube
         float vertices[] = {
-             -1, -1, 1, //0
-             1, -1,  1, //1
-            -1,  1,  1, //2
-             1,  1,  1, //3
-            -1, -1, -1, //4
-             1, -1, -1, //5
-            -1,  1, -1, //6
-             1,  1, -1,
+            -1, -1,  1,     0, 0, // 0
+             1, -1,  1,     1, 0, // 1
+            -1,  1,  1,     0, 1, // 2
+             1,  1,  1,     1, 1, // 3
+            -1, -1, -1,     0, 0, // 4
+             1, -1, -1,     1, 0, // 5
+            -1,  1, -1,     0, 1, // 6
+             1,  1, -1,     1, 1, // 7
         };
 
         unsigned int indices[] = {
@@ -63,6 +65,19 @@ namespace Lila {
             4, 5, 7
         };
 
+        // 2D Plane
+        /*float vertices[] = {
+            1, 1, 0,   1, 1, // 0
+            1, 0, 0,   1, 0, // 1
+            0, 0, 0,   0, 0, // 2
+            0, 1, 0,   0, 1, // 3
+        };
+
+        unsigned int indices[] = {
+            0, 1, 2,
+            2, 3, 0
+        };*/
+
         glGenVertexArrays(1, &vao);
         glGenBuffers(1, &vbo);
         glGenBuffers(1, &ebo);
@@ -75,8 +90,11 @@ namespace Lila {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
