@@ -3,8 +3,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-#include <iostream>
-
 namespace Lila {
 
 	Texture::Texture() {
@@ -46,9 +44,6 @@ namespace Lila {
 			return; 
 	
 		unsigned char* img = stbi_load(m_path, &m_width, &m_height, &m_channel, 4);
-
-		if(img != nullptr)
-			printf("H\n");
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img);
 
