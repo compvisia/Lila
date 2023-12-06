@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Lila/core/FrameBuffer.h"
 #include "Lila/core/Window.h"
 
 #include "Lila/renderer/Shader.h"
