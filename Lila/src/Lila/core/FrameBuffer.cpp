@@ -28,6 +28,8 @@ namespace Lila {
 	}
 
 	void FrameBuffer::Delete() {
+		glDeleteTextures(1, &m_depth);
+		glDeleteTextures(1, &m_color);
 		glDeleteFramebuffers(1, &fbo);
 	}
 
