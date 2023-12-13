@@ -22,9 +22,6 @@ class Shader {
         void Create(const char* vertexSource, const char* fragmentSource);
 
         unsigned int m_program;
-
-        std::string vertexSource;
-        std::string fragmentSource;
     };
 
 }
