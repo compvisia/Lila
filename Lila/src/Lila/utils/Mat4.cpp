@@ -80,14 +80,27 @@ namespace Lila {
 	Mat4 Mat4::transform(float x, float y, float z, float Rx, float Ry, float Rz, float Sx, float Sy, float Sz) {
 		Mat4 result;
 
-		Mat4 trans = translate(x, y, z);
-		Mat4 rot = rotate(Rx, Ry, Rz);
+		Mat4 trans	= translate(x, y, z);
+		Mat4 rot	= rotate(Rx, Ry, Rz);
 		Mat4 scalar = scale(Sx, Sy, Sz);
 
 		result = multiply(multiply(scalar, rot), trans);
 
 		return result;
 	}
+
+	Mat4 Mat4::transform(Vec3 vPosition, Vec3 vRotation, Vec3 vScale) {
+		Mat4 result;
+
+		Mat4 trans	= translate(vPosition.X(), vPosition.Y(), vPosition.Z());
+		Mat4 rot	= rotate(vRotation.X(), vRotation.Y(), vRotation.Z());
+		Mat4 scalar	= scale(vScale.X(), vScale.Y(), vScale.Z());
+
+		result = multiply(multiply(scalar, rot), trans);
+
+		return result;
+	}
+
 
 	Mat4 Mat4::perspective(float aspect, float fov, float f, float n) {
 		Mat4 result = identity();

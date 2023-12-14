@@ -1,6 +1,7 @@
 #pragma once
 
 #include "math.h"
+#include "Vectors.h"
 
 namespace Lila {
 
@@ -20,6 +21,7 @@ namespace Lila {
 		static Mat4 scale(float x, float y, float z);
 
 		static Mat4 transform(float x, float y, float z, float Rx, float Ry, float Rz, float Sx, float Sy, float Sz);
+		static Mat4 transform(Vec3 vPosition, Vec3 vRotation, Vec3 vScale);
 
 		static Mat4 perspective(float aspect, float fov, float f, float n);
 		static Mat4 orthographic(float l, float r, float t, float b, float f, float n);
