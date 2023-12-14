@@ -3,6 +3,8 @@
 #include "Lila/core/FrameBuffer.h"
 #include "Lila/core/Window.h"
 
+#include "Lila/renderer/Mesh.h"
+
 #include "Lila/renderer/Shader.h"
 #include "Lila/renderer/Vertex.h"
 
