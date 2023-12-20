@@ -82,7 +82,7 @@ namespace Lila {
 
 		Mat4 trans	= translate(x, y, z);
 		Mat4 rot	= rotate(Rx, Ry, Rz);
-		Mat4 scalar = scale(Sx, Sy, Sz);
+		Mat4 scalar	= scale(Sx, Sy, Sz);
 
 		result = multiply(multiply(scalar, rot), trans);
 
