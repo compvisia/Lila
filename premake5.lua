@@ -1,9 +1,10 @@
 include "Dependencies.lua"
 
 workspace "Lila"
+   linkgroups "On"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
-   startproject "Lila"
+   startproject "Editor"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
@@ -15,4 +16,5 @@ group ""
 
 group "Lila Engine"
    include "Lila/build.lua"
+   include "LilaEditor/build.lua"
 group ""

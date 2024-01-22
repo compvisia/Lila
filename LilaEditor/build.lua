@@ -1,5 +1,5 @@
-project "Lila"
-   kind "StaticLib"
+project "Editor"
+   kind "ConsoleApp"
    language "C++"
    cppdialect "C++17"
    targetdir "bin/%{cfg.buildcfg}"
@@ -9,6 +9,7 @@ project "Lila"
 
    includedirs {
         "src",
+        "%{wks.location}/Lila/src",
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
         "%{IncludeDir.imgui}",
@@ -18,7 +19,8 @@ project "Lila"
    links {
         "glad",
         "glfw",
-        "imgui"
+        "imgui",
+        "Lila"
    }
 
    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
