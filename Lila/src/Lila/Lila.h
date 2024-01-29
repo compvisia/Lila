@@ -14,3 +14,6 @@
 
 #include "Lila/utils/Vectors.h"
 #include "Lila/utils/Mat4.h"
+
+#include "Lila/core/Layer.h"
+#include "Lila/core/LayerStack.h"
