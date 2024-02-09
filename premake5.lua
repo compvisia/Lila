@@ -5,6 +5,7 @@ workspace "Lila"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
    startproject "Editor"
+   warnings "Off"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
