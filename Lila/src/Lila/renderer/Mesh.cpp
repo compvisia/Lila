@@ -4,11 +4,12 @@ namespace Lila {
 
     Mesh::Mesh(const char* filepath, MeshSpecs* specs) {
         m_specs = specs;
-
+            
+        // TODO: Create an asset that stores default shaders
         #ifdef _WIN32
             shader = new Lila::Shader("assets/shaders/default.vert", "assets/shaders/default.frag");
         #else
-            shader = new Lila::Shader("Lila/assets/shaders/default.vert", "Lila/assets/shaders/default.frag");
+            shader = new Lila::Shader("LilaEditor/assets/shaders/default.vert", "LilaEditor/assets/shaders/default.frag");
         #endif
 
         vertex = new Lila::Vertex();
