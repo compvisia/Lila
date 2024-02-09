@@ -19,3 +19,4 @@
 #include "Lila/core/LayerStack.h"
 
 #include "Lila/input/Keyboard.h"
+#include "Lila/input/Mouse.h"
