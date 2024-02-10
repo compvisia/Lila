@@ -12,6 +12,12 @@ namespace Lila {
         void setX(float x) { vec[0] = x; }
         void setY(float y) { vec[1] = y; }
 
+        void addX(float x) { vec[0] += x; }
+        void addY(float y) { vec[1] += y; }
+
+        void subX(float x) { vec[0] -= x; }
+        void subY(float y) { vec[1] -= y; }
+
         float* toArray() {
             return vec;
         }
@@ -31,6 +37,14 @@ namespace Lila {
         void setX(float x) { vec[0] = x; }
         void setY(float y) { vec[1] = y; }
         void setZ(float z) { vec[2] = z; }
+
+        void addX(float x) { vec[0] += x; }
+        void addY(float y) { vec[1] += y; }
+        void addZ(float z) { vec[2] += z; }
+
+        void subX(float x) { vec[0] -= x; }
+        void subY(float y) { vec[1] -= y; }
+        void subZ(float z) { vec[2] -= z; }
 
         float* toArray() {
             return vec;
@@ -53,6 +67,16 @@ namespace Lila {
         void setY(float y) { vec[1] = y; }
         void setZ(float z) { vec[2] = z; }
         void setW(float w) { vec[3] = w; }
+
+        void addX(float x) { vec[0] += x; }
+        void addY(float y) { vec[1] += y; }
+        void addZ(float z) { vec[2] += z; }
+        void addW(float w) { vec[3] += w; }
+
+        void subX(float x) { vec[0] -= x; }
+        void subY(float y) { vec[1] -= y; }
+        void subZ(float z) { vec[2] -= z; }
+        void subW(float w) { vec[3] -= w; }
 
         float* toArray() {
             return vec;
