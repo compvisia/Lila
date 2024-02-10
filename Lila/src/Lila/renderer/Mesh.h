@@ -2,6 +2,8 @@
 
 #include "Lila/utils/Vectors.h"
 
+#include "Lila/world/Camera.h"
+
 #include "Shader.h"
 #include "Vertex.h"
 
@@ -19,6 +21,7 @@ namespace Lila {
         ~Mesh();
 
         void Render();
+        void Render(Camera camera);
         void Delete();
 
     private:

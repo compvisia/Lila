@@ -24,7 +24,26 @@ namespace Lila {
     void Mesh::Render() {
         shader->Bind();
 
+        shader->setUniform("projection", Lila::Mat4::perspective(16.0f / 9.0f, 45.0f, 100.0f, -1.0f));
+        shader->setUniform("cam", Lila::Mat4::identity());
+        shader->setUniform("model", Lila::Mat4::transform(m_specs->position, m_specs->rotation, m_specs->scale));
+
+        vertex->Bind();
+
+        vertex->Render();
+
+        vertex->Unbind();
+
+        shader->Unbind();
+    }
+
+    void Mesh::Render(Camera camera) {
+        shader->Bind();
+
         shader->setUniform("projection", Lila::Mat4::perspective(16.0f/9.0f, 45.0f, 100.0f, -1.0f));
+        shader->setUniform("cam", Lila::Mat4::multiply(
+            Mat4::translate(camera.position.X(), camera.position.Y(), camera.position.Z()),
+            Mat4::rotate(camera.rotation.X(), camera.rotation.Y(), camera.rotation.Z())));
         shader->setUniform("model", Lila::Mat4::transform(m_specs->position, m_specs->rotation, m_specs->scale));
 
         vertex->Bind();
