@@ -2,11 +2,13 @@
 
 #include "glad/glad.h"
 
+#include <vector>
+
 namespace Lila {
 
     class Vertex {
     public:
-        Vertex();
+        Vertex(std::vector<float> vertices, std::vector<unsigned int> indices);
         ~Vertex();
 
         void Bind();
@@ -18,6 +20,9 @@ namespace Lila {
         void Create();
 
         unsigned int vao, vbo, ebo;
+
+        std::vector<float> vertices;
+        std::vector<unsigned int> indices;
     };
 
 }
