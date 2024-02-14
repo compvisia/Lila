@@ -10,6 +10,8 @@
 
 #include "Lila/renderer/Texture.h"
 
+#include "Lila/renderer/Renderer.h"
+
 #include "Lila/utils/Math.h"
 
 #include "Lila/utils/Vectors.h"
