@@ -15,9 +15,9 @@ namespace Lila {
         entities.push_back({entities.size(), Mask()});
         return entities.back().entity;
     }
-    
-    EntityInfo World::getInfo(Entity id) {
-        return entities[id];
+
+    EntityInfo World::getInfo(Entity entity) {
+        return entities[entity];
     }
     
 }

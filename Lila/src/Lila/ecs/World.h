@@ -1,24 +1,12 @@
 #pragma once
 
+#include "Entity.h"
+#include "ComponentPool.h"
+
 #include <vector>
 #include <bitset>
 
 namespace Lila {
-
-    typedef unsigned long long Entity;
-    typedef std::bitset<32> Mask;
-
-    struct EntityInfo {
-        Entity entity;
-        Mask mask;
-    };
-
-    static int s_componentCounter = 0;
-    template <class T>
-    int GetId() {
-        static int s_componentId = s_componentCounter++;
-        return s_componentId;
-    }
 
     class World {
     public:
@@ -26,16 +14,38 @@ namespace Lila {
         ~World();
 
         Entity createNew();
+        EntityInfo getInfo(Entity entity);
 
+        
         template<typename T>
-        void assign(Entity id) {
-            int compId = GetId<T>();
-            entities[id].mask.set(compId);
+        T* assign(Entity entity) {
+            int componentId = GetId<T>();
+
+            if(components.size() <= componentId)
+                components.resize(componentId + 1);
+            
+            if(components[componentId] == nullptr)
+                components[componentId] = new ComponentPool(sizeof(T));
+
+            T* component = new (components[componentId]->get(entity)) T();
+            
+            entities[entity].mask.set(componentId);
+            return component;
         }
 
-        EntityInfo getInfo(Entity id);
+        template<typename T>
+            T* getComponent(Entity entity) {
+            int componentId = GetId<T>();
+
+            if(!entities[entity].mask.test(componentId))
+                return nullptr;
+
+            T* component = static_cast<T*>(components[componentId]->get(entity));
+            return component;
+        }
 
     private:
+        std::vector<ComponentPool*> components;
         std::vector<EntityInfo> entities;
     };
     
