@@ -35,7 +35,6 @@ namespace Lila {
 		glGenFramebuffers(1, &fbo);
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-		// Generate the Color Attachment
 		glGenTextures(1, &m_color);
 		glBindTexture(GL_TEXTURE_2D, m_color);
 
@@ -45,13 +44,11 @@ namespace Lila {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_color, 0);
 
-		// Generate the Depth Attachment
 		glGenTextures(1, &m_depth);
 		glBindTexture(GL_TEXTURE_2D, m_depth);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, width, height, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, 0);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_depth, 0);
-		
 		
 		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 			printf("Framebuffer is Incomplete!\n");

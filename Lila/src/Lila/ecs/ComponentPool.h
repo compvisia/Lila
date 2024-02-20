@@ -16,7 +16,7 @@ namespace Lila {
     class ComponentPool {
     public:
         ComponentPool(size_t size) {
-            byteSize = size;
+            byteSize = size + 1;
             data = new char[byteSize * MAX_ENTITIES];
         }
 
