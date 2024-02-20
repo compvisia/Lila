@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "Components.h"
 #include "ComponentPool.h"
 
 #include <vector>
