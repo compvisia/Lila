@@ -16,6 +16,10 @@ namespace Lila {
         return entities.back().entity;
     }
 
+    void World::deleteEntity(Entity entity) {
+        
+    }
+
     EntityInfo World::getInfo(Entity entity) {
         return entities[entity];
     }

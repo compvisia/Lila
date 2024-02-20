@@ -14,8 +14,8 @@ namespace Lila {
         ~World();
 
         Entity createNew();
+        void deleteEntity(Entity entity);
         EntityInfo getInfo(Entity entity);
-
         
         template<typename T>
         T* assign(Entity entity) {
@@ -43,6 +43,8 @@ namespace Lila {
             T* component = static_cast<T*>(components[componentId]->get(entity));
             return component;
         }
+
+        std::vector<EntityInfo> getEntities() { return entities; };
 
     private:
         std::vector<ComponentPool*> components;
