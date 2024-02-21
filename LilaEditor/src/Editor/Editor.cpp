@@ -2,9 +2,9 @@
 
 namespace Editor {
 
-	Editor::Editor(Lila::Window* window, Lila::World* world) {
-        hierarchy = new Hierarchy(world);
-        inspector = new Inspector(world);
+	Editor::Editor(Lila::Window* window, Lila::Registry* registry) {
+        hierarchy = new Hierarchy(registry);
+        inspector = new Inspector(registry);
 
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();

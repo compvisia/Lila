@@ -2,8 +2,8 @@
 
 namespace Editor {
 
-	Inspector::Inspector(Lila::World* world) {
-		this->world = world;
+	Inspector::Inspector(Lila::Registry* registry) {
+		this->registry = registry;
 	}
 	Inspector::~Inspector() {}
 
@@ -17,7 +17,7 @@ namespace Editor {
 
 		ImGui::Begin("Inspector");
 
-		for(Lila::Entity entity = 0; entity < world->getEntities().size(); entity++) {
+		/*for (Lila::Entity entity = 0; entity < world->getEntities().size(); entity++) {
 			if(selected != entity)
 				continue;
 
@@ -38,7 +38,7 @@ namespace Editor {
 			ImGui::Text("Scale");
 			ImGui::SameLine();
 			ImGui::InputFloat3("##scale", transform->scale.toArray());
-		}
+		}*/
 
 		ImGui::End();
 	}

@@ -4,8 +4,8 @@
 
 namespace Editor {
 
-	Hierarchy::Hierarchy(Lila::World* world) {
-		this->world = world;
+	Hierarchy::Hierarchy(Lila::Registry* registry) {
+		this->registry = registry;
 	}
 	Hierarchy::~Hierarchy() {}
 
@@ -13,7 +13,7 @@ namespace Editor {
 	void Hierarchy::onImGui() {
 		ImGui::Begin("Hierarchy");
 
-		for(Lila::Entity entity = 0; entity < world->getEntities().size(); entity++) {
+		/*for (Lila::Entity entity = 0; entity < world->getEntities().size(); entity++) {
 			Lila::Tag* tag = world->getComponent<Lila::Tag>(entity);
 
 			std::string name = " ";
@@ -30,7 +30,7 @@ namespace Editor {
 
 			ImGui::TreePop();
 
-		}
+		}*/
 		
 		ImGui::End();
 	}
