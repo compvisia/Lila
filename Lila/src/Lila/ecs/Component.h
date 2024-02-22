@@ -4,6 +4,8 @@
 
 #include "Entity.h"
 
+#include "Lila/utils/Vectors.h"
+
 namespace Lila {
 
 	static int s_componentCounter = 0;
@@ -36,4 +38,13 @@ namespace Lila {
 	};
 
 
+	struct Tag {
+		char* name = "Entity";
+	};
+
+	struct Transform {
+		Vec3 position = Vec3(0, 0, 0);
+		Vec3 rotation = Vec3(0, 0, 0);
+		Vec3 scale	  = Vec3(1, 1, 1);
+	};
 }
