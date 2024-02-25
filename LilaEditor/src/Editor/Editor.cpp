@@ -84,32 +84,32 @@ namespace Editor {
             }
 
             ImGui::EndMenuBar();
-
-            ImVec2 size{ 200, 100 };
-
-            ImGui::SetNextWindowSize(size);
-            ImGui::Begin("Console", nullptr, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-
-            ImGui::Text("Hello World");
-
-            ImGui::End();
-
-            ImGui::SetNextWindowSize(size);
-            ImGui::Begin("Game Viewport", nullptr, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-
-            unsigned int textureID = frame->getColorAttachment();
-            ImGui::Image((void*)textureID, ImVec2{ ImGui::GetWindowWidth(), ImGui::GetWindowHeight() });
-
-            ImGui::End();
-
-            ImGui::SetNextWindowSize(size);
-            hierarchy->onImGui();
-            
-            inspector->setSelected(hierarchy->getSelected());
-
-            ImGui::SetNextWindowSize(size);
-            inspector->onImGui();
         }
+
+        ImVec2 size{200, 100};
+
+        ImGui::SetNextWindowSize(size);
+        ImGui::Begin("Console", nullptr, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+        ImGui::Text("Hello World");
+
+        ImGui::End();
+
+        ImGui::SetNextWindowSize(size);
+        ImGui::Begin("Game Viewport", nullptr, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+        unsigned int textureID = frame->getColorAttachment();
+        ImGui::Image((void*)textureID, ImVec2{ ImGui::GetWindowWidth(), ImGui::GetWindowHeight() });
+
+        ImGui::End();
+
+        ImGui::SetNextWindowSize(size);
+        hierarchy->onImGui();
+
+        inspector->setSelected(hierarchy->getSelected());
+
+        ImGui::SetNextWindowSize(size);
+        inspector->onImGui();
 
         ImGui::End();
 

@@ -14,7 +14,7 @@ namespace Lila {
 		Entity create();
 		void destroy(Entity entity);
 
-		std::vector<Entity> getAll();
+		Entity* getAll();
 
 	private:
 		std::vector<ComponentData*> components;

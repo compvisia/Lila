@@ -1,16 +1,19 @@
 #include "Lila/Lila.h"
 
-#include "Lila/ecs/World.h"
+#include "Lila/ecs/Registry.h"
 
 #include "Editor/Editor.h"
 
 int main(void) {
     // ECS
-    Lila::World* world = new Lila::World();
 
-    Lila::Entity entity = world->createNew();
+    Lila::Registry* registry = new Lila::Registry();
 
-    printf("%s\n", world->getComponent<Lila::Tag>(entity)->name);
+    Lila::Entity entity = registry->create();
+    Lila::Tag* tag = registry->assign<Lila::Tag>(entity);
+    tag->name = "Entity";
+    Lila::Transform* transform = registry->assign<Lila::Transform>(entity);
+    transform->position = 10;
 
 
     // Window
@@ -31,7 +34,7 @@ int main(void) {
 
 
     // Imgui
-    Editor::Editor editor(window, world);
+    Editor::Editor editor(window, registry);
     
 
     glEnable(GL_DEPTH_TEST);
@@ -52,7 +55,7 @@ int main(void) {
         window->Update();
     }
 
-    delete world;
+    delete registry;
 
     delete window;
 

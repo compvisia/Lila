@@ -37,14 +37,8 @@ namespace Lila {
 		entities[entity] = -1;
 	}
 
-	std::vector<Entity> Registry::getAll() {
-		std::vector<Entity> ents;
-
-		for(int i = 0; i < MAX_ENTITIES; i++) {
-			ents.push_back(i);
-		}
-
-		return ents;
+	Entity* Registry::getAll() {
+		return entities;
 	}
 
 }

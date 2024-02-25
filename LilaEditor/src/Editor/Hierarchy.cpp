@@ -13,15 +13,14 @@ namespace Editor {
 	void Hierarchy::onImGui() {
 		ImGui::Begin("Hierarchy");
 
-		for (Lila::Entity entity = 0; entity < registry->getAll().size(); entity++) {
-			if(!registry->hasComponent<Lila::Tag>(entity))
-				continue;
-
+		for (Lila::Entity entity = 0; entity < Lila::MAX_ENTITIES; entity++) {
 			Lila::Tag* tag = registry->getComponent<Lila::Tag>(entity);
+			if(tag == nullptr)
+				continue;
 			
 			ImGuiTreeNodeFlags nodeFlags = 0;
 
-			bool open = ImGui::TreeNodeEx(tag->name, nodeFlags);
+			bool open = ImGui::TreeNodeEx("Entity", nodeFlags); // TODO: Remove Place holder
 
 			if(ImGui::IsItemClicked())
 				selected = entity;
@@ -29,7 +28,6 @@ namespace Editor {
 			if(!open) continue;
 
 			ImGui::TreePop();
-
 		}
 		
 		ImGui::End();

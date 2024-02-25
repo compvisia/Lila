@@ -12,12 +12,12 @@ namespace Editor {
 	}
 	void Inspector::onImGui() {
 
-		if (selected == -1)
-			return;
-
 		ImGui::Begin("Inspector");
 
-		for (Lila::Entity entity = 0; entity < registry->getAll().size(); entity++) {
+		if(selected == -1)
+			return;
+
+		for(Lila::Entity entity = 0; entity < Lila::MAX_ENTITIES; entity++) {
 			if(selected != entity)
 				continue;
 
@@ -25,15 +25,18 @@ namespace Editor {
 				Lila::Tag* tag = registry->getComponent<Lila::Tag>(entity);
 				ImGui::Text("Name");
 				ImGui::SameLine();
-				ImGui::Text(tag->name);
+				ImGui::Text("Entity"); // TODO: Remove Place holder
 				//ImGui::InputText("##Name", tag->name, 64, ImGuiInputTextFlags_CharsNoBlank);
 			}
 			
 			if (registry->hasComponent<Lila::Transform>(entity)) {
 				Lila::Transform* transform = registry->getComponent<Lila::Transform>(entity);
+				if(transform == nullptr)
+					error("Transform has not been found!");
+					
 				ImGui::Text("Position");
 				ImGui::SameLine();
-				ImGui::Text("%f", transform->position->X());
+				ImGui::Text("%d", 10); // TODO: Remove Place holder
 
 				/*ImGui::Text("Rotation");
 				ImGui::SameLine();

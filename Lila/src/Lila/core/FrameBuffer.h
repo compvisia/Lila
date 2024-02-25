@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Lila/Lila.h"
+
 namespace Lila {
 
 	class FrameBuffer {

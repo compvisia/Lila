@@ -6,8 +6,6 @@
 #include "Platform/imgui_impl_glfw.h"
 #include "Platform/imgui_impl_opengl3.h"
 
-#include <string>
-
 namespace Editor {
 
 	class Hierarchy {
