@@ -2,7 +2,7 @@
 
 #include "Lila/Lila.h"
 
-#include "Lila/ecs/Entity.h"
+#include "Lila/ecs/Registry.h"
 
 #include "Hierarchy.h"
 #include "Inspector.h"
@@ -12,7 +12,7 @@ namespace Editor {
 	class Editor {
 	public:
 
-		Editor(Lila::Window* window, Lila::World* world);
+		Editor(Lila::Window* window, Lila::Registry* registry);
 		~Editor();
 
 		void update();

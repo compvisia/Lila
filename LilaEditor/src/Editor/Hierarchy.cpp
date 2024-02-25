@@ -4,8 +4,8 @@
 
 namespace Editor {
 
-	Hierarchy::Hierarchy(Lila::World* world) {
-		this->world = world;
+	Hierarchy::Hierarchy(Lila::Registry* registry) {
+		this->registry = registry;
 	}
 	Hierarchy::~Hierarchy() {}
 
@@ -13,15 +13,15 @@ namespace Editor {
 	void Hierarchy::onImGui() {
 		ImGui::Begin("Hierarchy");
 
-		for(Lila::Entity entity = 0; entity < world->getEntities().size(); entity++) {
-			Lila::Tag* tag = world->getComponent<Lila::Tag>(entity);
+		for (Lila::Entity entity = 0; entity < registry->getAll().size(); entity++) {
+			if(!registry->hasComponent<Lila::Tag>(entity))
+				continue;
 
-			std::string name = " ";
-			name += tag->name;
-
+			Lila::Tag* tag = registry->getComponent<Lila::Tag>(entity);
+			
 			ImGuiTreeNodeFlags nodeFlags = 0;
 
-			bool open = ImGui::TreeNodeEx(name.c_str(), nodeFlags);
+			bool open = ImGui::TreeNodeEx(tag->name, nodeFlags);
 
 			if(ImGui::IsItemClicked())
 				selected = entity;

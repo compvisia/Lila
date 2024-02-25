@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Lila/ecs/World.h"
+#include "Lila/ecs/Registry.h"
 
 #include "imgui.h"
 #include "Platform/imgui_impl_glfw.h"
@@ -11,7 +11,7 @@ namespace Editor {
 	class Inspector {
 	public:
 
-		Inspector(Lila::World* world);
+		Inspector(Lila::Registry* registry);
 		~Inspector();
 
 		void update();
@@ -22,7 +22,7 @@ namespace Editor {
 	private:
 		Lila::Entity selected = -1;
 
-		Lila::World* world;
+		Lila::Registry* registry;
 
 	};
 

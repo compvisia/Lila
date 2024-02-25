@@ -2,8 +2,8 @@
 
 namespace Editor {
 
-	Inspector::Inspector(Lila::World* world) {
-		this->world = world;
+	Inspector::Inspector(Lila::Registry* registry) {
+		this->registry = registry;
 	}
 	Inspector::~Inspector() {}
 
@@ -17,28 +17,34 @@ namespace Editor {
 
 		ImGui::Begin("Inspector");
 
-		for(Lila::Entity entity = 0; entity < world->getEntities().size(); entity++) {
+		for (Lila::Entity entity = 0; entity < registry->getAll().size(); entity++) {
 			if(selected != entity)
 				continue;
 
-			Lila::Tag* tag = world->getComponent<Lila::Tag>(entity);
-			ImGui::Text("Name");
-			ImGui::SameLine();
-			ImGui::InputText("##Name", tag->name, sizeof(tag->name)/sizeof(*tag->name), ImGuiInputTextFlags_CharsNoBlank);
+			if (registry->hasComponent<Lila::Tag>(entity)) {
+				Lila::Tag* tag = registry->getComponent<Lila::Tag>(entity);
+				ImGui::Text("Name");
+				ImGui::SameLine();
+				ImGui::Text(tag->name);
+				//ImGui::InputText("##Name", tag->name, 64, ImGuiInputTextFlags_CharsNoBlank);
+			}
+			
+			if (registry->hasComponent<Lila::Transform>(entity)) {
+				Lila::Transform* transform = registry->getComponent<Lila::Transform>(entity);
+				ImGui::Text("Position");
+				ImGui::SameLine();
+				ImGui::Text("%f", transform->position->X());
 
-			Lila::Transform* transform = world->getComponent<Lila::Transform>(entity);
-			ImGui::Text("Position");
-			ImGui::SameLine();
-			ImGui::InputFloat3("##position", transform->position.toArray());
+				/*ImGui::Text("Rotation");
+				ImGui::SameLine();
+				ImGui::InputFloat3("##rotation", transform->rotation);
 
-			ImGui::Text("Rotation");
-			ImGui::SameLine();
-			ImGui::InputFloat3("##rotation", transform->rotation.toArray());
+				ImGui::Text("Scale");
+				ImGui::SameLine();
+				ImGui::InputFloat3("##scale", transform->scale);*/
+			}
+		}	
 
-			ImGui::Text("Scale");
-			ImGui::SameLine();
-			ImGui::InputFloat3("##scale", transform->scale.toArray());
-		}
 
 		ImGui::End();
 	}

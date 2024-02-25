@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Lila/ecs/World.h"
+#include "Lila/ecs/Registry.h"
 
 #include "imgui.h"
 #include "Platform/imgui_impl_glfw.h"
@@ -13,7 +13,7 @@ namespace Editor {
 	class Hierarchy {
 	public:
 
-		Hierarchy(Lila::World* world);
+		Hierarchy(Lila::Registry* registry);
 		~Hierarchy();
 
 		void update();
@@ -24,7 +24,7 @@ namespace Editor {
 	private:
 		Lila::Entity selected;
 
-		Lila::World* world;
+		Lila::Registry* registry;
 	};
 
 }
