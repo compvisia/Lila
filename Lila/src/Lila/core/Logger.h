@@ -14,9 +14,9 @@ namespace Lila {
 		LL_TRACE,
 	};
 
-	int lastLogLevel = LL_WARN;
+	static int lastLogLevel = LL_WARN;
 	
-	void _log(LogLevel logLevel, const char* message, ...) {
+	static void _log(LogLevel logLevel, const char* message, ...) {
 		if(lastLogLevel < logLevel)
 			return;
 		//#ifdef _WIN32
@@ -64,16 +64,11 @@ namespace Lila {
 #define info(message, ...)  _log(Lila::LL_INFO,  message, ##__VA_ARGS__);
 #define trace(message, ...) _log(Lila::LL_TRACE, message, ##__VA_ARGS__);
 
-
-
-
-
-
 #ifdef _WIN32
 #define DEBUG_BREAK() __debugbreak();
-#elif __linux__
+#elif defined(__linux__)
 #define DEBUG_BREAK() __builtin_debugtrap();
-#elif __APPLE__
+#elif defined(__APPLE__)
 #define DEBUG_BREAK() __builtin_trap();
 #endif
 

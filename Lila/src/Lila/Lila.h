@@ -22,3 +22,5 @@
 
 #include "Lila/input/Keyboard.h"
 #include "Lila/input/Mouse.h"
+
+#include "Lila/core/Logger.h"
