@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Lila/Lila.h"
+#include "glad/glad.h"
 
 namespace Lila {
 

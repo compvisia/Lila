@@ -60,12 +60,15 @@ namespace Lila {
 				abort();
 			}
 			info("Initialized OpenGL");
-			info("OpneGL version %d.%d", GLVersion.major, GLVersion.minor);
+			info("OpenGL version %s", glGetString(GL_VERSION));
 
 			glViewport(0, 0, m_width, m_height);
 		}
 
 		glfwShowWindow(m_window);
+
+		info("Created Window Successfully");
+		info("Window size %dx%d", m_width, m_height)
 	}
 
 }
