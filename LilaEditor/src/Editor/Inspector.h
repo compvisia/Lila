@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Lila/Lila.h"
+//#include "Lila/Lila.h"
 
 #include "Lila/ecs/Registry.h"
 

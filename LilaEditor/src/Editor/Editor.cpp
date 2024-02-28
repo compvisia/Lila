@@ -2,7 +2,7 @@
 
 namespace Editor {
 
-	Editor::Editor(Lila::Window* window) {
+	/*Editor::Editor(Lila::Window* window) {
         //hierarchy = new Hierarchy(registry);
         //inspector = new Inspector(registry);
 
@@ -123,7 +123,7 @@ namespace Editor {
         inspector->setSelected(hierarchy->getSelected());
 
         ImGui::SetNextWindowSize(size);
-        inspector->onImGui();*/
+        inspector->onImGui();
 
         ImGui::End();
 
@@ -132,6 +132,6 @@ namespace Editor {
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         frame->Bind();
-	}
+	}*/
 
 };

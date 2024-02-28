@@ -10,7 +10,7 @@
 namespace Editor {
 
 	class Editor {
-	public:
+	/*public:
 
 		Editor(Lila::Window* window, Lila::Registry* registry);
 		~Editor();
@@ -21,7 +21,7 @@ namespace Editor {
 		Lila::FrameBuffer* frame;
 
 		Hierarchy* hierarchy;
-		Inspector* inspector;
+		Inspector* inspector;*/
 	};
 
 }
