@@ -9,7 +9,3 @@ public:
     }
 
 };
-
-Lila::Application* Lila::CreateApp() {
-    return new EditorApp();
-}
