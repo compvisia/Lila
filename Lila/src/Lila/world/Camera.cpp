@@ -1,6 +1,5 @@
 #include "Camera.h"
 
-#include <math.h>
 #include "Lila/utils/math.h"
 
 namespace Lila {
