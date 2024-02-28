@@ -33,10 +33,12 @@ namespace Lila {
 
 	void Window::Create() {
 
-	#ifndef GLFW_INIT
-	#define GLFW_INIT
-		glfwInit();
-	#endif
+		if(!glfwInit()) {
+			fatal("Failed to Initialize GLFW!");
+			abort();
+		}
+		info("Initialized GLFW");
+		info("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -47,12 +49,21 @@ namespace Lila {
 		glfwMakeContextCurrent(m_window);
 		glfwSwapInterval(0);
 
-	#ifndef GLAD_INIT
-	#define GLAD_INIT
-		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-	#endif
+		bool vulkan = false;
+		if(vulkan) {
+			// LONG TODO: Vulkan Support
+		} else {
+			info("No Vulkan Support, Switching to OpenGL");
 
-		glViewport(0, 0, m_width, m_height);
+			if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+				fatal("Failed to Initialize OpenGL!");
+				abort();
+			}
+			info("Initialized OpenGL");
+			info("OpneGL version %d.%d", GLVersion.major, GLVersion.minor);
+
+			glViewport(0, 0, m_width, m_height);
+		}
 
 		glfwShowWindow(m_window);
 	}

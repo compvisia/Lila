@@ -15,7 +15,8 @@ namespace Lila {
 		LL_TRACE,
 	};
 
-	static int lastLogLevel = LL_WARN;
+	
+	static int lastLogLevel = LL_TRACE;
 
 	static void _log(LogLevel logLevel, const char* message, ...) {
 		if(lastLogLevel < logLevel)
@@ -23,7 +24,7 @@ namespace Lila {
 		//#ifdef _WIN32
 		static char* textColor[] = {
 			"\x1b[31m",        // Dark Red (LL_FATAL)
-			"\x1b[1m\x1b[91m", // Bold Red (LL_ASSERT)
+			"\x1b[91;1m",      // Bold Red (LL_ASSERT)
 			"\x1b[91m",        // Red      (LL_ERROR)
 			"\x1b[93m",        // Yellow   (LL_WARN)
 			"\x1b[96m",        // Cyan     (LL_DEBUG)
