@@ -2,6 +2,7 @@
 
 namespace Lila {
 
-	typedef unsigned long long Entity;
+	using Entity = unsigned int;
 	const Entity MAX_ENTITIES = 5000;
+
 }

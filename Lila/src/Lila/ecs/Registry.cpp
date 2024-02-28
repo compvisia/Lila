@@ -3,42 +3,42 @@
 namespace Lila {
 
 	Registry::Registry() {
-		entities = new Entity[MAX_ENTITIES];
+		componentHandler = std::make_unique<Internal::ComponentHandler>();
 
-		for(int i = 0; i < MAX_ENTITIES; i++) {
-			entities[i] = -1;
-		}
+		for (Entity entity = 0; entity < MAX_ENTITIES; entity++)
+			availableEntities.push(entity);
 	}
 
-	Registry::~Registry() {
-		for(auto component : components)
-			delete component;
-		components.clear();
 
-		delete [] entities;
+	Entity Registry::createEntity() {
+		assertM(entityCount < MAX_ENTITIES, "Too many entities.");
+
+		Entity entity = availableEntities.front();
+		availableEntities.pop();
+		entityCount++;
+
+		return entity;
 	}
 
-	Entity Registry::create() {
-		for(int i = 0; i < MAX_ENTITIES; i++) {
-			if(entities[i] != -1)
-				continue;
-			return i;
-		}
-		return -1;
+	void Registry::destoryEntity(Entity entity) {
+		assertM(entity < MAX_ENTITIES, "Entity out of range.");
+
+		componentSets[entity].reset();
+		availableEntities.push(entity);
+		entityCount--;
 	}
 
-	void Registry::destroy(Entity entity) {
-		for(int i = 0; i < components.size(); i++) {
-			if(components[i]->getEntity() != entity)
-				continue;
-			components.erase(components.begin() + i);
-		}
 
-		entities[entity] = -1;
+	void Registry::setSet(Entity entity, ComponentSet set) {
+		assertM(entity < MAX_ENTITIES, "Entity out of range.");
+
+		componentSets[entity] = set;
 	}
 
-	Entity* Registry::getAll() {
-		return entities;
+	ComponentSet Registry::getSet(Entity entity) {
+		assertM(entity < MAX_ENTITIES, "Entity out of range.");
+
+		return componentSets[entity];
 	}
 
 }
