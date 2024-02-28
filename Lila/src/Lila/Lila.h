@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Lila/core/Application.h"
+
 #include "Lila/core/FrameBuffer.h"
 #include "Lila/core/Window.h"
 
@@ -12,7 +14,7 @@
 
 #include "Lila/renderer/Renderer.h"
 
-#include "Lila/utils/Math.h"
+#include "Lila/utils/math.h"
 
 #include "Lila/utils/Vectors.h"
 #include "Lila/utils/Mat4.h"
