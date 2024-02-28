@@ -1,5 +1,4 @@
 #include "Lila/Lila.h"
-#include "Lila/core/Entry.h"
 
 class EditorApp : public Lila::Application {
 public:
@@ -10,7 +9,3 @@ public:
     }
 
 };
-
-Lila::Application* Lila::CreateApp() {
-    return new EditorApp();
-}
