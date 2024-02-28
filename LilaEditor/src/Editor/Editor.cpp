@@ -2,9 +2,9 @@
 
 namespace Editor {
 
-	Editor::Editor(Lila::Window* window, Lila::Registry* registry) {
-        hierarchy = new Hierarchy(registry);
-        inspector = new Inspector(registry);
+	Editor::Editor(Lila::Window* window) {
+        //hierarchy = new Hierarchy(registry);
+        //inspector = new Inspector(registry);
 
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
@@ -89,9 +89,23 @@ namespace Editor {
         ImVec2 size{200, 100};
 
         ImGui::SetNextWindowSize(size);
+        ImGui::Begin("Profiler", nullptr, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+        ImGui::Text("Timer");
+
+        ImGui::End();
+
+        ImGui::SetNextWindowSize(size);
         ImGui::Begin("Console", nullptr, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
         ImGui::Text("Hello World");
+
+        ImGui::End();
+
+        ImGui::SetNextWindowSize(size);
+        ImGui::Begin("Assets Manager", nullptr, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+        ImGui::Text("Asset Template");
 
         ImGui::End();
 
@@ -103,13 +117,13 @@ namespace Editor {
 
         ImGui::End();
 
-        ImGui::SetNextWindowSize(size);
+        /*ImGui::SetNextWindowSize(size);
         hierarchy->onImGui();
 
         inspector->setSelected(hierarchy->getSelected());
 
         ImGui::SetNextWindowSize(size);
-        inspector->onImGui();
+        inspector->onImGui();*/
 
         ImGui::End();
 

@@ -2,7 +2,7 @@
 
 namespace Editor {
 
-	Inspector::Inspector(Lila::Registry* registry) {
+	/*Inspector::Inspector(Lila::Registry* registry) {
 		this->registry = registry;
 	}
 	Inspector::~Inspector() {}
@@ -21,11 +21,11 @@ namespace Editor {
 			if(selected != entity)
 				continue;
 
-			if (registry->hasComponent<Lila::Tag>(entity)) {
+			/*if (registry->hasComponent<Lila::Tag>(entity)) {
 				Lila::Tag* tag = registry->getComponent<Lila::Tag>(entity);
 				ImGui::Text("Name");
 				ImGui::SameLine();
-				ImGui::Text("Entity"); // TODO: Remove Place holder
+				ImGui::Text(tag->name); // TODO: Remove Place holder
 				//ImGui::InputText("##Name", tag->name, 64, ImGuiInputTextFlags_CharsNoBlank);
 			}
 			
@@ -36,20 +36,20 @@ namespace Editor {
 					
 				ImGui::Text("Position");
 				ImGui::SameLine();
-				ImGui::Text("%d", 10); // TODO: Remove Place holder
+				ImGui::Text("%d", transform->position); // TODO: Remove Place holder
 
-				/*ImGui::Text("Rotation");
+				ImGui::Text("Rotation");
 				ImGui::SameLine();
 				ImGui::InputFloat3("##rotation", transform->rotation);
 
 				ImGui::Text("Scale");
 				ImGui::SameLine();
-				ImGui::InputFloat3("##scale", transform->scale);*/
+				ImGui::InputFloat3("##scale", transform->scale);
 			}
 		}	
 
 
 		ImGui::End();
-	}
+	}*/
 	
 }

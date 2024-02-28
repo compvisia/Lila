@@ -9,7 +9,7 @@
 namespace Editor {
 
 	class Hierarchy {
-	public:
+	/*public:
 
 		Hierarchy(Lila::Registry* registry);
 		~Hierarchy();
@@ -22,7 +22,7 @@ namespace Editor {
 	private:
 		Lila::Entity selected;
 
-		Lila::Registry* registry;
+		Lila::Registry* registry;*/
 	};
 
 }
