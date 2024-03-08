@@ -5,7 +5,7 @@
 extern Lila::Application* Lila::CreateApp();
 
 int main(int argc, char** argv) {
-	trace("Getting info");
+	trace("Getting system information");
 
 #ifdef __WIN64
 	info("Operating System: Windows 64-bit")
