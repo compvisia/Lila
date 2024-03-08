@@ -3,6 +3,7 @@
 #include "ComponentPool.h"
 
 #include <array>
+#include <memory>
 
 namespace Lila {
 	namespace Internal {
@@ -46,9 +47,8 @@ namespace Lila {
 				return getComponentPool<T>()->getData(entity);
 			};
 
-
-			template<typename T>
-			void enityDestroyed(Entity entity) {
+			
+			void entityDestroyed(Entity entity) {
 				for (auto const& pair : componentPools) {
 					auto const& component = pair.second;
 					component->entityDestroyed(entity);

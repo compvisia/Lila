@@ -4,6 +4,7 @@ namespace Lila {
 
 	Registry::Registry() {
 		componentHandler = std::make_unique<Internal::ComponentHandler>();
+		systemHandler    = std::make_unique<Internal::SystemHandler>();
 
 		for (Entity entity = 0; entity < MAX_ENTITIES; entity++)
 			availableEntities.push(entity);
@@ -20,12 +21,15 @@ namespace Lila {
 		return entity;
 	}
 
-	void Registry::destoryEntity(Entity entity) {
+	void Registry::destroyEntity(Entity entity) {
 		assertM(entity < MAX_ENTITIES, "Entity out of range.");
 
 		componentSets[entity].reset();
 		availableEntities.push(entity);
 		entityCount--;
+
+		componentHandler->entityDestroyed(entity);
+		systemHandler->entityDestroyed(entity);
 	}
 
 
@@ -40,5 +44,9 @@ namespace Lila {
 
 		return componentSets[entity];
 	}
+	
 
+	uint32_t Registry::getCount() {
+		return entityCount;
+	}
 }

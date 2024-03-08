@@ -4,6 +4,8 @@
 
 #include "Lila/utils/Vectors.h"
 
+#include <string>
+
 namespace Lila {
 
 	using ComponentType = std::uint8_t;
@@ -15,10 +17,12 @@ namespace Lila {
 	// Components
 
 	struct Tag {
-		char* name = "Entity";
+		std::string name = "Entity 1";
 	};
 
 	struct Transform {
-		int position = 1;
+		Vec3 position = Vec3(0, 0, 0);
+		Vec3 rotation = Vec3(0, 0, 0);
+		Vec3 scale    = Vec3(1, 1, 1);
 	};
 }

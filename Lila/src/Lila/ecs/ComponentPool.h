@@ -47,7 +47,7 @@ namespace Lila {
 		}
 
 		T& getData(Entity entity) {
-			assertM(entityToIndex.find(entity) != entityToIndex.end(), "Trying to retrieve a non-existent component.");
+			//assertM(entityToIndex.find(entity) != entityToIndex.end(), "Trying to retrieve a non-existent component.");
 
 			return componentArray[entityToIndex[entity]];
 		}
