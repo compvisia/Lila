@@ -1,19 +1,39 @@
 #pragma once
 
+#include "Core.h"
+#include "Logger.h"
+#include "Window.h"
+
 #include <string>
 
 namespace Lila {
 
+	struct ApplicationSpecs {
+		std::string name = "App";
+		
+		bool headless = false;
+
+		unsigned int width  = 1280;
+		unsigned int height = 720;
+	};
+
 	class Application {
 	public:
-		Application() {};
+		Application() {}
+		virtual ~Application() { destroy(); }
 
 		virtual void run() {}
 
-		std::string getName() { return name; };
+		ApplicationSpecs getSpecs() { return specs; }
+		Window* getWindowClass() { return window.get(); }
+	
+	protected:
+		void init();
+		void destroy();
 
 	protected:
-		std::string name = "App";
+		ApplicationSpecs specs;
+		Scope<Window> window;
 	};
 
 	Application* CreateApp();

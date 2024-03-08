@@ -2,10 +2,10 @@
 
 namespace Lila {
 
-	Window::Window(char* title, int width, int height) {
-		m_title  = title;
-		m_width  = width;
-		m_height = height;
+	Window::Window(const char* title, int width, int height) {
+		this->title  = title;
+		this->width  = width;
+		this->height = height;
 
 		Create();
 	}
@@ -16,20 +16,20 @@ namespace Lila {
 	}
 
 	void Window::Update() {
-		glfwSwapBuffers(m_window);
+		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-		glfwGetWindowSize(m_window, &m_width, &m_height);
-		glViewport(0, 0, m_width, m_height);
+		glfwGetWindowSize(window, &width, &height);
+		glViewport(0, 0, width, height);
 	}
 	void Window::Delete() {
-		glfwDestroyWindow(m_window);
+		glfwDestroyWindow(window);
 	}
 
-	int Window::windowClose() { return glfwWindowShouldClose(m_window); }
+	int Window::windowClose() { return glfwWindowShouldClose(window); }
 
-	Lila::Vec2 Window::getSize() { return Lila::Vec2(m_width, m_height); }
-	GLFWwindow* Window::getWindow() { return m_window; }
+	Lila::Vec2 Window::getSize() { return Lila::Vec2(width, height); }
+	GLFWwindow* Window::getWindow() { return window; }
 
 	void Window::Create() {
 
@@ -44,16 +44,16 @@ namespace Lila {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
+		window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
-		glfwMakeContextCurrent(m_window);
+		glfwMakeContextCurrent(window);
 		glfwSwapInterval(0);
 
 		bool vulkan = false;
 		if(vulkan) {
 			// LONG TODO: Vulkan Support
 		} else {
-			info("No Vulkan Support, Switching to OpenGL");
+			info("No Vulkan support, switching to OpenGL");
 
 			if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 				fatal("Failed to Initialize OpenGL!");
@@ -62,13 +62,13 @@ namespace Lila {
 			info("Initialized OpenGL");
 			info("OpenGL version %s", glGetString(GL_VERSION));
 
-			glViewport(0, 0, m_width, m_height);
+			glViewport(0, 0, width, height);
 		}
 
-		glfwShowWindow(m_window);
+		glfwShowWindow(window);
 
-		info("Created Window Successfully");
-		info("Window size %dx%d", m_width, m_height)
+		info("Created Window successfully");
+		info("Window size %dx%d", width, height)
 	}
 
 }

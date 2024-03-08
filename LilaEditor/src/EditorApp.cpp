@@ -1,9 +1,14 @@
+#define Entry
 #include "Lila/Lila.h"
-#include "Lila/core/Entry.h"
+
+#include "Editor/Editor.h"
 
 class EditorApp : public Lila::Application {
 public:
-    EditorApp() { name = "Editor"; };
+    EditorApp(Lila::ApplicationSpecs specs) { 
+        this->specs = specs;
+        init();
+    }
 
     void run() override {
         
@@ -12,5 +17,8 @@ public:
 };
 
 Lila::Application* Lila::CreateApp() {
-    return new EditorApp();
+    Lila::ApplicationSpecs specs;
+    specs.name = "EditorApp";
+
+    return new EditorApp(specs);
 }
