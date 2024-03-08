@@ -2,9 +2,9 @@
 
 namespace Editor {
 
-	/*Editor::Editor(Lila::Window* window) {
-        //hierarchy = new Hierarchy(registry);
-        //inspector = new Inspector(registry);
+	Editor::Editor(Lila::Window* window, Lila::Registry* registry) {
+        hierarchy = new Hierarchy(registry);
+        inspector = new Inspector(registry);
 
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
@@ -117,7 +117,7 @@ namespace Editor {
 
         ImGui::End();
 
-        /*ImGui::SetNextWindowSize(size);
+        ImGui::SetNextWindowSize(size);
         hierarchy->onImGui();
 
         inspector->setSelected(hierarchy->getSelected());
@@ -132,6 +132,6 @@ namespace Editor {
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         frame->Bind();
-	}*/
+	}
 
 };

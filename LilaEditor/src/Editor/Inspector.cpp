@@ -2,7 +2,7 @@
 
 namespace Editor {
 
-	/*Inspector::Inspector(Lila::Registry* registry) {
+	Inspector::Inspector(Lila::Registry* registry) {
 		this->registry = registry;
 	}
 	Inspector::~Inspector() {}
@@ -21,35 +21,44 @@ namespace Editor {
 			if(selected != entity)
 				continue;
 
-			/*if (registry->hasComponent<Lila::Tag>(entity)) {
-				Lila::Tag* tag = registry->getComponent<Lila::Tag>(entity);
-				ImGui::Text("Name");
-				ImGui::SameLine();
-				ImGui::Text(tag->name); // TODO: Remove Place holder
-				//ImGui::InputText("##Name", tag->name, 64, ImGuiInputTextFlags_CharsNoBlank);
-			}
 			
-			if (registry->hasComponent<Lila::Transform>(entity)) {
-				Lila::Transform* transform = registry->getComponent<Lila::Transform>(entity);
-				if(transform == nullptr)
-					error("Transform has not been found!");
-					
-				ImGui::Text("Position");
-				ImGui::SameLine();
-				ImGui::Text("%d", transform->position); // TODO: Remove Place holder
+			
 
-				ImGui::Text("Rotation");
-				ImGui::SameLine();
-				ImGui::InputFloat3("##rotation", transform->rotation);
+			Lila::Tag& tag = registry->getComponent<Lila::Tag>(entity);
+			char name[255]{};
+			strncpy(name, tag.name.c_str(), sizeof(name) - 1);
 
-				ImGui::Text("Scale");
-				ImGui::SameLine();
-				ImGui::InputFloat3("##scale", transform->scale);
-			}
+			ImGui::InputText("##Name", name, 64);
+
+			tag.name = name;
+
+			ImGui::Columns(2);
+
+			ImGui::Text("Position");
+
+			ImGui::Text("Rotation");
+
+			ImGui::Text("Scale");
+
+			ImGui::NextColumn();
+
+			Lila::Transform& transform = registry->getComponent<Lila::Transform>(entity);
+			
+			ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2{ 0, 0 });
+
+			ImGui::DragFloat3("##position", transform.position.toArray(), 0.02f);
+
+			ImGui::DragFloat3("##rotation", transform.rotation.toArray(), 0.02f);
+
+			ImGui::DragFloat3("##scale", transform.scale.toArray(), 0.02f);
+			
+			ImGui::PopStyleVar();
+
+			ImGui::Columns(1);
 		}	
 
 
 		ImGui::End();
-	}*/
+	}
 	
 }

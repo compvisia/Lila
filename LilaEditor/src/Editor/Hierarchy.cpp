@@ -1,4 +1,4 @@
-/*#include "Hierarchy.h"
+#include "Hierarchy.h"
 
 #include <string>
 
@@ -13,14 +13,12 @@ namespace Editor {
 	void Hierarchy::onImGui() {
 		ImGui::Begin("Hierarchy");
 
-		for (Lila::Entity entity = 0; entity < Lila::MAX_ENTITIES; entity++) {
-			/*Lila::Tag* tag = registry->getComponent<Lila::Tag>(entity);
-			if(tag == nullptr)
-				continue;
+		for (Lila::Entity entity = 0; entity < registry->getCount(); entity++) {
+			Lila::Tag& tag = registry->getComponent<Lila::Tag>(entity);
 			
 			ImGuiTreeNodeFlags nodeFlags = 0;
 
-			bool open = ImGui::TreeNodeEx(tag->name, nodeFlags); // TODO: Remove Place holder
+			bool open = ImGui::TreeNodeEx((" " + tag.name).c_str(), nodeFlags);
 
 			if(ImGui::IsItemClicked())
 				selected = entity;
@@ -33,4 +31,4 @@ namespace Editor {
 		ImGui::End();
 	}
 
-}*/
+}

@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "Lila/Lila.h"
+#include "Lila/Lila.h"
 
 #include "Lila/ecs/Registry.h"
 
@@ -11,8 +11,7 @@
 namespace Editor {
 
 	class Inspector {
-	/*public:
-
+	public:
 		Inspector(Lila::Registry* registry);
 		~Inspector();
 
@@ -25,7 +24,6 @@ namespace Editor {
 		Lila::Entity selected = -1;
 
 		Lila::Registry* registry;
-		*/
 	};
 
 }
