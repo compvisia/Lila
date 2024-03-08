@@ -1,5 +1,11 @@
 #pragma once
 
+#include "Logger.h"
+
+#include "glad/glad.h"
+
+#include <iostream>
+
 namespace Lila {
 
 	class FrameBuffer {

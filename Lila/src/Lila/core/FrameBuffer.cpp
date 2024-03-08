@@ -1,9 +1,5 @@
 #include "FrameBuffer.h"
 
-#include "glad/glad.h"
-
-#include <iostream>
-
 namespace Lila {
 
 	FrameBuffer::FrameBuffer() {
@@ -51,7 +47,7 @@ namespace Lila {
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_depth, 0);
 		
 		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-			printf("Framebuffer is Incomplete!\n");
+			error("Framebuffer is incomplete");
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
