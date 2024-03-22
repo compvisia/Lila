@@ -6,6 +6,8 @@
 
 #include "Lila/core/Logger.h"
 
+#include "Lila/core/Event.h"
+
 #include "Lila/ecs/Registry.h"
 
 #include "Lila/core/FrameBuffer.h"
