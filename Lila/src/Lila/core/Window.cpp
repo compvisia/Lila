@@ -24,6 +24,9 @@ namespace Lila {
 	}
 	void Window::Delete() {
 		glfwDestroyWindow(window);
+		info("Deleted window successfully");
+		glfwTerminate();
+		info("Terminated GLFW");
 	}
 
 	int Window::windowClose() { return glfwWindowShouldClose(window); }
@@ -37,7 +40,7 @@ namespace Lila {
 			fatal("Failed to Initialize GLFW!");
 			abort();
 		}
-		info("Initialized GLFW");
+		trace("Initialized GLFW");
 		info("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -59,7 +62,7 @@ namespace Lila {
 				fatal("Failed to Initialize OpenGL!");
 				abort();
 			}
-			info("Initialized OpenGL");
+			trace("Initialized OpenGL");
 			info("OpenGL version %s", glGetString(GL_VERSION));
 
 			glViewport(0, 0, width, height);
