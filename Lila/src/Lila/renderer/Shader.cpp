@@ -1,5 +1,9 @@
-#include "pch.h"
 #include "Shader.h"
+
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 namespace Lila {
 

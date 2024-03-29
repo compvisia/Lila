@@ -2,6 +2,8 @@
 
 #include <glad/glad.h>
 
+#include "Lila/core/Logger.h"
+
 namespace Lila {
 
 	class Texture {

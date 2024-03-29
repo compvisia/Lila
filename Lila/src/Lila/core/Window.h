@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Lila/core/Logger.h"
+
 #include "glad/glad.h"
 #include "glfw/glfw3.h"
 
@@ -9,7 +11,7 @@ namespace Lila {
 
 	class Window {
 	public:
-		Window(char* title, int width, int height);
+		Window(const char* title, int width, int height);
 		~Window();
 
 		void Update();
@@ -23,10 +25,10 @@ namespace Lila {
 	private:
 		void Create();
 
-		char* m_title;
-		int m_width, m_height;
+		const char* title;
+		int width, height;
 
-		GLFWwindow* m_window;
+		GLFWwindow* window;
 
 
 	};

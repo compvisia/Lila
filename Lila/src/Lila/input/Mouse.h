@@ -12,16 +12,18 @@ namespace Lila {
 
         bool isButtonDown(int button);
         Vec2 getPosition();
+        Vec2 getScroll();
         bool hasEntered();
 
         static void buttonCallback(GLFWwindow* window, int button, int action, int mods);
         static void posCallback(GLFWwindow* window, double xpos, double ypos);
-        static void scroCallback(GLFWwindow* window, int entered);
+        static void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
         static void enterCallback(GLFWwindow* window, int entered);
 
     private:
         static bool buttons[8];
         static Vec2 pos;
+        static Vec2 offset;
         static bool entered;
     };
 

@@ -1,3 +1,0 @@
-# Lila
-
-Work in progress!!!
