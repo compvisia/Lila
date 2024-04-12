@@ -8,7 +8,7 @@ namespace Lila {
 
     class Mouse {
     public:
-        void setCallback(Window* window);
+        void setCallback(GLFWwindow* window);
 
         bool isButtonDown(int button);
         Vec2 getPosition();
