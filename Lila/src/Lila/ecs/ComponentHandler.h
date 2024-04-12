@@ -14,7 +14,7 @@ namespace Lila {
 			void registerComponent() {
 				const char* type = typeid(T).name();
 
-				assertM(componentTypes.find(type) == componentTypes.end(), "Trying to register a component more than once.");
+				lila_assert_msg(componentTypes.find(type) == componentTypes.end(), "Trying to register a component more than once.");
 
 				componentTypes.insert({ type, nextType });
 				componentPools.insert({ type, std::make_shared<ComponentPool<T>>() });
@@ -26,7 +26,7 @@ namespace Lila {
 			ComponentType getComponentType() {
 				const char* type = typeid(T).name();
 
-				assertM(componentTypes.find(type) != componentTypes.end(), "Trying to use unregisterd component.");
+				lila_assert_msg(componentTypes.find(type) != componentTypes.end(), "Trying to use unregisterd component.");
 
 				return componentTypes[type];
 			};
@@ -66,7 +66,7 @@ namespace Lila {
 			std::shared_ptr<ComponentPool<T>> getComponentPool() {
 				const char* type = typeid(T).name();
 
-				assertM(componentTypes.find(type) != componentTypes.end(), "Trying to use unregisterd component.");
+				lila_assert_msg(componentTypes.find(type) != componentTypes.end(), "Trying to use unregisterd component.");
 
 				return std::static_pointer_cast<ComponentPool<T>>(componentPools[type]);
 			};

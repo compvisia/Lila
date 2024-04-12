@@ -33,7 +33,7 @@ namespace Lila {
 
 	protected:
 		ApplicationSpecs specs;
-		Scope<Window> window;
+		Ref<Window> window;
 	};
 
 	Application* CreateApp();

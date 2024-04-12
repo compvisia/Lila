@@ -47,7 +47,7 @@ namespace Lila {
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_depth, 0);
 		
 		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-			error("Framebuffer is incomplete");
+			lila_error("Framebuffer is incomplete");
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}

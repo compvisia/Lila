@@ -43,12 +43,12 @@ namespace Lila {
 		if (m_path == nullptr) 
 			return; 
 	
-		info("Texture path is \"%s\"", m_path);
+		lila_info("Texture path is \"%s\"", m_path);
 
 		unsigned char* img = stbi_load(m_path, &m_width, &m_height, &m_channel, 4);
 
 		if(img == NULL) {
-			warn("Image failed to load!");
+			lila_warn("Image failed to load!");
 		}
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img);

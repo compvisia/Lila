@@ -17,7 +17,7 @@ namespace Lila {
 			Ref<T> registerSystem() {
 				const char* type = typeid(T).name();
 
-				assertM(systems.find(type) == systems.end(), "Trying to register a system more than once.");
+				lila_assert_msg(systems.find(type) == systems.end(), "Trying to register a system more than once.");
 
 				auto system = std::make_shared<T>();
 				systems.insert({ type, system });
@@ -28,7 +28,7 @@ namespace Lila {
 			void setComponentSet(ComponentSet set) {
 				const char* type = typeid(T).name();
 
-				assertM(systems.find(type) != systems.end(), "Trying to use unregisterd component.");
+				lila_assert_msg(systems.find(type) != systems.end(), "Trying to use unregisterd component.");
 
 				componentSets.insert({ type, set });
 			}
