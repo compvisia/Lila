@@ -19,7 +19,7 @@ namespace Lila {
 	class ComponentPool : public IComponentPool {
 	public:
 		void addData(Entity entity, T component) {
-			assertM(entityToIndex.find(entity) == entityToIndex.end(), "Trying to add component more than once to an entity.");
+			lila_assert_msg(entityToIndex.find(entity) == entityToIndex.end(), "Trying to add component more than once to an entity.");
 
 			size_t index = size;
 			entityToIndex[entity] = index;
@@ -30,7 +30,7 @@ namespace Lila {
 		}
 
 		void removeData(Entity entity) {
-			assertM(entityToIndex.find(entity) != entityToIndex.end(), "Trying to remove non-existent component.");
+			lila_assert_msg(entityToIndex.find(entity) != entityToIndex.end(), "Trying to remove non-existent component.");
 
 			size_t indexRemovedEntity = entityToIndex[entity];
 			size_t indexLast = size - 1;
@@ -47,7 +47,7 @@ namespace Lila {
 		}
 
 		T& getData(Entity entity) {
-			//assertM(entityToIndex.find(entity) != entityToIndex.end(), "Trying to retrieve a non-existent component.");
+			//lila_assert_msg(entityToIndex.find(entity) != entityToIndex.end(), "Trying to retrieve a non-existent component.");
 
 			return componentArray[entityToIndex[entity]];
 		}

@@ -2,13 +2,13 @@
 
 #include "Lila/core/Window.h"
 
-#include <glfw/glfw3.h>
+#include "Lila/core/Core.h"
 
 namespace Lila {
 
     class Keyboard {
     public:
-        void setCallback(Window* window);
+        void setCallback(GLFWwindow* window);
 
         bool isKeyDown(int key);
 

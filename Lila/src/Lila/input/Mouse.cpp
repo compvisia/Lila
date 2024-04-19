@@ -7,11 +7,11 @@ namespace Lila {
     Vec2 Mouse::offset = Vec2(0,0);
     bool Mouse::entered = false;
 
-    void Mouse::setCallback(Window* window) {
-        glfwSetMouseButtonCallback(window->getWindow(), Mouse::buttonCallback);
-        glfwSetCursorPosCallback(window->getWindow(), Mouse::posCallback);
-        glfwSetScrollCallback(window->getWindow(), Mouse::scrollCallback);
-        glfwSetCursorEnterCallback(window->getWindow(), Mouse::enterCallback);
+    void Mouse::setCallback(GLFWwindow* window) {
+        glfwSetMouseButtonCallback(window, Mouse::buttonCallback);
+        glfwSetCursorPosCallback(window, Mouse::posCallback);
+        glfwSetScrollCallback(window, Mouse::scrollCallback);
+        glfwSetCursorEnterCallback(window, Mouse::enterCallback);
     }
 
     

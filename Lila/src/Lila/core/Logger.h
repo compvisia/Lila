@@ -62,40 +62,39 @@ namespace Lila {
 		printf("%s\n", endColor);
 	}
 
-#define fatal(message, ...) _log(Lila::LL_FATAL, message, ##__VA_ARGS__);
-#define error(message, ...) _log(Lila::LL_ERROR, message, ##__VA_ARGS__);
-#define warn(message, ...)  _log(Lila::LL_WARN,  message, ##__VA_ARGS__);
+#define lila_fatal(message, ...) _log(Lila::LL_FATAL, message, ##__VA_ARGS__);
+#define lila_error(message, ...) _log(Lila::LL_ERROR, message, ##__VA_ARGS__);
+#define lila_warn(message, ...)  _log(Lila::LL_WARN,  message, ##__VA_ARGS__);
 
 #ifdef DEBUG
-#define debug(message, ...) _log(Lila::LL_DEBUG, message, ##__VA_ARGS__);
-#define info(message, ...)  _log(Lila::LL_INFO,  message, ##__VA_ARGS__);
-#define trace(message, ...) _log(Lila::LL_TRACE, message, ##__VA_ARGS__);
+#define lila_debug(message, ...) _log(Lila::LL_DEBUG, message, ##__VA_ARGS__);
+#define lila_info(message, ...)  _log(Lila::LL_INFO,  message, ##__VA_ARGS__);
+#define lila_trace(message, ...) _log(Lila::LL_TRACE, message, ##__VA_ARGS__);
 #else 
-#define debug(message, ...);
-#define info(message, ...);
-#define trace(message, ...);
+#define lila_debug(message, ...);
+#define lila_info(message, ...);
+#define lila_trace(message, ...);
 #endif
 
 #ifdef _WIN32
-#define DEBUG_BREAK() __debugbreak();
+#define lila_debug_break() __debugbreak();
 #else
-
-#define DEBUG_BREAK() __builtin_trap();
+#define lila_debug_break() __builtin_trap();
 #endif
 
-#define assertL(expr) {			\
+#define lila_assert(expr) {\
 		if(expr) {\
 		} else {\
 			_log(Lila::LL_ASSERT,"Assertion: %s, in file %s:%d", #expr, __FILE__, __LINE__);\
-			DEBUG_BREAK();\
+			lila_debug_break();\
 		}\
 	}
 
-#define assertM(expr, message) {			\
+#define lila_assert_msg(expr, message) {\
 		if(expr) {\
 		} else {\
 			_log(Lila::LL_ASSERT,"Assertion: %s, message: %s, in file %s:%d", #expr, message, __FILE__, __LINE__);\
-			DEBUG_BREAK();\
+			lila_debug_break();\
 		}\
 	}
 

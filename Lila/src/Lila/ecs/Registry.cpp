@@ -12,7 +12,7 @@ namespace Lila {
 
 
 	Entity Registry::createEntity() {
-		assertM(entityCount < MAX_ENTITIES, "Too many entities.");
+		lila_assert_msg(entityCount < MAX_ENTITIES, "Too many entities.");
 
 		Entity entity = availableEntities.front();
 		availableEntities.pop();
@@ -22,7 +22,7 @@ namespace Lila {
 	}
 
 	void Registry::destroyEntity(Entity entity) {
-		assertM(entity < MAX_ENTITIES, "Entity out of range.");
+		lila_assert_msg(entity < MAX_ENTITIES, "Entity out of range.");
 
 		componentSets[entity].reset();
 		availableEntities.push(entity);
@@ -34,13 +34,13 @@ namespace Lila {
 
 
 	void Registry::setSet(Entity entity, ComponentSet set) {
-		assertM(entity < MAX_ENTITIES, "Entity out of range.");
+		lila_assert_msg(entity < MAX_ENTITIES, "Entity out of range.");
 
 		componentSets[entity] = set;
 	}
 
 	ComponentSet Registry::getSet(Entity entity) {
-		assertM(entity < MAX_ENTITIES, "Entity out of range.");
+		lila_assert_msg(entity < MAX_ENTITIES, "Entity out of range.");
 
 		return componentSets[entity];
 	}

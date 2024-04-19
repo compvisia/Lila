@@ -19,14 +19,22 @@ namespace Lila {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
+		int tempW = width, tempH = height;
 		glfwGetWindowSize(window, &width, &height);
-		glViewport(0, 0, width, height);
+
+		if(tempW != width || tempH != height) {
+			glViewport(0, 0, width, height);
+			//WindowEvent event(this, EventType::WindowResized);
+			//eventhandler.releaseEvent(event);
+		}
 	}
 	void Window::Delete() {
+		//WindowEvent event(this, EventType::WindowDestroyed);
+		//eventhandler.releaseEvent(event);
 		glfwDestroyWindow(window);
-		info("Deleted window successfully");
+		lila_info("Deleted window successfully");
 		glfwTerminate();
-		info("Terminated GLFW");
+		lila_info("Terminated GLFW");
 	}
 
 	int Window::windowClose() { return glfwWindowShouldClose(window); }
@@ -37,11 +45,11 @@ namespace Lila {
 	void Window::Create() {
 
 		if(!glfwInit()) {
-			fatal("Failed to Initialize GLFW!");
+			lila_fatal("Failed to Initialize GLFW!");
 			abort();
 		}
-		trace("Initialized GLFW");
-		info("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
+		lila_trace("Initialized GLFW");
+		lila_info("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -56,22 +64,25 @@ namespace Lila {
 		if(vulkan) {
 			// LONG TODO: Vulkan Support
 		} else {
-			info("No Vulkan support, switching to OpenGL");
+			lila_info("No Vulkan support, switching to OpenGL");
 
 			if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-				fatal("Failed to Initialize OpenGL!");
+				lila_fatal("Failed to Initialize OpenGL!");
 				abort();
 			}
-			trace("Initialized OpenGL");
-			info("OpenGL version %s", glGetString(GL_VERSION));
+			lila_trace("Initialized OpenGL");
+			lila_info("OpenGL version %s", glGetString(GL_VERSION));
 
 			glViewport(0, 0, width, height);
 		}
 
 		glfwShowWindow(window);
 
-		info("Created Window successfully");
-		info("Window size %dx%d", width, height)
+		lila_info("Created Window successfully");
+		lila_info("Window size %dx%d", width, height);
+
+		//WindowEvent event(this, EventType::WindowCreated);
+		//eventhandler.releaseEvent(event);
 	}
 
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Lila/core/Logger.h"
+#include "Logger.h"
 
 #include "glad/glad.h"
 #include "glfw/glfw3.h"
