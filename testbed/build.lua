@@ -1,4 +1,4 @@
-project "Editor"
+project "Testbed"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++17"
@@ -12,15 +12,13 @@ project "Editor"
         "%{wks.location}/Lila/src",
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
-        "%{IncludeDir.imgui}",
         "%{IncludeDir.stb}"
    }
 
    links {
+        "Lila",
         "glad",
-        "glfw",
-        "imgui",
-        "Lila"
+        "glfw"
    }
 
    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
@@ -45,9 +43,3 @@ project "Editor"
        runtime "Release"
        optimize "On"
        symbols "On"
-
-   filter "configurations:Dist"
-       defines { "DIST" }
-       runtime "Release"
-       optimize "On"
-       symbols "Off"

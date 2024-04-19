@@ -1,26 +1,52 @@
-# Bin Directories
-bin/
-obj/
+###########################
+##### General Ignores #####
+###########################
 
-# Tests
+# Testing and Logging
 test/
 *.log
+*.txt
 
-# Imgui
-*.ini
-
-# Hidden Directories
+# IDE
 .vs/
+.idea/
 .vscode/
 
-### Build systems ##
+# Binaries
+bin/
+*.exe
+*.dll
+*.o
+*.a
+*.so
+*.lib
+*.pri
+*.exp
+
+# Intermediates
+obj/
+[Dd]ebug*/
+[Rr]elease*/
+
+# Excluding
+!scripts/premake/bin
+!premake5.exe
+!LICENSE.txt
+
+#########################
+##### Build systems #####
+#########################
+
+# General
+build/
+
 # Make
 Makefile
 *.make
 
 # Visual Studio
 **.sln
+**.csproj
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
-**.csproj

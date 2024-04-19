@@ -1,6 +1,3 @@
-[submodule "Lila/vendor/glfw"]
-	path = Lila/vendor/glfw
+[submodule "deps/glfw"]
+	path = deps/glfw
 	url = git@github.com:compvisia/glfw.git
-[submodule "Lila/vendor/imgui"]
-	path = Lila/vendor/imgui
-	url = git@github.com:compvisia/imgui.git

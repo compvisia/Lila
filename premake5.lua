@@ -1,21 +1,22 @@
-include "Dependencies.lua"
-
-workspace "Lila"
-   linkgroups "On"
-   architecture "x64"
-   configurations { "Debug", "Release", "Dist" }
-   startproject "Editor"
-   warnings "Off"
+include "deps/Dependencies.lua"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
+workspace "Lila"
+    linkgroups "On"
+    warnings "Off"
+
+    architecture "x64"
+    startproject "Testbed"
+
+    configurations { "Debug", "Release" }
+    
 group "Dependencies"
-   include "Lila/vendor/glad"
-   include "Lila/vendor/glfw"
-   include "Lila/vendor/imgui"
+    include "deps/glad"
+    include "deps/glfw"
 group ""
 
-group "Lila Engine"
-   include "Lila/build.lua"
-   include "LilaEditor/build.lua"
+group "Lila"
+    include "Lila/build.lua"
+    include "testbed/build.lua"
 group ""

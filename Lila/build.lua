@@ -11,14 +11,12 @@ project "Lila"
         "src",
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
-        "%{IncludeDir.imgui}",
         "%{IncludeDir.stb}"
    }
 
    links {
         "glad",
-        "glfw",
-        "imgui"
+        "glfw"
    }
 
    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
@@ -43,9 +41,3 @@ project "Lila"
        runtime "Release"
        optimize "On"
        symbols "On"
-
-   filter "configurations:Dist"
-       defines { "DIST" }
-       runtime "Release"
-       optimize "On"
-       symbols "Off"
