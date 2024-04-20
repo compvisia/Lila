@@ -7,4 +7,6 @@
 #include "Lila/core/Application.h"
 #include "Lila/core/Logger.h"
 
+#include "Lila/events/EventBus.h"
+
 #include "Lila/Entry.h"
