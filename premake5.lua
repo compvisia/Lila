@@ -1,6 +1,6 @@
 include "deps/Dependencies.lua"
 
-workspace "Lila Project"
+workspace "Lila"
     linkgroups "On"
     warnings "Off"
 
