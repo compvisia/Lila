@@ -1,8 +1,6 @@
 include "deps/Dependencies.lua"
 
-OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
-
-workspace "Lila"
+workspace "Lila Project"
     linkgroups "On"
     warnings "Off"
 
@@ -11,12 +9,14 @@ workspace "Lila"
 
     configurations { "Debug", "Release" }
     
+OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
+
 group "Dependencies"
     include "deps/glad"
     include "deps/glfw"
 group ""
 
-group "Lila"
+group "Lila engine"
     include "Lila/build.lua"
     include "testbed/build.lua"
 group ""
