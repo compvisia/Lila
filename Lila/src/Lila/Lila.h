@@ -9,6 +9,7 @@
 
 #include "Lila/core/Application.h"
 #include "Lila/core/Logger.h"
+#include "Lila/core/Window.h"
 
 #include "Lila/events/EventBus.h"
 
