@@ -1,16 +1,16 @@
 #pragma once
 
-
-#include "Lila/utils/Memory.h"
-#include "Lila/utils/UUID.h"
+#include "Lila/Utils/Memory.h"
+#include "Lila/Utils/UUID.h"
 
 #include "Lila/math/Math.h"
-#include "Lila/math/Graph.h"
+#include "Lila/Math/Graph.h"
 
-#include "Lila/core/Application.h"
-#include "Lila/core/Logger.h"
-#include "Lila/core/Window.h"
+#include "Lila/Core/Application.h"
+#include "Lila/Core/Logger.h"
 
-#include "Lila/events/EventBus.h"
+#include "Lila/Events/EventBus.h"
+
+#include "Lila/Core/Window.h"
 
 #include "Lila/Entry.h"

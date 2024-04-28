@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Logger.h"
-#include "Lila/math/Math.h"
+#include "Lila/Math/Math.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -20,9 +19,7 @@ namespace Lila {
 		GLFWwindow* getContext() { return window_m; }
 		std::string getName() { return name_m; }
 		Vec2 getSize() { return Vec2{ (float)width_m, (float)height_m }; }
-
-
-
+	
 	private:
 		void create();
 
@@ -38,5 +35,4 @@ namespace Lila {
 		GLFWmonitor* monitor_m;
 		const GLFWvidmode* videoMode_m;
 	};
-
 }

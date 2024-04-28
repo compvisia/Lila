@@ -1,5 +1,7 @@
 #include "Window.h"
 
+#include "Logger.h"
+
 #include "Platform/Dependencies.h"
 
 namespace Lila {
@@ -14,7 +16,7 @@ namespace Lila {
 
 		monitor_m = glfwGetPrimaryMonitor();
 		videoMode_m = glfwGetVideoMode(monitor_m);
-		
+
 		width_m = videoMode_m->width / 1.5f;
 		height_m = videoMode_m->height / 1.5f;
 
@@ -23,7 +25,7 @@ namespace Lila {
 		lila_info("Creating window");
 		create();
 	}
-		
+
 	Window::Window(std::string name, bool maximized) {
 		name_m = name;
 
@@ -44,7 +46,7 @@ namespace Lila {
 
 	Window::Window(std::string name, int width, int height) {
 		name_m = name;
-		
+
 		width_m = width;
 		height_m = height;
 
@@ -56,7 +58,7 @@ namespace Lila {
 
 		refreshRate_m = videoMode_m->refreshRate;
 
-		if (videoMode_m->width < width_m || videoMode_m->height < height_m) {
+		if(videoMode_m->width < width_m || videoMode_m->height < height_m) {
 			lila_warn("Window size too big. Enabling maximized mode");
 			maximized_m = true;
 			width_m = videoMode_m->width;

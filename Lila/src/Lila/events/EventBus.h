@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Lila/events/Event.h"
-#include "Lila/events/EventHandler.h"
-#include "Lila/utils/Utils.h"
-#include "Lila/utils/Memory.h"
+#include "Event.h"
+#include "EventHandler.h"
+#include "Lila/Utils/Utils.h"
+#include "Lila/Utils/Memory.h"
 
 #include <vector>
 
