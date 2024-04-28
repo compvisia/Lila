@@ -3,7 +3,7 @@
 #include "Lila/Utils/Memory.h"
 #include "Lila/Utils/UUID.h"
 
-#include "Lila/math/Math.h"
+#include "Lila/Math/Math.h"
 #include "Lila/Math/Graph.h"
 
 #include "Lila/Core/Application.h"
