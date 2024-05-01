@@ -16,7 +16,7 @@ namespace Lila {
 		LL_TRACE,
 	};
 
-	static void _log(LogLevel logLevel, std::string fmt, ...) {
+	static void _log(LogLevel logLevel, const std::string fmt, ...) {
 		static std::string color[] = {
 			"\x1b[31m",        // Dark Red (LL_FATAL)
 			"\x1b[91;1m",      // Bold Red (LL_ASSERT)
