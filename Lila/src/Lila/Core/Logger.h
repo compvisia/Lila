@@ -41,7 +41,12 @@ namespace Lila {
 
 		char out[1024]; // Max message length
 		memset(out, 0, sizeof(out));
-	
+		
+		if(fmt.length() > 512) {
+			printf("\x1b[91m[ERROR] : Logger format is bigger than 512 characters!\033[0m\n");
+			return;
+		}
+
 		va_list arg_ptr;
 		#ifdef _WIN32
 			__crt_va_start(arg_ptr, fmt);
