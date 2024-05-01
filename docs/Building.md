@@ -13,8 +13,7 @@ Then open the Lila.sln file and build it using Visual Studio.<br>
 
 ### Running
 
-You can just hit play in Visual Studio or alternatively go to `bin/windows-x86_64/Debug/Testbed` and run `Testbed.exe` using the terminal
-
+You can just hit run in Visual Studio or alternatively go to `bin/windows-x86_64/Debug/Testbed` and run `Testbed.exe` using the terminal
 
 ## Linux
 
@@ -22,7 +21,7 @@ You can just hit play in Visual Studio or alternatively go to `bin/windows-x86_6
 
 * make
 * gcc/clang
-* libx11-dev
+* xorg-dev
 
 ### Building
 

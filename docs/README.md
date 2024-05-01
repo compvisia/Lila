@@ -3,6 +3,7 @@
 </h1>
 
 <p align="center">
+	<a href="https://www.codefactor.io/repository/github/compvisia/lila"><img src="https://www.codefactor.io/repository/github/compvisia/lila/badge" alt="CodeFactor"/></a>
 	<a title="License MIT" href="https://github.com/compvisia/Lila/blob/master/LICENSE"><img src="https://img.shields.io/github/license/compvisia/lila"/></a>
 </p>
 

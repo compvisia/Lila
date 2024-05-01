@@ -1,7 +1,16 @@
 # Dependencies
 
-* [Premake](https://premake.github.io/) - Build configuration tool
-* [GLFW](https://github.com/compvisia/glfw) - Window and input
-* [OpenGL](https://opengl.org/) - 2D/3D Rendering
-* [glad](https://glad.dav1d.de/) - An OpenGL Loader
-* [stb](https://github.com/nothings/stb) - Image loader
+|Repository|Information|
+|:------------|:----------|
+|[Premake](https://premake.github.io/)|Build configuration tool|
+|[GLFW](https://github.com/compvisia/glfw)|Window and input utility tool|
+|[OpenGL](https://opengl.org/)|Graphics Rendering API|
+|[glad](https://glad.dav1d.de/)|A library to load OpenGL|
+|[stb](https://github.com/nothings/stb)|An image processor|
+
+
+
+
+
+
+
