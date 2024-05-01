@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Lila/utils/Memory.h"
+#include "Memory.h"
 
 namespace Lila {
 	class UUID {

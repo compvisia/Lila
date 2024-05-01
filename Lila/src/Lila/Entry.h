@@ -38,6 +38,8 @@
 
 extern Lila::Shared<Lila::Application> createApplication();
 
+#include "Platform/Dependencies.h"
+
 int main(int argv, char** argc) {
 // Operating System
 #if LILA_PLATFORM_WINDOWS
@@ -79,6 +81,9 @@ int main(int argv, char** argc) {
 #else
 	lila_warn("Failed identify C++ compiler")
 #endif
+
+	if(!initDependencies())
+		return -1;
 
 	Lila::Shared<Lila::Application> application = createApplication();
 	lila_info("Created Application: %s", application->getName().c_str());

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Lila/core/Logger.h"
+#include "Lila/Core/Logger.h"
 
 #include <type_traits>
 
