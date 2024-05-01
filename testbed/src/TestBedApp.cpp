@@ -29,7 +29,6 @@ public:
         Lila::EventBus::fireEvent(te);
     }
 
-
 };
 
 Lila::Shared<Lila::Application> createApplication() {

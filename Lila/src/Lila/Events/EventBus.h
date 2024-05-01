@@ -11,9 +11,7 @@ namespace Lila {
 	
 	class EventBus {
 	public:
-		EventBus() {
-			
-		}
+		EventBus() {}
 		virtual ~EventBus() {}
 
 		static EventBus* const getInstance() {
