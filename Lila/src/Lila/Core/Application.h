@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Lila/core/Logger.h"
-#include "Lila/utils/UUID.h"
+#include "Logger.h"
+#include "Lila/Utils/UUID.h"
 
 #include <string>
 
