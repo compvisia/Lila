@@ -39,27 +39,17 @@ namespace Lila {
 			"[TRACE] :"
 		};
 
-		char out[1024]; // Max message length
-		memset(out, 0, sizeof(out));
-		
-		if(fmt.length() > 512) {
-			printf("\x1b[91m[ERROR] : Logger format is bigger than 512 characters!\033[0m\n");
-			return;
-		}
-
 		va_list arg_ptr;
+		printf("%s%s ", color[logLevel].c_str(), prefixes[logLevel].c_str());
 		#ifdef _WIN32
 			__crt_va_start(arg_ptr, fmt);
-			vsprintf(out, fmt.c_str(), arg_ptr);
+			vprintf(fmt.c_str(), arg_ptr);
 			__crt_va_end(arg_ptr);
 		#else
 			__builtin_va_start(arg_ptr, fmt);
-			vsprintf(out, fmt.c_str(), arg_ptr);
+			vprintf(out, fmt.c_str(), arg_ptr);
 			__builtin_va_end(arg_ptr);
 		#endif
-
-		printf(color[logLevel].c_str());
-		printf("%s %s", prefixes[logLevel].c_str(), out);
 		printf("%s\n", exitColor.c_str());
 	}
 
