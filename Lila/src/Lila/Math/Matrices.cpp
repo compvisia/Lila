@@ -4,7 +4,7 @@
 
 namespace Lila {
 
-	static Mat4 orthographic(float left, float right, float bottom, float top, float near, float far) {
+	Mat4 orthographic(float left, float right, float bottom, float top, float near, float far) {
 		Mat4 result = Mat4();
 
 		float rl = right - left;
@@ -21,7 +21,7 @@ namespace Lila {
 
 		return result;
 	}
-	static Mat4 perspective(float fov, float aspectRatio, float near, float far) {
+	Mat4 perspective(float fov, float aspectRatio, float near, float far) {
 		Mat4 result = Mat4();
 
 		float tanFov = tan(toRadians(fov/2));
@@ -38,7 +38,7 @@ namespace Lila {
 		return result;
 	}
 
-	static Mat4 translation(Vec3 position) {
+	Mat4 translation(Vec3 position) {
 		Mat4 result = Mat4();
 
 		result.set(3, 0, position.x());
@@ -47,7 +47,7 @@ namespace Lila {
 
 		return result;
 	}
-	static Mat4 rotation(Vec3 rotation) {
+	Mat4 rotation(Vec3 rotation) {
 		Mat4 x = Mat4(), y = Mat4(), z = Mat4();
 
 		float Rx = toRadians(rotation.x());
@@ -71,7 +71,7 @@ namespace Lila {
 
 		return multiply(multiply(z,y),x);
 	}
-	static Mat4 scale(Vec3 scale) {
+	Mat4 scale(Vec3 scale) {
 		Mat4 result = Mat4();
 
 		result.set(0, 0, scale.x());
@@ -81,7 +81,7 @@ namespace Lila {
 		return result;
 	}
 
-	static Mat4 multiply(Mat4 a, Mat4 b) {
+	Mat4 multiply(Mat4 a, Mat4 b) {
 		Mat4 result = Mat4();
 
 		for (int m = 0; m < 4; m++)

@@ -31,17 +31,21 @@ namespace Lila {
 			return data[m * 4 + n];
 		}
 
+		float* getAll() {
+			return &data[0];
+		}
+
 	private:
 		float data[16]{ 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 	};
 
-	static Mat4 orthographic(float left, float right, float bottom, float top, float near, float far);
-	static Mat4 perspective(float fov, float aspectRatio, float near, float far);
+	Mat4 orthographic(float left, float right, float bottom, float top, float near, float far);
+	Mat4 perspective(float fov, float aspectRatio, float near, float far);
 
-	static Mat4 translation(Vec3 position);
-	static Mat4 rotation(Vec3 rotation);
-	static Mat4 scale(Vec3 scale);
+	Mat4 translation(Vec3 position);
+	Mat4 rotation(Vec3 rotation);
+	Mat4 scale(Vec3 scale);
 
 	
-	static Mat4 multiply(Mat4 a, Mat4 b);
+	Mat4 multiply(Mat4 a, Mat4 b);
 }
