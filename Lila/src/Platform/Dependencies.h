@@ -13,6 +13,8 @@ static bool initDependencies() {
 
 	lila_trace("Initialized GLFW");
 	lila_info("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
+
+	return true;
 }
 
 static bool initOpenGL() {
@@ -23,4 +25,6 @@ static bool initOpenGL() {
 
 	lila_trace("Initialized OpenGL");
 	lila_info("OpenGL version %s", glGetString(GL_VERSION));
+
+	return true;
 }
