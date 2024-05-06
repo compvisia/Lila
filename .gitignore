@@ -7,6 +7,10 @@ test/
 *.log
 *.txt
 
+# Coverage Files
+*.gcno
+*.gcda
+
 # IDE
 .vs/
 .idea/
