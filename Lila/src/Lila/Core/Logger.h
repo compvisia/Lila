@@ -47,7 +47,7 @@ namespace Lila {
 			__crt_va_end(arg_ptr);
 		#else
 			__builtin_va_start(arg_ptr, fmt);
-			vprintf(out, fmt.c_str(), arg_ptr);
+			vprintf(fmt.c_str(), arg_ptr);
 			__builtin_va_end(arg_ptr);
 		#endif
 		printf("%s\n", exitColor.c_str());
