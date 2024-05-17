@@ -16,7 +16,7 @@ namespace Lila {
 		LL_TRACE,
 	};
 
-	static void _log(LogLevel logLevel, std::string fmt, ...) {
+	static void _log(LogLevel logLevel, const std::string fmt, ...) {
 		static std::string color[] = {
 			"\x1b[31m",        // Dark Red (LL_FATAL)
 			"\x1b[91;1m",      // Bold Red (LL_ASSERT)
@@ -39,22 +39,17 @@ namespace Lila {
 			"[TRACE] :"
 		};
 
-		char out[1024]; // Max message length
-		memset(out, 0, sizeof(out));
-	
 		va_list arg_ptr;
+		printf("%s%s ", color[logLevel].c_str(), prefixes[logLevel].c_str());
 		#ifdef _WIN32
 			__crt_va_start(arg_ptr, fmt);
-			vsprintf(out, fmt.c_str(), arg_ptr);
+			vprintf(fmt.c_str(), arg_ptr);
 			__crt_va_end(arg_ptr);
 		#else
 			__builtin_va_start(arg_ptr, fmt);
-			vsprintf(out, fmt.c_str(), arg_ptr);
+			vprintf(fmt.c_str(), arg_ptr);
 			__builtin_va_end(arg_ptr);
 		#endif
-
-		printf(color[logLevel].c_str());
-		printf("%s %s", prefixes[logLevel].c_str(), out);
 		printf("%s\n", exitColor.c_str());
 	}
 

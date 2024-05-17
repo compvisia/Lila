@@ -28,8 +28,6 @@ public:
         TestEvent te;
         Lila::EventBus::fireEvent(te);
     }
-
-
 };
 
 Lila::Shared<Lila::Application> createApplication() {

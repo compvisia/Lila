@@ -91,6 +91,7 @@ namespace Lila {
 
 		initOpenGL();
 
+		glfwSwapInterval(0);
 		glfwShowWindow(window_m);
 	}
 }

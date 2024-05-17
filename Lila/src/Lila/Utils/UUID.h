@@ -11,6 +11,5 @@ namespace Lila {
 
 	private:
 		unsigned long long id;
-
 	};
 }
