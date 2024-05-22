@@ -16,6 +16,12 @@ namespace Lila {
 		Window(std::string name, int width, int height);
 		~Window();
 
+		void render();
+		void update();
+
+		bool isOpen();
+		bool isClosed();
+
 		GLFWwindow* getContext() { return window_m; }
 		std::string getName() { return name_m; }
 		Vec2 getSize() { return Vec2{ (float)width_m, (float)height_m }; }
@@ -34,5 +40,7 @@ namespace Lila {
 		bool fullscreen_m;
 		GLFWmonitor* monitor_m;
 		const GLFWvidmode* videoMode_m;
+
+		int tempWidth_m, tempHeight_m;
 	};
 }

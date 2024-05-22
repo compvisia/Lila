@@ -1,7 +1,10 @@
 #pragma once
 
+#include "Platform/Defines.h"
+
 #include <iostream>
 #include <cstring>
+#include <cstdarg>
 #include <string>
 
 namespace Lila {
@@ -41,14 +44,18 @@ namespace Lila {
 
 		va_list arg_ptr;
 		printf("%s%s ", color[logLevel].c_str(), prefixes[logLevel].c_str());
-		#ifdef _WIN32
+		#ifdef LILA_PLATFORM_WINDOWS
 			__crt_va_start(arg_ptr, fmt);
 			vprintf(fmt.c_str(), arg_ptr);
 			__crt_va_end(arg_ptr);
-		#else
+		#elif LILA_PLATFORM_LINUX
 			__builtin_va_start(arg_ptr, fmt);
 			vprintf(fmt.c_str(), arg_ptr);
 			__builtin_va_end(arg_ptr);
+		#else
+			va_start(arg_ptr, fmt);
+			vprintf(fmt.c_str(), arg_ptr);
+			va_end(arg_ptr);
 		#endif
 		printf("%s\n", exitColor.c_str());
 	}
@@ -67,7 +74,7 @@ namespace Lila {
 	#define lila_trace(fmt, ...);
 #endif
 
-#ifdef _WIN32
+#ifdef LILA_PLATFORM_WINDOWS
 	#define lila_debug_break() __debugbreak();
 #else
 	#define lila_debug_break() __builtin_trap();

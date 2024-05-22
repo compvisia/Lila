@@ -94,4 +94,29 @@ namespace Lila {
 		glfwSwapInterval(0);
 		glfwShowWindow(window_m);
 	}
+
+	void Window::render() {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
+	}
+	void Window::update() {
+		glfwPollEvents();
+		glfwSwapBuffers(window_m);
+
+		glfwGetWindowSize(window_m, &tempWidth_m, &tempHeight_m);
+		if(width_m == tempWidth_m && height_m == tempHeight_m)
+			return;
+
+		width_m = tempWidth_m;
+		height_m = tempHeight_m;
+
+		glViewport(0, 0, width_m, height_m);
+	}
+
+	bool Window::isOpen() {
+		return !glfwWindowShouldClose(window_m);
+	}
+	bool Window::isClosed() {
+		return glfwWindowShouldClose(window_m);
+	}
 }
