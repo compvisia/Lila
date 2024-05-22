@@ -27,6 +27,13 @@ public:
 
         TestEvent te;
         Lila::EventBus::fireEvent(te);
+
+        Lila::Unique<Lila::Window> window = Lila::makeUnique<Lila::Window>("Window");
+
+        while(window->isOpen()) {
+            window->render();
+            window->update();
+        }
     }
 };
 
