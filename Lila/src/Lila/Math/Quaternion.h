@@ -1,10 +1,12 @@
 #pragma once
 
+#include "Platform/Defines.h"
+
 namespace Lila {
 
 	class Quaternion {
 	public:
-		Quaternion(float a, float b, float c, float d) {
+		Quaternion(f32 a, f32 b, f32 c, f32 d) {
 			val[0] = a;
 			val[1] = b;
 			val[2] = c;
@@ -12,6 +14,6 @@ namespace Lila {
 		}
 
 	private:
-		float val[4]{ 0.0f, 0.0f, 0.0f, 0.0f };
+		f32 val[4]{ 0.0f, 0.0f, 0.0f, 0.0f };
 	};
 }

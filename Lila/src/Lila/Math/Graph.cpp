@@ -4,22 +4,22 @@
 
 namespace Lila {
 
-	double lerp(double a, double b, double t) {
+	f64 lerp(f64 a, f64 b, f64 t) {
 		return (1 - t) * a + t * b;
 	}
-	double invLerp(double a, double b, double t) {
+	f64 invLerp(f64 a, f64 b, f64 t) {
 		return (t - a) / (b - a);
 	}
 
-	double linear(double a, double b, double x) {
+	f64 linear(f64 a, f64 b, f64 x) {
 		return a * x + b;
 	}
-	double parabola(double a, double b, double c, double x) {
+	f64 parabola(f64 a, f64 b, f64 c, f64 x) {
 		return a * x * x + b * x + c;
 	}
 
-	double quadratic(double a, double b, double c, double x, bool min) {
-		if (min)
+	f64 quadratic(f64 a, f64 b, f64 c, f64 x, b8 min) {
+		if (min >= 0)
 			return (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
 		return (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
 	}

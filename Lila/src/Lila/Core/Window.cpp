@@ -26,7 +26,7 @@ namespace Lila {
 		create();
 	}
 
-	Window::Window(std::string name, bool maximized) {
+	Window::Window(std::string name, b8 maximized) {
 		name_m = name;
 
 		maximized_m = true;
@@ -44,7 +44,7 @@ namespace Lila {
 		create();
 	}
 
-	Window::Window(std::string name, int width, int height) {
+	Window::Window(std::string name, i32 width, i32 height) {
 		name_m = name;
 
 		width_m = width;

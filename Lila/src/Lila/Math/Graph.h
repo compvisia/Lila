@@ -2,13 +2,15 @@
 
 #include "Math.h"
 
+#include "Platform/Defines.h"
+
 namespace Lila {
 
-	double lerp(double a, double b, double t);
-	double invLerp(double a, double b, double t);
+	f64 lerp(f64 a, f64 b, f64 t);
+	f64 invLerp(f64 a, f64 b, f64 t);
 
-	double linear(double a, double b, double x);
-	double parabola(double a, double b, double c, double x);
+	f64 linear(f64 a, f64 b, f64 x);
+	f64 parabola(f64 a, f64 b, f64 c, f64 x);
 
-	double quadratic(double a, double b, double c, double x, bool min);
+	f64 quadratic(f64 a, f64 b, f64 c, f64 x, bool min);
 }

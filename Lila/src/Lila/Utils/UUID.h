@@ -2,14 +2,16 @@
 
 #include "Memory.h"
 
+#include "Platform/Defines.h"
+
 namespace Lila {
 	class UUID {
 	public:
 		UUID();
 
-		operator unsigned long long() { return id; }
+		operator u64() { return id; }
 
 	private:
-		unsigned long long id;
+		u64 id;
 	};
 }

@@ -4,6 +4,8 @@
 #include "Vectors.h"
 #include "Matrices.h"
 
+#include "Platform/Defines.h"
+
 #define Pi           3.14159265358979323846f     // π
 #define HalfPi       1.57079632679489661923f     // π / 2
 #define QuarterPi    0.78539816339744830962f     // π / 4
@@ -49,33 +51,33 @@
 
 namespace Lila {
 
-	double toRadians(double degrees);
-	double toDegrees(double radians);
-	double toGradians(double degrees);
+	f64 toRadians(f64 degrees);
+	f64 toDegrees(f64 radians);
+	f64 toGradians(f64 degrees);
 
 	
-	double sin(double x);
-	double cos(double x);
-	double tan(double x);
+	f64 sin(f64 x);
+	f64 cos(f64 x);
+	f64 tan(f64 x);
 	
-	double asin(double x);
-	double acos(double x);
-	double atan(double x);
+	f64 asin(f64 x);
+	f64 acos(f64 x);
+	f64 atan(f64 x);
 
-	double pythagoras(double a, double b);
-	double sqrtPythagoras(double a, double b);
+	f64 pythagoras(f64 a, f64 b);
+	f64 sqrtPythagoras(f64 a, f64 b);
 
-	double sqrt(double v);
+	f64 sqrt(f64 v);
 
-	double abs(double v);
+	f64 abs(f64 v);
 
-	double floor(double v);
-	double ceil(double v);
-	double round(double v);
+	f64 floor(f64 v);
+	f64 ceil(f64 v);
+	f64 round(f64 v);
 	
-	double log(double v);
-	double log2(double v);
+	f64 log(f64 v);
+	f64 log2(f64 v);
 
-	double pow(double x, double y);
+	f64 pow(f64 x, f64 y);
 
 }
