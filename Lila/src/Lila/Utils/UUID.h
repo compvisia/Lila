@@ -9,9 +9,9 @@ namespace Lila {
 	public:
 		UUID();
 
-		operator u64() { return id; }
+		operator u64() { return id_m; }
 
 	private:
-		u64 id;
+		u64 id_m;
 	};
 }

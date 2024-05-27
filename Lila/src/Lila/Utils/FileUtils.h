@@ -17,7 +17,6 @@ namespace Lila {
 			return contents;
 		}
 
-
 		std::ifstream file;
 		file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		try {
@@ -29,8 +28,8 @@ namespace Lila {
 			file.close();
 
 			contents = stream.str();
-
 		}
+		
 		catch (std::ifstream::failure& exception) {
 			lila_error("FileUtils.getContents exception %s", exception.what());
 		}
