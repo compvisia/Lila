@@ -19,7 +19,7 @@ namespace Lila {
 	}
 
 	f64 quadratic(f64 a, f64 b, f64 c, f64 x, b8 min) {
-		if (min >= 0)
+		if (min)
 			return (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
 		return (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
 	}
