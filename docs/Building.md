@@ -8,12 +8,13 @@
 
 ### Building
 
-Go inside the `scripts` folder and run the `build-vs2022.bat` file.<br>
-Then open the Lila.sln file and build it using Visual Studio.<br>
+1. Navigate to the `scripts` folder and run the `build-vs2022.bat` file.
+2. Open the `Lila.sln` file and build it using Visual Studio.
 
 ### Running
 
-You can just hit run in Visual Studio or alternatively go to `bin/windows-x86_64/Debug/Testbed` and run `Testbed.exe` using the terminal
+* Press the run button in Visual Studio.
+* Or alternatively navigate to `bin/windows-x86_64/Debug/Testbed` and run `Testbed.exe`.
 
 ## Linux
 
@@ -25,16 +26,20 @@ You can just hit run in Visual Studio or alternatively go to `bin/windows-x86_64
 
 ### Building
 
-Open up a terminal and navigate to the Lila directory.
-Then run `chmod +x scripts/build-make.sh` to make the script runnable.<br>
-After that run `bash scripts/build-make.sh`.<br>
+1. Open up a terminal and navigate to the Lila directory.
+2. Execute the script by running `bash scripts/build-make.sh`.
 
 ### Running
 
-And then just run `./bin/linux-x86_64/Debug/Testbed/Testbed`.
+Run the following command in the terminal:
+```sh
+./bin/linux-x86_64/Debug/Testbed/Testbed
+```
 
 ## General Knowledge
 
 ### When to run the script
 
-After creating, deleting or renaming a file you must run the script again.
+After each file you created, deleted, or renamed, unless you are using Visual Studio or a similar IDE.
+
+After pulling most of the time you need to run it regardless of what IDE you use.
