@@ -20,7 +20,7 @@ static bool initDependencies() {
 static bool initOpenGL() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		lila_fatal("Failed to initalize OpenGL!")
-			return false;
+		return false;
 	}
 
 	lila_trace("Initialized OpenGL");
