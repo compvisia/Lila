@@ -7,13 +7,13 @@ namespace Lila {
 	class Quaternion {
 	public:
 		Quaternion(f32 a, f32 b, f32 c, f32 d) {
-			val[0] = a;
-			val[1] = b;
-			val[2] = c;
-			val[3] = d;
+			val_m[0] = a;
+			val_m[1] = b;
+			val_m[2] = c;
+			val_m[3] = d;
 		}
 
 	private:
-		f32 val[4]{ 0.0f, 0.0f, 0.0f, 0.0f };
+		f32 val_m[4]{ 0.0f, 0.0f, 0.0f, 0.0f };
 	};
 }

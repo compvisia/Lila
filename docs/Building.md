@@ -8,8 +8,14 @@
 
 ### Building
 
+#### Using Visual Studio
+
 1. Navigate to the `scripts` folder and run the `build-vs2022.bat` file.
 2. Open the `Lila.sln` file and build it using Visual Studio.
+
+#### Using MSBuild
+
+1. Navigate to the `scripts` folder and run the `build-msbuild.bat` file.
 
 ### Running
 
