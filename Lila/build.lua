@@ -18,6 +18,10 @@ project "Lila"
         "glfw"
    }
 
+   if _OPTIONS["coverage"] then
+    buildoptions { "-fprofile-arcs", "-ftest-coverage" }
+    links { "gcov" }
+   end
    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
    objdir ("../bin/obj/" .. OutputDir .. "/%{prj.name}")
 

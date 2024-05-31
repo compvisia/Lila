@@ -1,5 +1,10 @@
 include "deps/Dependencies.lua"
 
+newoption {
+    trigger = "coverage",
+    description = "Generates a coverage report using gcov"
+}
+
 workspace "Lila"
     linkgroups "On"
     warnings "Off"
