@@ -5,7 +5,7 @@
 namespace Lila {
 
 /**
- * @brief Linear interpolation function
+ * @brief Linear interpolation function.
  * 
  * (1 - t) * a + t * b
 */
@@ -14,7 +14,7 @@ double lerp(double a, double b, double t) {
 }
 
 /**
- * @brief Inverse Linear interpolation function
+ * @brief Inverse Linear interpolation function.
  * 
  * (t - a) / (b - a)
 */
@@ -23,7 +23,7 @@ double iLerp(double a, double b, double t) {
 }
 
 /**
- * @brief Linear graph function
+ * @brief Linear graph function.
  * 
  * a * x + b
 */
@@ -32,7 +32,7 @@ double linear(double a, double b, double x) {
 }
 
 /**
- * @brief Parabolic graph function
+ * @brief Parabolic graph function.
  * 
  * a * x^2 + b * x + c
 */
@@ -41,7 +41,7 @@ double parabola(double a, double b, double c, double x) {
 }
 
 /**
- * @brief Quardratic formula function
+ * @brief Quardratic formula function.
  * 
  * -b ± √(b^2 - 4 * a * c) / 2 * a
 */
