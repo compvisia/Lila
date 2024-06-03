@@ -4,23 +4,51 @@
 
 namespace Lila {
 
-	f64 lerp(f64 a, f64 b, f64 t) {
-		return (1 - t) * a + t * b;
-	}
-	f64 invLerp(f64 a, f64 b, f64 t) {
-		return (t - a) / (b - a);
-	}
-
-	f64 linear(f64 a, f64 b, f64 x) {
-		return a * x + b;
-	}
-	f64 parabola(f64 a, f64 b, f64 c, f64 x) {
-		return a * x * x + b * x + c;
-	}
-
-	f64 quadratic(f64 a, f64 b, f64 c, f64 x, b8 min) {
-		if (min)
-			return (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
-		return (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
-	}
+/**
+ * @brief Linear interpolation function
+ * 
+ * (1 - t) * a + t * b
+*/
+double lerp(double a, double b, double t) {
+	return (1 - t) * a + t * b;
 }
+
+/**
+ * @brief Inverse Linear interpolation function
+ * 
+ * (t - a) / (b - a)
+*/
+double iLerp(double a, double b, double t) {
+	return (t - a) / (b - a);
+}
+
+/**
+ * @brief Linear graph function
+ * 
+ * a * x + b
+*/
+double linear(double a, double b, double x) {
+	return a * x + b;
+}
+
+/**
+ * @brief Parabolic graph function
+ * 
+ * a * x^2 + b * x + c
+*/
+double parabola(double a, double b, double c, double x) {
+	return a * x * x + b * x + c;
+}
+
+/**
+ * @brief Quardratic formula function
+ * 
+ * -b ± √(b^2 - 4 * a * c) / 2 * a
+*/
+double quadratic(double a, double b, double c, double x, bool min) {
+	if (min)
+		return (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
+	return (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
+}
+
+} //namespace Lila

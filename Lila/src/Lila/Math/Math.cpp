@@ -4,34 +4,98 @@
 
 namespace Lila {
 
-	f64 toRadians(f64 degrees) { return degrees * RadiansMul; }
-	f64 toDegrees(f64 radians) { return radians * DegreesMul; }
-	f64 toGradians(f64 degrees) { return degrees * GradiansMul; }
+/**
+ * @brief Turns degrees into radians.
+*/
+double toRadians(double degrees) { return degrees * RadiansMul; }
 
+/**
+ * @brief Turns radians into degrees.
+*/
+double toDegrees(double radians) { return radians * DegreesMul; }
 
-	f64 sin(f64 x) { return sinl(x); }
-	f64 cos(f64 x) { return cosl(x); }
-	f64 tan(f64 x) { return tanl(x); }
+/**
+ * @brief Turns degrees into gradians.
+*/
+double toGradians(double degrees) { return degrees * GradiansMul; }
 
-	f64 asin(f64 x) { return asinl(x); }
-	f64 acos(f64 x) { return acosl(x); }
-	f64 atan(f64 x) { return atanl(x); }
+/**
+ * @brief Sine function.
+*/
+double sin(double x) { return sinl(x); }
 
-	f64 pythagoras(f64 a, f64 b) { return a * a + b * b; }
-	f64 sqrtPythagoras(f64 a, f64 b) { return sqrtl(a * a + b * b); }
+/**
+ * @brief Cosine function.
+*/
+double cos(double x) { return cosl(x); }
+/**
+ * @brief Tangent function.
+*/
+double tan(double x) { return tanl(x); }
 
-	f64 sqrt(f64 v) { return sqrtl(v); }
+/**
+ * @brief Inverse Sine function.
+*/
+double asin(double x) { return asinl(x); }
 
-	f64 abs(f64 v) { return fabs(v); }
+/**
+ * @brief Inverse Cosine function.
+*/
+double acos(double x) { return acosl(x); }
 
-	f64 floor(f64 v) { return floorl(v); }
-	f64 ceil(f64 v) { return ceill(v); }
-	f64 round(f64 v) { return roundl(v); }
-	
-	f64 log(f64 v) { return logl(v); }
-	f64 log2(f64 v) { return log2l(v); }
-	
-	f64 pow(f64 x, f64 y) { return powl(x,y); }
+/**
+ * @brief Inverse Tangent function.
+*/
+double atan(double x) { return atanl(x); }
 
+/**
+ * @brief Pythagoras formula.
+*/
+double pythagoras(double a, double b) { return a * a + b * b; }
 
-}
+/**
+ * @brief Squares Pythagoras formula.
+*/
+double sqrtPythagoras(double a, double b) { return sqrtl(a * a + b * b); }
+
+/**
+ * @brief Square root function.
+*/
+double sqrt(double v) { return sqrtl(v); }
+
+/**
+ * @brief Absolute function.
+*/
+double abs(double v) { return fabs(v); }
+
+/**
+ * @brief Flooring function.
+*/
+double floor(double v) { return floorl(v); }
+
+/**
+ * @brief Ceiling function.
+*/
+double ceil(double v) { return ceill(v); }
+
+/**
+ * @brief Rounding function.
+*/
+double round(double v) { return roundl(v); }
+
+/**
+ * @brief Logarithm function.
+*/
+double log(double v) { return logl(v); }
+
+/**
+ * @brief Logarithm base 2 function.
+*/
+double log2(double v) { return log2l(v); }
+
+/**
+ * @brief Exponentation function.
+*/
+double pow(double x, double y) { return powl(x,y); }
+
+} // namespace Lila
