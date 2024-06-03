@@ -1,9 +1,5 @@
 ﻿#pragma once
 
-#include "Quaternion.h"
-#include "Vectors.h"
-#include "Matrices.h"
-
 #include "Platform/Defines.h"
 
 #define Pi           3.14159265358979323846f     // π

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Math.h"
-
 #include "Platform/Defines.h"
 
 namespace Lila {
