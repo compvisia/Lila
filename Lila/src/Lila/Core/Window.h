@@ -2,6 +2,8 @@
 
 #include "Lila/Math/Math.h"
 
+#include "Lila/Math/Vectors.h"
+
 #include "Platform/Defines.h"
 
 #include <glad/glad.h>
