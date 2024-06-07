@@ -22,6 +22,11 @@ project "Lila"
     buildoptions { "-fprofile-arcs", "-ftest-coverage" }
     links { "gcov" }
    end
+
+   if _OPTIONS["headless"] then
+    defines { "LILA_HEADLESS_CONTEXT" }
+   end
+
    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
    objdir ("../bin/obj/" .. OutputDir .. "/%{prj.name}")
 
