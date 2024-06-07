@@ -20,17 +20,6 @@ namespace Lila {
 	};
 
 	static void _log(LogLevel logLevel, const std::string fmt, ...) {
-		static std::string color[] = {
-			"\x1b[31m",        // Dark Red (LL_FATAL)
-			"\x1b[91;1m",      // Bold Red (LL_ASSERT)
-			"\x1b[91m",        // Red      (LL_ERROR)
-			"\x1b[93m",        // Yellow   (LL_WARN)
-			"\x1b[96m",        // Cyan     (LL_DEBUG)
-			"\x1b[94m",        // Blue     (LL_INFO)
-			"\x1b[35m"         // Purple   (LL_TRACE)
-		};
-
-		static std::string exitColor = "\033[0m";
 
 		static std::string prefixes[] = {
 			"[FATAL] :",
@@ -43,7 +32,21 @@ namespace Lila {
 		};
 
 		va_list arg_ptr;
+
+		static std::string color[] = {
+			"\x1b[31m",        // Dark Red (LL_FATAL)
+			"\x1b[91;1m",      // Bold Red (LL_ASSERT)
+			"\x1b[91m",        // Red      (LL_ERROR)
+			"\x1b[93m",        // Yellow   (LL_WARN)
+			"\x1b[96m",        // Cyan     (LL_DEBUG)
+			"\x1b[94m",        // Blue     (LL_INFO)
+			"\x1b[35m"         // Purple   (LL_TRACE)
+		};
+
+		static std::string exitColor = "\033[0m";
+	
 		printf("%s%s ", color[logLevel].c_str(), prefixes[logLevel].c_str());
+
 		#ifdef LILA_PLATFORM_WINDOWS
 			__crt_va_start(arg_ptr, fmt);
 			vprintf(fmt.c_str(), arg_ptr);
@@ -57,7 +60,10 @@ namespace Lila {
 			vprintf(fmt.c_str(), arg_ptr);
 			va_end(arg_ptr);
 		#endif
-		printf("%s\n", exitColor.c_str());
+
+		printf("%s", exitColor.c_str());
+
+		printf("\n");
 	}
 
 #define lila_fatal(fmt, ...) _log(Lila::LL_FATAL, fmt, ##__VA_ARGS__);
