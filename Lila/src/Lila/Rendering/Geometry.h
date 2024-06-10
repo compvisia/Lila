@@ -30,4 +30,4 @@ namespace Lila {
 		u32 vao_m, vbo_m, ebo_m;
 	};
 
-}
+} // namespace Lila

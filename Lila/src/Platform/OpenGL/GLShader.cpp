@@ -10,9 +10,7 @@ namespace OpenGL {
         create(vertexPath, fragmentPath);
     }
 
-    GLShader::~GLShader() {
-        
-    }
+    GLShader::~GLShader() {}
 
     void GLShader::bind() {    
     #ifdef LILA_OPENGL_CONTEXT

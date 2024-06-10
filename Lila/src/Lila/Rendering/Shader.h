@@ -19,7 +19,6 @@ namespace Lila {
 
 	protected:
 		u32 program_m;
-
 	};
-
-}
+	
+} // namespace Lila
