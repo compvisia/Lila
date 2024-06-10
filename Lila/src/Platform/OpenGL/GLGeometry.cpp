@@ -76,25 +76,25 @@ namespace OpenGL {
 			size = 8;
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, size * sizeof(f32), (void*)0);
-        glEnableVertexAttribArray(0); // XYZ
+		glEnableVertexAttribArray(0); // XYZ
 
 		if(type_m == Lila::GEOMETRY_XYZ)
 			return;
 
 		if(type_m == Lila::GEOMETRY_XYZ_UV) {
 			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, size * sizeof(f32), (void*)(3 * sizeof(f32)));
-        	glEnableVertexAttribArray(1); // UV
+			glEnableVertexAttribArray(1); // UV
 			return;
 		}
 
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, size * sizeof(f32), (void*)(3 * sizeof(f32)));
-        glEnableVertexAttribArray(1); // RGB
+		glEnableVertexAttribArray(1); // RGB
 
 		if(type_m == Lila::GEOMETRY_XYZ_RGB)
 			return;
 
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, size * sizeof(f32), (void*)(6 * sizeof(f32)));
-        glEnableVertexAttribArray(2); // UV
+		glEnableVertexAttribArray(2); // UV
 	#endif
 	}
 
