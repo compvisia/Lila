@@ -2,45 +2,47 @@
 
 #include "Vectors.h"
 
+#include "Platform/Defines.h"
+
 namespace Lila {
 
 	class Mat4 {
 	public:
-		Mat4(float v00, float v01, float v02, float v03,
-			 float v10, float v11, float v12, float v13,
-			 float v20, float v21, float v22, float v23,
-			 float v30, float v31, float v32, float v33) {
-			data[0]  = v00; data[1]  = v01; data[2]  = v02; data[3]  = v03;
-			data[4]  = v10; data[5]  = v11; data[6]  = v12; data[7]  = v13;
-			data[8]  = v20; data[9]  = v21; data[10] = v22; data[11] = v23;
-			data[12] = v30; data[13] = v31; data[14] = v32; data[15] = v33;
+		Mat4(f32 v00, f32 v01, f32 v02, f32 v03,
+			 f32 v10, f32 v11, f32 v12, f32 v13,
+			 f32 v20, f32 v21, f32 v22, f32 v23,
+			 f32 v30, f32 v31, f32 v32, f32 v33) {
+			data_m[0]  = v00; data_m[1]  = v01; data_m[2]  = v02; data_m[3]  = v03;
+			data_m[4]  = v10; data_m[5]  = v11; data_m[6]  = v12; data_m[7]  = v13;
+			data_m[8]  = v20; data_m[9]  = v21; data_m[10] = v22; data_m[11] = v23;
+			data_m[12] = v30; data_m[13] = v31; data_m[14] = v32; data_m[15] = v33;
 		}
 
 		Mat4() {
-			data[0] = 1.0f; 
-			data[5] = 1.0f;
-			data[10] = 1.0f;
-			data[15] = 1.0f;
+			data_m[0] = 1.0f; 
+			data_m[5] = 1.0f;
+			data_m[10] = 1.0f;
+			data_m[15] = 1.0f;
 		}
 
-		void set(int m, int n, float v) {
-			data[m * 4 + n] = v;
+		void set(i32 m, i32 n, f32 v) {
+			data_m[m * 4 + n] = v;
 		}
 
-		float get(int m, int n) {
-			return data[m * 4 + n];
+		f32 get(i32 m, i32 n) {
+			return data_m[m * 4 + n];
 		}
 
-		float* getAll() {
-			return &data[0];
+		f32* getAll() {
+			return &data_m[0];
 		}
 
 	private:
-		float data[16]{ 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+		f32 data_m[16]{ 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 	};
 
-	Mat4 orthographic(float left, float right, float bottom, float top, float near, float far);
-	Mat4 perspective(float fov, float aspectRatio, float near, float far);
+	Mat4 orthographic(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far);
+	Mat4 perspective(f32 fov, f32 aspectRatio, f32 near, f32 far);
 
 	Mat4 translation(Vec3 position);
 	Mat4 rotation(Vec3 rotation);

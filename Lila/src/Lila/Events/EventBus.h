@@ -22,7 +22,7 @@ namespace Lila {
 		static void fireEvent(T& e) {
 			EventBus* bus = getInstance();
 
-			for (const auto& handler : bus->handlers) {
+			for (const auto& handler : bus->handlers_m) {
 				static_cast<EventHandler*>(handler)->onEvent(dynamic_cast<Lila::Event&>(e));
 			}
 		}
@@ -31,11 +31,11 @@ namespace Lila {
 			EventBus* bus = getInstance();
 			void* ptr = static_cast<void*>(&handler);
 
-			bus->handlers.push_back(ptr);
+			bus->handlers_m.push_back(ptr);
 		}
 
 	private:
-		std::vector<void*> handlers;
+		std::vector<void*> handlers_m;
 		static Unique<EventBus> instance_m;
 	};
 }

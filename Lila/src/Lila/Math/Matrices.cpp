@@ -4,12 +4,12 @@
 
 namespace Lila {
 
-	Mat4 orthographic(float left, float right, float bottom, float top, float near, float far) {
+	Mat4 orthographic(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far) {
 		Mat4 result = Mat4();
 
-		float rl = right - left;
-		float tb = top - bottom;
-		float fn = far - near;
+		f32 rl = right - left;
+		f32 tb = top - bottom;
+		f32 fn = far - near;
 
 		result.set(0, 0,  2.0f / rl);
 		result.set(1, 1,  2.0f / tb);
@@ -21,11 +21,11 @@ namespace Lila {
 
 		return result;
 	}
-	Mat4 perspective(float fov, float aspectRatio, float near, float far) {
+	Mat4 perspective(f32 fov, f32 aspectRatio, f32 near, f32 far) {
 		Mat4 result = Mat4();
 
-		float tanFov = tan(toRadians(fov/2));
-		float range = (far - near);
+		f32 tanFov = tan(toRadians(fov/2));
+		f32 range = (far - near);
 
 		result.set(0, 0, 1.0f / (aspectRatio * tanFov));
 		result.set(1, 1, 1.0f / tanFov);
@@ -33,7 +33,7 @@ namespace Lila {
 		result.set(2, 3, -((2 * far * near) / range));
 
 		result.set(3, 2, -1);
-		result.set(3, 3,  0);
+		result.set(3, 3,  1);
 
 		return result;
 	}
@@ -50,9 +50,9 @@ namespace Lila {
 	Mat4 rotation(Vec3 rotation) {
 		Mat4 x = Mat4(), y = Mat4(), z = Mat4();
 
-		float Rx = toRadians(rotation.x());
-		float Ry = toRadians(rotation.y());
-		float Rz = toRadians(rotation.z());
+		f32 Rx = toRadians(rotation.x());
+		f32 Ry = toRadians(rotation.y());
+		f32 Rz = toRadians(rotation.z());
 
 		x.set(1, 1,  cos(Rx));
 		x.set(1, 2, -sin(Rx));
@@ -84,8 +84,8 @@ namespace Lila {
 	Mat4 multiply(Mat4 a, Mat4 b) {
 		Mat4 result = Mat4();
 
-		for (int m = 0; m < 4; m++)
-			for (int n = 0; n < 4; n++)
+		for (i32 m = 0; m < 4; m++)
+			for (i32 n = 0; n < 4; n++)
 				result.set(m, n,
 					a.get(m, 0) * b.get(0, n) +
 					a.get(m, 1) * b.get(1, n) +
