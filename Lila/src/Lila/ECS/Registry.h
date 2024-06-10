@@ -27,7 +27,6 @@ namespace Lila {
 		u64 getCount();
 
 	public: // Template Methods
-		
 		template<typename T>
 		Shared<T> addComponent(u64 entity) {
 			Shared<T> component = makeShared<T>();

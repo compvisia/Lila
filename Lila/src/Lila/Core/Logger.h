@@ -20,7 +20,6 @@ namespace Lila {
 	};
 
 	static void _log(LogLevel logLevel, const std::string fmt, ...) {
-
 		static std::string prefixes[] = {
 			"[FATAL] :",
 			"[ASSERT]:",

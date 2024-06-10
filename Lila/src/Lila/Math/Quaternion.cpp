@@ -137,7 +137,6 @@ Quaternion Quaternion::normalize(Quaternion& q) {
  * @returns This quaternion.
 */
 Quaternion Quaternion::inverse() {
-    
     h = -h;
 
     return *this;
