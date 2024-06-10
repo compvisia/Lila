@@ -1,5 +1,15 @@
 include "deps/Dependencies.lua"
 
+newoption {
+    trigger = "coverage",
+    description = "Generates a coverage report using gcov"
+}
+
+newoption {
+    trigger = "headless",
+    description = "Turns all graphics related things off"
+}
+
 workspace "Lila"
     linkgroups "On"
     warnings "Off"

@@ -2,6 +2,7 @@
 
 
 #include "Platform/Defines.h"
+#include "Platform/Graphics.h"
 #include "Platform/Dependencies.h"
 
 extern Lila::Shared<Lila::Application> createApplication();

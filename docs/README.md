@@ -17,11 +17,11 @@
 
 ## 💡 Philosophy
 
-Lila is a personal project that began in 2023, and it's currently being reworked from scratch. Mostly created to learn about game engines and to have a long term project to work on. This repository is free and open-source, and hopefully will help people to learn how to make a game engine too.
+Lila is a personal project that began in 2023, and it is currently being reworked from scratch. It was primarily created to learn about game engines and as a long-term project. This repository is free and open-source, and hopefully, it will help people learn how to make a game engine too.
 
-Lila is made to be easy to read, while still being optimized. Some things are going to change because we are always learning how to write better, cleaner and faster code.
+Lila is designed to be easy to read while still being optimized. Some things are going to change because we are always learning how to write better, cleaner, and faster code.
 
-Lila doesn't include an editor, but in the future there will be a repository for an editor plugin.
+Lila does not include an editor, but in the future, there will be a repository for an editor plugin.
 
 ## ⚙️ Installation
 
@@ -31,7 +31,7 @@ Clone this repository using the `--recursive` parameter
 
 ### Building
 
-See [Building.md](https://github.com/compvisia/Lila/blob/master/docs/Building.md)
+[See the Building.md »](https://github.com/compvisia/Lila/blob/master/docs/Building.md)
 
 ## 📌 Information
 
@@ -41,13 +41,13 @@ Windows and Linux are supported. More platforms will be supported down the road.
 
 ### Dependencies
 
-See [Dependencies.md](https://github.com/compvisia/Lila/blob/master/docs/Dependencies.md)
+[See the Dependencies.md »](https://github.com/compvisia/Lila/blob/master/docs/Dependencies.md)
 
 ## 💻 Contribution
 
-You can contribute via the Pull Requests, Issues or any GitHub contribution feature.
+Contributions are welcome via Pull Requests, Issues, or any GitHub contribution feature.
 
-Code must match the style of the current code in this repository. A coding style guide will be made available at some point.
+Please make sure that your code follows the general style used in this repository. A coding style guide will be provided at some point.
 
 ## 📜 License
 

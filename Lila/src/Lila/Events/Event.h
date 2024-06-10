@@ -1,15 +1,17 @@
 #pragma once
 
+#include "Platform/Defines.h"
+
 namespace Lila {
 	class Event {
 	public:
 		Event() {}
 		virtual ~Event() {}
 
-		bool getCanceled() { return canceled_m; }
-		void setCanceled(bool canceled) { canceled_m = canceled; }
+		b8 getCanceled() { return canceled_m; }
+		void setCanceled(b8 canceled) { canceled_m = canceled; }
 
 	private:
-		bool canceled_m = false;
+		b8 canceled_m = false;
 	};
 }
