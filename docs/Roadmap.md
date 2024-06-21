@@ -4,29 +4,32 @@
 
 #### Q3
 
-* Fully working rendering system.
+* Fully working rendering system
 * Assets/Resource management
-* Rework of the math library.
+* Assets/Resource Loaders (Images, Sound, 3D Models, etc.)
+* Rework of the math library
 
 #### Q4
 
 * More OS support
 * 50% complete on documentation
 * ECS and rendering system compatibility
-* Assets/Resource Loaders (Images, Sound, 3D Models, etc.)
 * *(???)* Hardware detection
+* Keyboard and mouse input (events)
+* Process manager (Initializes every process)
 
 ---
 
 ### 2025
 
-##### We do not know when these will be done!!
+##### Quarter is unknown!
 
-* New repository for an editor.
-* Project sample.
+* New repository for an editor
+* Project sample
 * Audio
 * Physics
 * More graphics options (Vulkan / DirectX / Metal)
+* Multi threading.
 
 ## Done
 
