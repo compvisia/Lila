@@ -76,8 +76,8 @@ namespace Lila {
 		}
 
 		template<typename T>
-		void setComponentMask(ComponentMask entity) {
-			systemHandler_m->setComponentMask<T>(entity);
+		void setComponentMask(ComponentMask mask) {
+			systemHandler_m->setComponentMask<T>(mask);
 		}
 
 	private:
