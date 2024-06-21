@@ -13,7 +13,7 @@ namespace OpenGL {
      * @brief A struct for OpenGL errors.
      * 
      * @param exitCode Type of exit code, 0 = Success, 1 = Failed, 2 = Headless.
-     * @param flags Type of failure
+     * @param flags Type of failure.
      * 
     */
     struct GLSuccess {
