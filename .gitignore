@@ -2,6 +2,11 @@
 ##### General Ignores #####
 ###########################
 
+# Doygen
+doc/
+html/
+latex/
+
 # Testing and Logging
 test/
 *.log
