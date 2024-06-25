@@ -43,6 +43,7 @@
 * ECS
 * Basic Graphics (Headless / OpenGL)
 * Code quality check
+* Documentation using Doxygen
 
 #### Q1
 
