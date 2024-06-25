@@ -27,7 +27,6 @@ namespace Lila {
 		u64 getCount();
 
 	public: // Template Methods
-		
 		template<typename T>
 		Shared<T> addComponent(u64 entity) {
 			Shared<T> component = makeShared<T>();
@@ -77,8 +76,8 @@ namespace Lila {
 		}
 
 		template<typename T>
-		void setComponentMask(ComponentMask entity) {
-			systemHandler_m->setComponentMask<T>(entity);
+		void setComponentMask(ComponentMask mask) {
+			systemHandler_m->setComponentMask<T>(mask);
 		}
 
 	private:

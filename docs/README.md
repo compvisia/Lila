@@ -31,7 +31,7 @@ Clone this repository using the `--recursive` parameter
 
 ### Building
 
-[See the Building.md »](https://github.com/compvisia/Lila/blob/master/docs/Building.md)
+[See the Building.md »](Building.md)
 
 ## 📌 Information
 
@@ -41,7 +41,11 @@ Windows and Linux are supported. More platforms will be supported down the road.
 
 ### Dependencies
 
-[See the Dependencies.md »](https://github.com/compvisia/Lila/blob/master/docs/Dependencies.md)
+[See the Dependencies.md »](Dependencies.md)
+
+### Roadmap
+
+[See the Roadmap.md »](Roadmap.md)
 
 ## 💻 Contribution
 

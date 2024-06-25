@@ -10,6 +10,10 @@
 #include "Lila/Math/Matrices.h"
 #include "Lila/Math/Quaternion.h"
 
+#include "Lila/Rendering/Geometry.h"
+#include "Lila/Rendering/Shader.h"
+#include "Lila/ECS/Registry.h"
+
 #include "Lila/Core/Application.h"
 #include "Lila/Core/Logger.h"
 
