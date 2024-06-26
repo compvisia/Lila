@@ -79,7 +79,7 @@ jobs:
 
     - name: Run
       run: |
-        cd bin/linux-x86_64/Headless/Testbed
+        cd bin/linux-x86_64/Debug/Testbed
         ./Testbed
         cd ../../../../
         
@@ -106,6 +106,6 @@ jobs:
       
     - name: Run
       run: |
-        cd bin/windows-x86_64/Headless/Testbed
+        cd bin/windows-x86_64/Debug/Testbed
         ./Testbed
         cd ../../../../
