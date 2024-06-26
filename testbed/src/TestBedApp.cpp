@@ -27,8 +27,8 @@ public:
         TestHandler testHandler;
         Lila::EventBus::addHandler(testHandler);
 
-        TestEvent te;
-        Lila::EventBus::fireEvent(te);
+        TestEvent testEvent;
+        Lila::EventBus::fireEvent(testEvent);
 
         Lila::Unique<Lila::Window> window = Lila::makeUnique<Lila::Window>("Window");
 

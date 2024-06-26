@@ -27,7 +27,7 @@ namespace Lila {
 		u16 getComponentType() {
 			u32 type = typeid(T).hash_code();
 
-			lila_assert_msg(componentTypes_m.find(type) != componentTypes_m.end(), "Trying to use unregisterd component.");
+			lila_assert_msg(componentTypes_m.find(type) != componentTypes_m.end(), "Trying to use unregistered component.");
 
 			return componentTypes_m[type];
 		};
@@ -61,7 +61,7 @@ namespace Lila {
 		Shared<ComponentPool<T>> getComponentPool() {
 			u32 type = typeid(T).hash_code();
 
-			lila_assert_msg(componentTypes_m.find(type) != componentTypes_m.end(), "Trying to use unregisterd component.");
+			lila_assert_msg(componentTypes_m.find(type) != componentTypes_m.end(), "Trying to use unregistered component.");
 
 			return std::static_pointer_cast<ComponentPool<T>>(componentPools_m[type]);
 		};
