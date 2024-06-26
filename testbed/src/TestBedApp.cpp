@@ -1,6 +1,8 @@
 #define Entry
 #include <Lila/Lila.h>
 
+#include "Lila/Assets/AssetManager.h"
+
 #include "Platform/OpenGL/OpenGL.h"
 
 class TestEvent : public Lila::Event {};
@@ -23,6 +25,27 @@ public:
 
     void run() override {
         lila_info("Running Testbed");
+
+        Lila::AssetManager am;
+        
+        Lila::Asset ass;
+        ass.assetId = 10;
+        ass.type = Lila::ASSET_TYPE_MATERIAL;
+        ass.path = "Lila/assets/template.mat";
+
+        Lila::Shared<Lila::Asset> asset = am.registerAsset(ass);
+        
+        am.loadAsset(asset->assetId);
+
+        Lila::Shared<Lila::Asset> a = am.getAsset(10);
+        
+        lila_debug("%d %d %s", a->assetId, a->type, a->path.c_str());
+        
+        am.unloadAsset(asset->assetId);
+
+        Lila::Shared<Lila::Asset> al = am.getAsset(10);
+        
+        lila_debug("%d %d %s", al->assetId, al->type, al->path.c_str());
 
         TestHandler testHandler;
         Lila::EventBus::addHandler(testHandler);
