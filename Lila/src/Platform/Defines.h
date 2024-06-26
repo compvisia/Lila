@@ -50,10 +50,10 @@ using f64 = double;
 // Mac OS
 #define LILA_PLATFORM_MACOS 1
 #else
-#error "Unkown Apple platform"
+#error "Unknown Apple platform"
 #endif
 #elif defined(msys2)
 #define LILA_PLATFORM_MSYS 1
 #else
-#error "Unkown platform"
+#error "Unknown platform"
 #endif
