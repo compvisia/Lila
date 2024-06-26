@@ -13,7 +13,7 @@ jobs:
       - name: Spell Check
         uses: codespell-project/actions-codespell@v2
         with:
-          skip: ./bin,./doc,./deps,*.txt,*.yml.*.json,*.toml,*.ini,*.xml
+          skip: ./bin,./doc,./docs/CODE_OF_CONDUCT.md,./deps,*.txt,*.yml.*.json,*.toml,*.ini,*.xml
           check_filenames: true
 
   build-linux:
