@@ -7,6 +7,7 @@ project "Lila"
    files { "src/**.h", "src/**.cpp" }
 
    includedirs {
+        "src",
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
         "%{IncludeDir.stb}"
