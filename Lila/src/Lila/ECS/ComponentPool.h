@@ -4,7 +4,7 @@
 
 #include "Platform/Defines.h"
 
-#include "Lila/core/Logger.h"
+#include "Lila/Core/Logger.h"
 
 #include <vector>
 #include <unordered_map>
