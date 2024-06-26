@@ -30,7 +30,7 @@ namespace Lila {
 		void setComponentMask(ComponentMask set) {
 			u32 type = typeid(T).hash_code();
 
-			lila_assert_msg(systems_m.find(type) != systems_m.end(), "Trying to use unregisterd component.");
+			lila_assert_msg(systems_m.find(type) != systems_m.end(), "Trying to use unregistered component.");
 
 			componentMasks_m.insert({ type, set });
 		}
