@@ -24,7 +24,7 @@ namespace Lila {
     /**
      * @brief A data-only struct.
      * 
-     * The concept of an asset is that it's a file that the game uses which the user desides.
+     * The concept of an asset is that it's a file that the game uses which the user decides.
      * 
      * @param assetId An unique identifier.
      * @param type Type of asset.
