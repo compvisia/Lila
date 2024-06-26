@@ -7,7 +7,6 @@ project "Testbed"
    files { "src/**.h", "src/**.cpp" }
 
    includedirs {
-        "src",
         "%{wks.location}/Lila/src",
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
