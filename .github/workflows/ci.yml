@@ -34,7 +34,7 @@ jobs:
       run: premake5 gmake2 --headless
     
     - name: Build using Make
-      run: make config=headless
+      run: make config=debug
       
   build-windows:
     runs-on: windows-latest
@@ -55,7 +55,7 @@ jobs:
     
     - name: Build using MSBuild
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: msbuild /m /p:Configuration=Headless .
+      run: msbuild /m /p:Configuration=Debug .
     
   test-linux:
     runs-on: ubuntu-latest
