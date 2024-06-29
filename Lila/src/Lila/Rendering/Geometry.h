@@ -1,9 +1,17 @@
 #pragma once
 
+#include "Platform/Defines.h"
+
 #include <vector>
 
 namespace Lila {
 
+    /**
+     * @brief An enum used for all types of Geometry.
+     * 
+     * This is used to determine the size of 1 vertex.
+     * OpenGL influences: glVertexAttribPointer()
+    */
 	typedef enum GeometryType {
 		GEOMETRY_XYZ,
 		GEOMETRY_XYZ_UV,
