@@ -16,7 +16,7 @@ namespace Lila {
      * @brief A manager for all asset you need.
      * 
      * @todo More management from the manager (something like `Shared<Asset> createAsset(std::string path)`).
-     * @todo Self-asigning Asset (e.g. if you have .png at the end it knows it's a texture).
+     * @todo Self-assigning Asset (e.g. if you have .png at the end it knows it's a texture).
      * 
      * @see Asset.
      */
