@@ -4,6 +4,9 @@
 
 #include "Graphics.h"
 
+/**
+ * Initializes all dependencies used for Lila excluding render context
+*/
 static bool initDependencies() {
 #ifdef LILA_GLFW_CONTEXT
 	if(!glfwInit()) {
@@ -22,6 +25,9 @@ static bool initDependencies() {
 	return true;
 }
 
+/**
+ * Initializes OpenGL by getting the window pointer.
+*/
 static bool initOpenGL() {
 #ifdef LILA_OPENGL_CONTEXT
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
