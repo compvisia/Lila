@@ -21,4 +21,6 @@
 
 #include "Lila/Core/Window.h"
 
+#include "Lila/Assets/AssetManager.h"
+
 #include "Lila/Entry.h"
