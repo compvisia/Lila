@@ -1,14 +1,15 @@
 #define Entry
 #include <Lila/Lila.h>
-#include <Platform/OpenGL/OpenGL.h>
 
 #include "Lila/Assets/AssetManager.h"
+
+#include "Platform/OpenGL/OpenGL.h"
 
 class TestEvent : public Lila::Event {};
 class TestHandler : public Lila::EventHandler {
 public:
     void onEvent(Lila::Event& e) override {
-        if(Lila::isInstanceOf<Lila::Event, TestEvent>(&e)) {
+        if(Lila::isIstanceOf<Lila::Event, TestEvent>(&e)) {
             lila_info("TestEvent handled")
         }
     }
