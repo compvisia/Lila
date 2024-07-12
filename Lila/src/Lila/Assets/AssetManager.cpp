@@ -43,7 +43,7 @@ namespace Lila {
         return obj;
     }
     
-        /**
+    /**
      * @brief Unloads an asset.
      * 
      * @param assetId An id that is used for unloading the asset.
