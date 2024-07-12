@@ -12,15 +12,13 @@ namespace Lila {
      * An asset always has a type, whether it's a mp3 (Audio) or a png (Texture).
     */
     typedef enum AssetType {
-        ASSET_TYPE_NONE,        // Asset does not exist
-        ASSET_TYPE_AUDIO,       // Audio files (.mp3, .wav, .ogg)
-        ASSET_TYPE_FONT,        // Font files
-        ASSET_TYPE_MATERIAL,    // Material files
-        ASSET_TYPE_MODEL,       // Models files (.obj)
-        ASSET_TYPE_REFOBJ,      // Objects that are not being used (Unity term: Prefabs)
-        ASSET_TYPE_TEXTURE,     // Texture files (.png, .jpeg, .svg)
-        ASSET_TYPE_OTHER,       // Files that have not been named yet
-        ASSET_TYPE_CUSTOM       // Custom files that the user can implement (maybe something obsolete)
+        ASSET_TYPE_NONE,
+        ASSET_TYPE_AUDIO,
+        ASSET_TYPE_MATERIAL,
+        ASSET_TYPE_MODEL,
+        ASSET_TYPE_REFOBJ,
+        ASSET_TYPE_TEXTURE,
+        ASSET_TYPE_CUSTOM
     };
 
     /**

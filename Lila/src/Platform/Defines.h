@@ -2,64 +2,22 @@
 
 #include <cstdint>
 
-/**
- * Unsigned 8 bit integer
-*/
 using u8  = uint8_t;
-/**
- * Unsigned 16 bit integer
-*/
 using u16 = uint16_t;
-/**
- * Unsigned 32 bit integer
-*/
 using u32 = uint32_t;
-/**
- * Unsigned 64 bit integer
-*/
 using u64 = uint64_t;
 
-/**
- * Signed 8 bit integer
-*/
 using i8  = int8_t;
-/**
- * Signed 16 bit integer
-*/
 using i16 = int16_t;
-/**
- * Signed 32 bit integer
-*/
 using i32 = int32_t;
-/**
- * Signed 64 bit integer
-*/
 using i64 = int64_t;
 
-/**
- * 8 bit boolean
-*/
 using b8  = uint8_t;
-/**
- * 16 bit boolean
-*/
 using b16 = uint16_t;
-/**
- * 32 bit boolean
-*/
 using b32 = uint32_t;
-/**
- * 64 bit boolean
-*/
 using b64 = uint64_t;
 
-/**
- * 32 bit float
-*/
 using f32 = float;
-/**
- * 64 bit float
-*/
 using f64 = double;
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
