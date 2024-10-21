@@ -19,6 +19,7 @@ test/
 # IDE
 .vs/
 .idea/
+.fleet/
 .vscode/
 
 # Binaries
@@ -38,16 +39,14 @@ obj/
 [Rr]elease*/
 
 # Excluding
-!scripts/premake/bin
-!premake5.exe
-!LICENSE.txt
+!LICENSE
 
 #########################
 ##### Build systems #####
 #########################
 
 # General
-build/
+[Bb]uild*/
 
 # Make
 Makefile
