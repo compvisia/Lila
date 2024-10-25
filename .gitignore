@@ -32,6 +32,8 @@ bin/
 *.lib
 *.pri
 *.exp
+*.la
+*.lai
 
 # Intermediates
 obj/
@@ -40,6 +42,7 @@ obj/
 
 # Excluding
 !LICENSE
+!CMakeLists.txt
 
 #########################
 ##### Build systems #####

@@ -1,0 +1,6 @@
+[submodule "Lila/deps/glfw"]
+	path = Lila/deps/glfw
+	url = https://github.com/compvisia/glfw.git
+[submodule "Lila/deps/glad"]
+	path = Lila/deps/glad
+	url = git@github.com:compvisia/glad.git
