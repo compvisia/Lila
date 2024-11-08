@@ -4,13 +4,24 @@ set(CMAKE_CXX_STANDARD 20)
 project(LilaEngine)
 
 add_executable(${PROJECT_NAME} 
-    Lila/src/platform/Types.h 
-    Lila/src/platform/platform.h
     Lila/src/console/ConsoleTypes.h
     Lila/src/console/Logger.h
     Lila/src/console/Logger.cpp
+
     Lila/src/math/math.cpp
     Lila/src/math/math.h
+
+    Lila/src/platform/platform.h
+    Lila/src/platform/Types.h 
+    
+    Lila/src/renderer/OpenGL/GLGeometry.cpp
+    Lila/src/renderer/OpenGL/GLGeometry.h
+    Lila/src/renderer/OpenGL/GLShader.cpp
+    Lila/src/renderer/OpenGL/GLShader.h
+
+    Lila/src/renderer/Geometry.h
+    Lila/src/renderer/Shader.h
+
     Lila/src/main.cpp
 )
 

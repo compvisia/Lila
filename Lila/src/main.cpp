@@ -3,10 +3,10 @@
 
 #include "console/Logger.h"
 
-int main(int argc, char** argv) {
-    printf("Hello World. I am Lila\n");
-    
+#include "renderer/OpenGL/GLGeometry.h"
+#include "renderer/OpenGL/GLShader.h"
 
+int main(int argc, char** argv) {    
     LOG_INFO("Successfully Booted up!");
 
     if(!glfwInit()) {
@@ -15,6 +15,7 @@ int main(int argc, char** argv) {
     }
 
     LOG_INFO("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
+    LOG_INFO("GLFW platform %d", glfwGetPlatform());
 
     GLFWwindow* window = glfwCreateWindow(1280, 720, "Lila", NULL, NULL);
 
@@ -29,18 +30,57 @@ int main(int argc, char** argv) {
 
     LOG_INFO("OpenGL version %s", glGetString(GL_VERSION));
 
-    LOG_INFO(logger, "OpenGL version %s", glGetString(GL_VERSION));
+    f32 vertices[] = {
+        -1, -1,  1,
+         1, -1,  1,
+        -1,  1,  1,
+         1,  1,  1,
+        -1, -1, -1,
+         1, -1, -1,
+        -1,  1, -1,
+         1,  1, -1
+    };
 
-    while (!glfwWindowShouldClose(window)) {
+    u32 indices[] = {
+        2, 6, 7,
+        2, 3, 7,
+
+        0, 4, 5,
+        0, 1, 5,
+
+        0, 2, 6,
+        0, 4, 6,
+
+        1, 3, 7,
+        1, 5, 7,
+
+        0, 2, 3,
+        0, 1, 3,
+
+        4, 6, 7,
+        4, 5, 7
+    };
+
+    Unique<OpenGL::GLGeometry> geometry = unique<OpenGL::GLGeometry>(vertices, indices, 24, 36);
+    Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>("", "");
+
+    glEnable(GL_DEPTH_TEST);
+    while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
-    
+
+        shader->bind();
+        geometry->render();
+        shader->unbind();
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-    glfwDestroyWindow(window);
+    geometry->destroy();
+    shader->destroy();
 
+    glfwDestroyWindow(window);
     glfwTerminate();
 
     return 0;
