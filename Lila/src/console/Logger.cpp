@@ -6,7 +6,6 @@
 namespace Lila {
 
     void Logger::log(const LogLevel& logLevel, const str fmt, ...) {
-
         const str prefixes[] = {
             "\x1b[31m[FATAL] :",        
             "\x1b[91m[ERROR] :",

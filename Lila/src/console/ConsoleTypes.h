@@ -14,8 +14,6 @@ enum LogLevel {
     LL_FUNC
 };
 
-
-// INFO_FUNC : Gets information of a function
 #if LILA_PLATFORM_WINDOWS
 #define INFO_FUNC __FUNCSIG__
 #elif LILA_PLATFORM_LINUX
