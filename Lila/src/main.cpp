@@ -6,27 +6,28 @@
 int main(int argc, char** argv) {
     printf("Hello World. I am Lila\n");
     
-    Lila::Logger logger;
 
-    LOG_INFO(logger, "Successfully Booted up!");
+    LOG_INFO("Successfully Booted up!");
 
     if(!glfwInit()) {
-        LOG_ERROR(logger, "GLFW Failed! Error code: %d\n", glfwGetError(nullptr));
+        LOG_ERROR("GLFW Failed! Error code: %d\n", glfwGetError(nullptr));
         return 0;
     }
 
-    LOG_INFO(logger, "GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
+    LOG_INFO("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
 
     GLFWwindow* window = glfwCreateWindow(1280, 720, "Lila", NULL, NULL);
 
     glfwMakeContextCurrent(window);
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        LOG_ERROR(logger, "GLAD Failed!");
+        LOG_ERROR("GLAD Failed!");
         return 0;
 	}
 
-    LOG_INFO(logger, "Window Created!");
+    LOG_INFO("Window Created!");
+
+    LOG_INFO("OpenGL version %s", glGetString(GL_VERSION));
 
     LOG_INFO(logger, "OpenGL version %s", glGetString(GL_VERSION));
 
@@ -43,4 +44,4 @@ int main(int argc, char** argv) {
     glfwTerminate();
 
     return 0;
-}
+} 
