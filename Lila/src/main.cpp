@@ -1,8 +1,6 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 
-#include "console/Logger.h"
-
 #include "renderer/OpenGL/GLGeometry.h"
 #include "renderer/OpenGL/GLShader.h"
 
@@ -29,6 +27,8 @@ int main(int argc, char** argv) {
     LOG_INFO("Window Created!");
 
     LOG_INFO("OpenGL version %s", glGetString(GL_VERSION));
+
+    LOG_DEBUG("Project path %s", Lila::getProjectPath().string().c_str());
 
     f32 vertices[] = {
         -1, -1,  1,

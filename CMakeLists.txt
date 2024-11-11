@@ -11,6 +11,7 @@ add_executable(${PROJECT_NAME}
     Lila/src/math/math.cpp
     Lila/src/math/math.h
 
+    Lila/src/platform/filesystem.h
     Lila/src/platform/platform.h
     Lila/src/platform/Types.h 
     
