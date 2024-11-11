@@ -4,14 +4,14 @@ set BUILD_DIR="buildWin"
 
 if not exist Lila (
     echo You must run the script in the root folder!
-    EXIT /B -1
+    EXIT /B 1
 )
 
 cd Lila
 if not exist src (
     cd ../
     echo You must run the script in the root folder!
-    EXIT /B -1
+    EXIT /B 1
 )
 cd ../
 

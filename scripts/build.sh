@@ -1,13 +1,13 @@
 if [[ ! -d "Lila" ]]; then
     echo You must run the script in the root folder!
-    exit -1
+    exit 1
 fi
 
 cd Lila
 if [[ ! -d "src" ]]; then
     cd ../
     echo You must run the script in the root folder!
-    exit -1
+    exit 1
 fi
 cd ../
 
