@@ -25,7 +25,6 @@ private:
 private:
     str vertexPath_m, fragmentPath_m;
     u32 program_m;
-
 };
 
 } // namespace OpenGL
