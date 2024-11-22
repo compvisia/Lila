@@ -8,7 +8,7 @@ namespace OpenGL {
 
 class GLShader : public Lila::Shader {
 public:
-    GLShader(str vertexPath, str fragmentPath);
+    GLShader(std::filesystem::path vertexPath, std::filesystem::path fragmentPath);
     ~GLShader();
 
     void bind() override;
@@ -23,7 +23,7 @@ private:
     b8 createProgram(u32& vso, u32& fso);
 
 private:
-    str vertexPath_m, fragmentPath_m;
+    std::filesystem::path vertexPath_m, fragmentPath_m;
     u32 program_m;
 };
 

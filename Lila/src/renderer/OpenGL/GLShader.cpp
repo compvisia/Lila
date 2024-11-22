@@ -6,7 +6,7 @@
 
 namespace OpenGL {
 
-GLShader::GLShader(str vertexPath, str fragmentPath) {
+GLShader::GLShader(std::filesystem::path vertexPath, std::filesystem::path fragmentPath) {
     vertexPath_m = vertexPath;
     fragmentPath_m = fragmentPath;
 
@@ -30,10 +30,7 @@ void GLShader::destroy() {
 void GLShader::create() {
     program_m = glCreateProgram();
 
-    str vertexShader = "#version 330 core\nlayout (location = 0) in vec3 position;\nvoid main() {\ngl_Position = vec4(position, 1.0);\n}\0", 
-        fragmentShader = "#version 330 core\nout vec4 FragColor;\nvoid main() {\nFragColor = vec4(1.0, 1.0, 1.0, 1.0);\n}\0";
-    // getContentsByPath(vertexPath_m, vertexShader);
-    // getContentsByPath(fragmentPath_m, fragmentShader);
+    str vertexShader = Lila::getContentsByPath(vertexPath_m), fragmentShader = Lila::getContentsByPath(fragmentPath_m);
 
     u32 vso = glCreateShader(GL_VERTEX_SHADER);
     u32 fso = glCreateShader(GL_FRAGMENT_SHADER);

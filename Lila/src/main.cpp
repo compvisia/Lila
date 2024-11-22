@@ -4,6 +4,8 @@
 #include "renderer/OpenGL/GLGeometry.h"
 #include "renderer/OpenGL/GLShader.h"
 
+#include "platform/filesystem.h"
+
 int main(int argc, char** argv) {    
     LOG_INFO("Successfully Booted up!");
 
@@ -61,8 +63,10 @@ int main(int argc, char** argv) {
         4, 5, 7
     };
 
+    std::filesystem::path shaderPath = Lila::getProjectPath() / "Lila" / "assets";
+
     Unique<OpenGL::GLGeometry> geometry = unique<OpenGL::GLGeometry>(vertices, indices, 24, 36);
-    Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>("", "");
+    Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>(shaderPath / "default.vert", shaderPath / "default.frag");
 
     glEnable(GL_DEPTH_TEST);
     while(!glfwWindowShouldClose(window)) {
