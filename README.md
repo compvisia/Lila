@@ -21,6 +21,10 @@ Of course Lila is lightyears away from becoming one of the big three.
 
 Currently only on Windows and Linux.
 
+## 👥 Contributing
+
+Before contributing please read the [Contributor Code of Conduct](https://https://github.com/compvisia/Lila/blob/master/CODE_OF_CONDUCT.md).
+
 ## 📖 Licensing
 
 Lila is free and open-source software under the [MIT License](https://github.com/compvisia/Lila/blob/master/LICENSE). The official logo is distributed under the [Creative Commons](https://creativecommons.org/licenses/by-sa/4.0/) license (CC BY-SA 4.0 International).
