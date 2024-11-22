@@ -2,7 +2,7 @@
 
 #include "platform/types.h"
 
-// Include everything
+#include <math.h>
 
 #define PI             3.14159265358979323846f
 #define HALF_PI        1.57079632679489661923f
