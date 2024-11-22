@@ -30,8 +30,6 @@ int main(int argc, char** argv) {
 
     LOG_INFO("OpenGL version %s", glGetString(GL_VERSION));
 
-    LOG_DEBUG("Project path %s", Lila::getProjectPath().string().c_str());
-
     f32 vertices[] = {
         -1, -1,  1,
          1, -1,  1,
