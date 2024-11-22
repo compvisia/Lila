@@ -30,6 +30,7 @@ public:
 
     Matrix4& perspective(f32 fov, f32 aspectRatio, f32 near, f32 far);
     Matrix4& orthographic(f32 left, f32 right, f32 top, f32 bottom, f32 near, f32 far);
+
 private:
     std::array<f32, 16> entries;
 };
