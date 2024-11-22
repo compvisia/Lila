@@ -4,6 +4,7 @@
 
 #include "console/Logger.h"
 
+#include <fstream>
 #include <filesystem>
 
 namespace Lila {
@@ -30,4 +31,17 @@ static std::filesystem::path getProjectPath() {
     return projectPath;
 }
 
-} // namespace fs
+static std::string getContentsByPath(std::filesystem::path filepath) {
+    if(!std::filesystem::exists(filepath)) {
+        LOG_ERROR("File not found! (%s)", filepath.string().c_str());
+        return "";
+    }
+
+    std::ifstream file(filepath);
+    std::stringstream stream;
+    stream << file.rdbuf();
+    file.close();
+    return stream.str();
+}
+
+} // namespace Lila
