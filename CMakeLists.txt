@@ -5,8 +5,11 @@ project(LilaEngine)
 
 add_executable(${PROJECT_NAME} 
     Lila/src/console/ConsoleTypes.h
-    Lila/src/console/Logger.h
     Lila/src/console/Logger.cpp
+    Lila/src/console/Logger.h
+
+    Lila/src/core/Window.cpp
+    Lila/src/core/Window.h
 
     Lila/src/math/math.cpp
     Lila/src/math/math.h

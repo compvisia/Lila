@@ -1,6 +1,8 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 
+#include "core/Window.h"
+
 #include "renderer/OpenGL/GLGeometry.h"
 #include "renderer/OpenGL/GLShader.h"
 
@@ -9,24 +11,12 @@
 int main(int argc, char** argv) {    
     LOG_INFO("Successfully Booted up!");
 
-    if(!glfwInit()) {
-        LOG_ERROR("GLFW Failed! Error code: %d\n", glfwGetError(nullptr));
-        return 0;
-    }
-
-    LOG_INFO("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
-    LOG_INFO("GLFW platform %d", glfwGetPlatform());
-
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Lila", NULL, NULL);
-
-    glfwMakeContextCurrent(window);
+    Unique<Lila::Window> window = unique<Lila::Window>("Lila", 1280, 720);
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         LOG_ERROR("GLAD Failed!");
         return 0;
 	}
-
-    LOG_INFO("Window Created!");
 
     LOG_INFO("OpenGL version %s", glGetString(GL_VERSION));
 
@@ -67,7 +57,7 @@ int main(int argc, char** argv) {
     Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>(shaderPath / "default.vert", shaderPath / "default.frag");
 
     glEnable(GL_DEPTH_TEST);
-    while(!glfwWindowShouldClose(window)) {
+    while(!glfwWindowShouldClose(window->getPointer())) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
 
@@ -75,15 +65,14 @@ int main(int argc, char** argv) {
         geometry->render();
         shader->unbind();
 
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(window->getPointer());
         glfwPollEvents();
     }
 
     geometry->destroy();
     shader->destroy();
-
-    glfwDestroyWindow(window);
-    glfwTerminate();
+    
+    window->destroy();
 
     return 0;
-} }
+}
