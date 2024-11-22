@@ -4,6 +4,9 @@
 
 #include <vector>
 
+#include "math/matrix4.h"
+#include "math/math.h"
+
 namespace OpenGL {
 
 GLShader::GLShader(std::filesystem::path vertexPath, std::filesystem::path fragmentPath) {
@@ -17,6 +20,11 @@ GLShader::~GLShader() {}
 
 void GLShader::bind() {
     glUseProgram(program_m);
+
+    i32 location = glGetUniformLocation(program_m, "proj");
+    Lila::Matrix4 proj;
+    proj.perspective(60.0f, 16.0f/9.0f, 0.1f, 20.0f);
+    glUniformMatrix4fv(location, 1, false, proj.getEntries().data());
 }
 
 void GLShader::unbind() {
