@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     Unique<Lila::Window> window = unique<Lila::Window>("Lila", 1280, 720);
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        LOG_ERROR("GLAD Failed!");
+        LOG_ERROR("GLAD failed to initialize!");
         return 0;
 	}
 
@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
 
     geometry->destroy();
     shader->destroy();
-    
+
     window->destroy();
 
     return 0;
