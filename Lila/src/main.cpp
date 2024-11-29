@@ -8,6 +8,12 @@
 
 #include "platform/filesystem.h"
 
+#include "ecs/Registry.h"
+
+struct Transform {
+    u64 x = 0, y = 0, z = 0;
+};
+
 int main(int argc, char** argv) {    
     LOG_INFO("Successfully Booted up!");
 
@@ -55,6 +61,23 @@ int main(int argc, char** argv) {
 
     Unique<OpenGL::GLGeometry> geometry = unique<OpenGL::GLGeometry>(vertices, indices, 24, 36);
     Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>(shaderPath / "default.vert", shaderPath / "default.frag");
+    
+    Lila::Registry registry;
+
+    u64 entity = registry.create();
+
+    Lila::ComponentMask mask;
+    registry.setMask(entity, mask);
+
+    registry.registerComponent<Transform>();
+
+    Shared<Transform> transform = registry.addComponent<Transform>(entity);
+
+    transform->x = 10;
+
+    Shared<Transform> transform2 = registry.getComponent<Transform>(entity);
+
+    LOG_DEBUG("%d", transform2->x);
 
     glEnable(GL_DEPTH_TEST);
     while(!glfwWindowShouldClose(window->getPointer())) {

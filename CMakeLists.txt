@@ -11,6 +11,15 @@ add_executable(${PROJECT_NAME}
     Lila/src/core/Window.cpp
     Lila/src/core/Window.h
 
+    Lila/src/ecs/Component.h
+    Lila/src/ecs/ComponentHandler.h
+    Lila/src/ecs/ComponentPool.h
+    Lila/src/ecs/Entity.h
+    Lila/src/ecs/Registry.cpp
+    Lila/src/ecs/Registry.h
+    Lila/src/ecs/System.h
+    Lila/src/ecs/SystemHandler.h
+
     Lila/src/math/math.cpp
     Lila/src/math/math.h
     Lila/src/math/matrix4.cpp
