@@ -11,7 +11,9 @@ enum LogLevel {
     LL_INFO,
     LL_DEBUG,
     LL_TRACE,
-    LL_FUNC
+    LL_FUNC,
+    LL_ASSERT,
+    LL_DEBUG_ASSERT
 };
 
 #if LILA_PLATFORM_WINDOWS
