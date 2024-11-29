@@ -13,7 +13,6 @@ class ComponentPool_I {
 public:
     virtual ~ComponentPool_I() = default;
     virtual void entityDestroyed(u64 entity) = 0;
-
 };
 
 template<typename T>
