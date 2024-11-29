@@ -23,7 +23,7 @@ Currently only on Windows and Linux.
 
 ## 👥 Contributing
 
-Before contributing please read the [Contributor Code of Conduct](https://https://github.com/compvisia/Lila/blob/master/CODE_OF_CONDUCT.md).
+Before contributing please read the [Contributor Code of Conduct](https://github.com/compvisia/Lila/blob/master/CODE_OF_CONDUCT.md).
 
 ## 📖 Licensing
 
