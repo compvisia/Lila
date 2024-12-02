@@ -35,7 +35,10 @@ add_executable(${PROJECT_NAME}
     Lila/src/renderer/OpenGL/GLShader.cpp
     Lila/src/renderer/OpenGL/GLShader.h
 
+    Lila/src/renderer/Camera.h
     Lila/src/renderer/Geometry.h
+    Lila/src/renderer/Perspective.cpp
+    Lila/src/renderer/Perspective.h
     Lila/src/renderer/Shader.h
 
     Lila/src/main.cpp
