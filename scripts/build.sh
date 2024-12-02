@@ -20,7 +20,11 @@ echo Lila setup finished!
 
 cd $BUILD_DIR
 
-make
+make || {
+    echo =====================
+    echo Lila failed to build!
+    exit 1 
+}
 
 echo ====================
 echo Lila build finished!
