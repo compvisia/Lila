@@ -24,7 +24,9 @@ add_executable(${PROJECT_NAME}
     Lila/src/math/math.h
     Lila/src/math/matrix4.cpp
     Lila/src/math/matrix4.h
+    Lila/src/math/vec2.h
     Lila/src/math/vec3.h
+    Lila/src/math/vec4.h
 
     Lila/src/platform/filesystem.h
     Lila/src/platform/platform.h
