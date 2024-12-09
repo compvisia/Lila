@@ -4,8 +4,6 @@
 
 #include "Camera.h"
 
-#include "math/vec3.h"
-
 namespace Lila {
 
 class PerspectiveCamera : public Camera {
@@ -15,9 +13,6 @@ public:
     PerspectiveCamera(f32 fov, f32 aspectRatio, f32 near, f32 far);
 
     void changeProjection(f32 fov, f32 aspectRatio, f32 near, f32 far);
-
-private:
-    Vec3 position_m, rotation_m, scale_m;
 };
 
 } // namespace Lila
