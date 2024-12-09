@@ -19,7 +19,7 @@ template<typename T>
 class ComponentPool : public ComponentPool_I {
 public:
     void addComponent(u64 entity, Shared<T> component) {
-            ASSERT(entityToIndex_m.find(entity) == entityToIndex_m.end(), "Cannot add the same component on entity!");
+            ASSERT(entityToIndex_m.find(entity) == entityToIndex_m.end(), "Cannot add the same type of component on an entity!");
 
         u64 index = poolSize_m;
         entityToIndex_m[entity] = index;

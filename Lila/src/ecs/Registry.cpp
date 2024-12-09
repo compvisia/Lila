@@ -17,7 +17,7 @@ Registry::Registry() {
         entityReserve_m.push(entity);
 }
 
-// <?> How does the Registry handle component masks?
+// ?: How does the Registry handle component masks?
 u64 Registry::create() {
     u64 threshold = 10;
     if(entityCount_m - threshold >= reserveCount_m) {

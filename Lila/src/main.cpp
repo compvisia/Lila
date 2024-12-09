@@ -66,8 +66,7 @@ int main(int argc, char** argv) {
 
     u64 entity = registry.create();
 
-    Lila::ComponentMask mask;
-    registry.setMask(entity, mask);
+    // Lila::ComponentMask mask;
 
     registry.registerComponent<Transform>();
 
