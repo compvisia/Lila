@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GLTypes.h"
+
 #include "platform/filesystem.h"
 
 #include "renderer/Shader.h"

@@ -30,18 +30,23 @@ add_executable(${PROJECT_NAME}
 
     Lila/src/platform/filesystem.h
     Lila/src/platform/platform.h
-    Lila/src/platform/Types.h 
+    Lila/src/platform/stbi.h
+    Lila/src/platform/types.h
     
     Lila/src/renderer/OpenGL/GLGeometry.cpp
     Lila/src/renderer/OpenGL/GLGeometry.h
     Lila/src/renderer/OpenGL/GLShader.cpp
     Lila/src/renderer/OpenGL/GLShader.h
+    Lila/src/renderer/OpenGL/GLTexture.cpp
+    Lila/src/renderer/OpenGL/GLTexture.h
+    Lila/src/renderer/OpenGL/GLTypes.h
 
     Lila/src/renderer/Camera.h
     Lila/src/renderer/Geometry.h
     Lila/src/renderer/Perspective.cpp
     Lila/src/renderer/Perspective.h
     Lila/src/renderer/Shader.h
+    Lila/src/renderer/Texture.h
 
     Lila/src/main.cpp
 )
@@ -53,6 +58,7 @@ add_subdirectory(Lila/deps/glfw)
 
 target_include_directories(${PROJECT_NAME} 
     PUBLIC Lila/deps/glfw/include
+    PUBLIC Lila/deps/stb
 )
 
 target_link_directories(${PROJECT_NAME} 

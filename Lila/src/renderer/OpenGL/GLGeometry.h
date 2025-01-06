@@ -1,19 +1,21 @@
 #pragma once
 
+#include "GLTypes.h"
+
 #include "renderer/Geometry.h"
 
 namespace OpenGL {
 
 class GLGeometry : public Lila::Geometry {
 public:
-    GLGeometry(const f32 vertices[], const u32 indices[], const u32 vertexCount, const u32 indexCount);
+    GLGeometry(vec<f32> vertices, vec<u32> indices);
     ~GLGeometry();
 
     void render() override;
     void destroy() override;
 
 private:
-    void create(const f32 vertices[], const u32 indices[]);
+    void create(vec<f32> vertices, vec<u32> indices);
 
 private:
     u32 vao_m, vbo_m, ebo_m;

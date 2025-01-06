@@ -4,3 +4,6 @@
 [submodule "Lila/deps/glad"]
 	path = Lila/deps/glad
 	url = git@github.com:compvisia/glad.git
+[submodule "Lila/deps/stb"]
+	path = Lila/deps/stb
+	url = https://github.com/compvisia/stb

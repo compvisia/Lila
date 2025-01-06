@@ -7,6 +7,8 @@
 #include "math/matrix4.h"
 #include "math/math.h"
 
+#include <glfw/glfw3.h>
+
 namespace OpenGL {
 
 GLShader::GLShader(std::filesystem::path vertexPath, std::filesystem::path fragmentPath) {
@@ -21,10 +23,18 @@ GLShader::~GLShader() {}
 void GLShader::bind() {
     glUseProgram(program_m);
 
+    i32 locationSampler = glGetUniformLocation(program_m, "textureId_m");
+    glUniform1i(locationSampler, 0);
+
     i32 location = glGetUniformLocation(program_m, "proj");
     Lila::Matrix4 proj;
-    proj.perspective(60.0f, 16.0f/9.0f, 0.1f, 20.0f);
+    proj.perspective(80.0f, 16.0f/9.0f, 1.0f, 20.0f);
     glUniformMatrix4fv(location, 1, false, proj.getEntries().data());
+
+    i32 locationPos = glGetUniformLocation(program_m, "pos");
+    Lila::Matrix4 position;
+    position.translate(0, 0, 0);
+    glUniformMatrix4fv(locationPos, 1, false, position.getEntries().data());
 }
 
 void GLShader::unbind() {

@@ -2,11 +2,13 @@
 
 #include <glad/glad.h>
 
+#include "console/Logger.h"
+
 namespace OpenGL {
 
-GLGeometry::GLGeometry(const f32 vertices[], const u32 indices[], const u32 vertexCount, const u32 indexCount) {
-    vertexCount_m = vertexCount;
-    indexCount_m = indexCount;
+GLGeometry::GLGeometry(vec<f32> vertices, vec<u32> indices) {
+    vertexCount_m = vertices.size();
+    indexCount_m = indices.size();
 
     create(vertices, indices);
 }
@@ -28,7 +30,7 @@ void GLGeometry::destroy() {
     glDeleteVertexArrays(1, &vao_m);
 }
 
-void GLGeometry::create(const f32 vertices[], const u32 indices[]) {
+void GLGeometry::create(vec<f32> vertices, vec<u32> indices) {
     glGenVertexArrays(1, &vao_m);
     
     glGenBuffers(1, &vbo_m);
@@ -42,8 +44,10 @@ void GLGeometry::create(const f32 vertices[], const u32 indices[]) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo_m);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount_m * sizeof(u32), &indices[0], GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(f32), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(f32), (void*)0);
 	glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(f32), (void*)(3 * sizeof(f32)));
+	glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
