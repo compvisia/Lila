@@ -14,6 +14,8 @@ Matrix4& Matrix4::identity() {
     .set(1, 1, 1.0f)
     .set(2, 2, 1.0f)
     .set(3, 3, 1.0f);
+
+    return *this;
 }
 
 f32 Matrix4::get(u8 i, u8 j) {
@@ -22,6 +24,7 @@ f32 Matrix4::get(u8 i, u8 j) {
 
 Matrix4& Matrix4::set(u8 i, u8 j, f32 f) {
     entries.at(i + j * 4) = f;
+    
     return *this;
 }
 
