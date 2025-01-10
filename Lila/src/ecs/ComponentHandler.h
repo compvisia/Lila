@@ -15,7 +15,7 @@ public:
         u32 type = typeid(T).hash_code();
 
         ASSERT(componentTypes_m.find(type) == componentTypes_m.end(), "Cannot register a component more than once!");
-        ASSERT(registeredComponents_m < 512, "Too many registered components!")
+        ASSERT(registeredComponents_m < MAX_COMPONENTS, "Too many registered components!")
 
         componentTypes_m.insert({ type, registeredComponents_m });
         componentPools_m.insert({ type, shared<ComponentPool<T>>() });
