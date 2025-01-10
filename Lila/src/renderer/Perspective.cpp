@@ -10,4 +10,4 @@ void PerspectiveCamera::changeProjection(f32 fov, f32 aspectRatio, f32 near, f32
     projection_m.perspective(fov, aspectRatio, near, far);
 }
 
-}
+} // namespace Lila
