@@ -55,7 +55,7 @@ if [[ $first_time -eq 1 ]]; then
     echo ""
     echo "Thank you for using Lila!"
     echo ""
-    read -p "Press Enter to continue with setup..."
+    read -p -r "Press Enter to continue with setup..."
     echo ""
 fi
 
@@ -127,7 +127,7 @@ else
         echo "Package $pkg is not installed!"
 
         if [[ $always_continue -eq 0 ]]; then
-            read -p "Would you like to install $pkg?"
+            read -p -r "Would you like to install $pkg?"
         fi
 
         echo "Installing $pkg..."
