@@ -1,52 +1,34 @@
-cmake_minimum_required(VERSION 3.20)
-set(CMAKE_CXX_STANDARD 20)
+cmake_minimum_required(VERSION 3.21)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(LilaEngine)
 
-add_executable(${PROJECT_NAME} 
-    Lila/src/console/ConsoleTypes.h
-    Lila/src/console/Logger.cpp
-    Lila/src/console/Logger.h
+add_executable(${PROJECT_NAME}
+    Lila/src/Common/Filesystem.h
+    Lila/src/Common/Pointers.h
+    Lila/src/Common/Types.h
 
-    Lila/src/core/Window.cpp
-    Lila/src/core/Window.h
+    Lila/src/Logging/LogLevel.h
+    Lila/src/Logging/Logger.cpp
+    Lila/src/Logging/Logger.h
+    Lila/src/Logging/Macros.h
 
-    Lila/src/ecs/Component.h
-    Lila/src/ecs/ComponentHandler.h
-    Lila/src/ecs/ComponentPool.h
-    Lila/src/ecs/Entity.h
-    Lila/src/ecs/Registry.cpp
-    Lila/src/ecs/Registry.h
-    Lila/src/ecs/System.h
-    Lila/src/ecs/SystemHandler.h
+    Lila/src/Math/Vec2.h
+    Lila/src/Math/Vec3.h
+    Lila/src/Math/Vec4.h
 
-    Lila/src/math/math.cpp
-    Lila/src/math/math.h
-    Lila/src/math/matrix4.cpp
-    Lila/src/math/matrix4.h
-    Lila/src/math/vec2.h
-    Lila/src/math/vec3.h
-    Lila/src/math/vec4.h
+    Lila/src/Platform/Platform.h
 
-    Lila/src/platform/filesystem.h
-    Lila/src/platform/platform.h
-    Lila/src/platform/stbi.h
-    Lila/src/platform/types.h
-    
-    Lila/src/renderer/OpenGL/GLGeometry.cpp
-    Lila/src/renderer/OpenGL/GLGeometry.h
-    Lila/src/renderer/OpenGL/GLShader.cpp
-    Lila/src/renderer/OpenGL/GLShader.h
-    Lila/src/renderer/OpenGL/GLTexture.cpp
-    Lila/src/renderer/OpenGL/GLTexture.h
-    Lila/src/renderer/OpenGL/GLTypes.h
-
-    Lila/src/renderer/Camera.h
-    Lila/src/renderer/Geometry.h
-    Lila/src/renderer/Perspective.cpp
-    Lila/src/renderer/Perspective.h
-    Lila/src/renderer/Shader.h
-    Lila/src/renderer/Texture.h
+    Lila/src/Rendering/OpenGL/GLGeometry.cpp
+    Lila/src/Rendering/OpenGL/GLGeometry.h
+    Lila/src/Rendering/OpenGL/GLShader.cpp
+    Lila/src/Rendering/OpenGL/GLShader.h
+    Lila/src/Rendering/Geometry.h
+    Lila/src/Rendering/Shader.h
+    Lila/src/Rendering/Window.cpp
+    Lila/src/Rendering/Window.h
 
     Lila/src/main.cpp
 )
@@ -56,12 +38,12 @@ include_directories(Lila/src)
 add_subdirectory(Lila/deps/glad)
 add_subdirectory(Lila/deps/glfw)
 
-target_include_directories(${PROJECT_NAME} 
+target_include_directories(${PROJECT_NAME}
     PUBLIC Lila/deps/glfw/include
     PUBLIC Lila/deps/stb
 )
 
-target_link_directories(${PROJECT_NAME} 
+target_link_directories(${PROJECT_NAME}
     PRIVATE Lila/deps/glfw/src
 )
 
@@ -69,3 +51,5 @@ target_link_libraries(${PROJECT_NAME}
     glfw
     glad
 )
+
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall)

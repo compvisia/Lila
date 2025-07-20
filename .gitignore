@@ -1,12 +1,3 @@
-###########################
-##### General Ignores #####
-###########################
-
-# Doygen
-doc/
-html/
-latex/
-
 # Testing and Logging
 test/
 *.log
@@ -16,11 +7,12 @@ test/
 *.gcno
 *.gcda
 
-# IDE
-.vs/
-.idea/
-.fleet/
-.vscode/
+# General
+[Bb]uild*/
+
+# Make
+Makefile
+*.make
 
 # Binaries
 bin/
@@ -40,24 +32,21 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 
-# Excluding
-!LICENSE
-!CMakeLists.txt
+# Intellij
+.idea/
+.fleet/
 
-#########################
-##### Build systems #####
-#########################
-
-# General
-[Bb]uild*/
-
-# Make
-Makefile
-*.make
+# Visual Studio Code
+.vscode/
 
 # Visual Studio
+.vs/
 **.sln
 **.csproj
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# Excluding
+!LICENSE
+!CMakeLists.txt

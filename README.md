@@ -13,47 +13,30 @@
 </h4>
 
 <h1>
-</h1>
 
-<!-- Lila's current state is **FRANKENSTEIN** -->
+## Overview
 
-## 💡 Philosophy
+Lila is a game engine primarily used to learn about the process of creating a game engine. The very long-term plan is for Lila to be a somewhat usable game engine.
 
-Lila is a game engine primarily used to learn about the process of creating a game engine. The very long-term plan is for Lila to be a somewhat usable game engine. 
+## Quick Start
 
-## 📌 Information
+Clone this repository and run the setup script to start build the engine.
 
-### Platforms
+```
+git clone git@github.com:compvisia/Lila.git
+cd Lila
+./setup.sh --first-time
+```
 
-Officially supports Windows and Linux.
+**Lila** is designed to be natively run on **Linux** but should run on Windows (Windows not tested!)
 
-## 🤝 Contributing
+## Contributing
 
 Before contributing please read the [Contributor Code of Conduct](https://github.com/compvisia/Lila/blob/master/CODE_OF_CONDUCT.md).
 
 Contribute by creating pull requests or by reporting issues.
 
-## ⚙️ Building
-
-### Requirements
-
-* CMake 3.20+
-* C++20 Compiler (*Tested with MSVC and gcc*)
-* xorg-dev (*Linux only*)
-
-### How to build
-
-#### Script
-
-Run the corrosponding build script in `./scripts/`
-- `build.bat` for Windows
-- `build.sh` for Linux
-
-#### By Hand
-
-Use CMake to generate the compilation files and compile with your compiler.
-
-## 📄 Licensing
+## Licensing
 
 Lila is free and open-source software under the [MIT License](https://github.com/compvisia/Lila/blob/master/LICENSE). The official logo is distributed under the [Creative Commons](https://creativecommons.org/licenses/by-sa/4.0/) license (CC BY-SA 4.0 International).
 
