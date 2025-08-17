@@ -10,6 +10,13 @@ add_executable(${PROJECT_NAME}
     Lila/src/Common/Pointers.h
     Lila/src/Common/Types.h
 
+    Lila/src/ECS/ComponentManager.h
+    Lila/src/ECS/Components.h
+    Lila/src/ECS/Entity.h
+    Lila/src/ECS/EntityManager.cpp
+    Lila/src/ECS/EntityManager.h
+    Lila/src/ECS/SparseSet.h
+
     Lila/src/Logging/LogLevel.h
     Lila/src/Logging/Logger.cpp
     Lila/src/Logging/Logger.h
