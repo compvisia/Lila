@@ -33,5 +33,4 @@ namespace Lila::ECS {
         return signatures.at(e);
     }
 
-
 } // namespace Lila::ECS

@@ -23,6 +23,7 @@ namespace Lila::ECS {
         T& get(Entity entity) { return sparseSet.get(entity); }
         bool has(Entity entity) { return sparseSet.contains(entity); }
         void entityDestroyed(Entity entity) override { if(has(entity)) remove(entity); }
+
     private:
         SparseSet<T> sparseSet;
     };
@@ -58,6 +59,7 @@ namespace Lila::ECS {
             for (auto& [_, array] : componentArrays)
                 array->entityDestroyed(entity);
         }
+
     private:
         std::unordered_map<std::type_index, std::shared_ptr<IComponentArray>> componentArrays;
     };
