@@ -42,17 +42,17 @@ namespace Lila {
             exit(1);
         }
 
-        LILA_INFO("OpenGL version %s", glGetString(GL_VERSION));
+        LILA_INFO("OpenGL version {}", (const char*)glGetString(GL_VERSION));
     }
 
     void Window::initGlfw() {
         if(!glfwInit()) {
-            LILA_FATAL("Couldn't initialize GLFW! %x", glfwGetError(nullptr));
+            LILA_FATAL("Couldn't initialize GLFW! {}", glfwGetError(nullptr));
             exit(1);
         }
 
-        LILA_INFO("GLFW version %d.%d.%d", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
-        LILA_INFO("GLFW platform %d", glfwGetPlatform());
+        LILA_INFO("GLFW version {}.{}.{}", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
+        LILA_INFO("GLFW platform {}", glfwGetPlatform());
     }
 
     void Window::create() {

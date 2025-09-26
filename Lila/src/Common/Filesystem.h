@@ -33,7 +33,7 @@ namespace Lila {
 
     static std::string getContentsByPath(std::filesystem::path filepath) {
         if(!std::filesystem::exists(filepath)) {
-            LILA_ERROR("File not found! (%s)", filepath.string().c_str());
+            LILA_ERROR("File not found! ({})", filepath.string().c_str());
             return "";
         }
 

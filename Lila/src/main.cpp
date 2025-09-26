@@ -55,11 +55,11 @@ int main() {
             if(sig.test(0)) {
                 auto& t = cm.getComponent<Transform>(e);
 
-                LILA_DEBUG("%f, %f, %f", t.x, t.y, t.z)
+                LILA_DEBUG("{}, {}, {}", t.x, t.y, t.z)
             }
             if(sig.test(1)) {
                 auto& tag = cm.getComponent<Tag>(e);
-                LILA_DEBUG("%d", tag.tag)
+                LILA_DEBUG("{}", tag.tag)
             }
         }
     };

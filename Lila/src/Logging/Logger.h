@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <format>
+#include <sstream>
+#include <iostream>
 
 #include "Common/Types.h"
 
@@ -15,7 +18,18 @@ namespace Lila {
             return instance;
         }
 
-        void log(const LogLevel& logLevel, const std::string& profile, const c8* fmt, ...);
+        template<typename... Args>
+        void log(const LogLevel& logLevel, const std::string& profile, const std::string& fmt, Args&&... args) {
+            std::string formattedMsg = std::vformat(fmt, std::make_format_args(args...));
+
+            std::string printable = std::format("{} ({}) {} \033[0m",
+                prefixes[static_cast<int>(logLevel)],
+                profile,
+                formattedMsg
+            );
+
+            std::cout << printable << std::endl;
+        }
     private:
         Logger() = default;
         Logger(const Logger&) = delete;

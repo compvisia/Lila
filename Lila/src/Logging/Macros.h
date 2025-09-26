@@ -13,8 +13,8 @@ namespace Lila {
 
     // TODO: Implement break
     #define LILA_ASSERT(expr, fmt, ...) { \
-            if(!(expr)) { \
-                Lila::Logger::get().log(Lila::LogLevel::ASSERT, #expr, fmt, ##__VA_ARGS__); \
-            } \
-        }
+        if(!(expr)) { \
+            Lila::Logger::get().log(Lila::LogLevel::ASSERT, #expr, fmt, ##__VA_ARGS__); \
+        } \
+    }
 } // namespace Lila
