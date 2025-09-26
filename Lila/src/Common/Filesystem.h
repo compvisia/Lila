@@ -31,7 +31,9 @@ namespace Lila {
         return projectPath;
     }
 
-    static std::string getContentsByPath(std::filesystem::path filepath) {
+    static const std::filesystem::path ASSET_PATH = getProjectPath() / "Lila" / "assets";
+
+    static std::string getContentsByPath(const std::filesystem::path& filepath) {
         if(!std::filesystem::exists(filepath)) {
             LILA_ERROR("File not found! ({})", filepath.string().c_str());
             return "";

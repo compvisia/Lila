@@ -82,10 +82,8 @@ int main() {
         1, 2, 3
     };
 
-    std::filesystem::path assetPath = Lila::getProjectPath() / "Lila" / "assets";
-
     Unique<OpenGL::GLGeometry> geometry = unique<OpenGL::GLGeometry>(vertices, indices);
-    Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>(assetPath / "default.vert", assetPath / "default.frag");
+    Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>(Lila::ASSET_PATH / "default.vert", Lila::ASSET_PATH / "default.frag");
 
     glEnable(GL_DEPTH_TEST);
     while(!glfwWindowShouldClose(window->getHandle())) {
