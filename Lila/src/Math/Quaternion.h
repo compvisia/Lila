@@ -1,6 +1,7 @@
 #pragma once
 
-#include <math.h>
+#include <cmath>
+#include <numbers>
 
 #include "Common/Types.h"
 
@@ -43,7 +44,7 @@ namespace Lila {
         }
 
         T magnitude() const {
-            return sqrt(w * w + x * x + y * y + z * z);
+            return std::sqrt(w * w + x * x + y * y + z * z);
         }
 
         Quaternion<T> normalized() const {
@@ -108,7 +109,7 @@ namespace Lila {
             euler.x = std::atan2(sinp, cosp);
             T siny = T(2) * (w*y - z*x);
             if (std::abs(siny) >= 1)
-                euler.y = std::copysign(M_PI / 2, siny);
+                euler.y = std::copysign(std::numbers::pi / 2, siny);
             else
                 euler.y = std::asin(siny);
 

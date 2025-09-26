@@ -69,7 +69,7 @@ int main() {
     /*
      * Render Example
      */
-    Unique<Lila::Window> window = unique<Lila::Window>("Lila Engine", Vec2i(1280, 720));
+    Unique<Lila::Window> window = unique<Lila::Window>("Lila Engine", Lila::Vec2i(1280, 720));
 
     std::vector<f32> vertices {
          1,  1, -1,   1, 1,
