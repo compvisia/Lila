@@ -6,13 +6,20 @@
 #include "Common/Pointers.h"
 #include "Common/Types.h"
 #include "Logging/Macros.h"
-#include "Math/Vec2.h"
+
 #include "Rendering/Window.h"
 
 #include "ECS/Entity.h"
 #include "ECS/EntityManager.h"
 #include "ECS/Components.h"
 #include "ECS/ComponentManager.h"
+
+#include "Math/Quaternion.h"
+#include "Math/Vec2.h"
+#include "Math/Vec3.h"
+
+#include "Event/Event.h"
+#include "Event/EventBus.h"
 
 struct Transform {
     f32 x, y, z;
@@ -22,7 +29,67 @@ struct Tag {
     u64 tag;
 };
 
+struct TemplateEvent {
+    u64 test;
+};
+
+void eventFunction(const TemplateEvent& event) {
+    LILA_DEBUG("Event function called {}", event.test);
+};
+
 int main() {
+    /*
+     * Event Example
+     */
+
+     // TODO: Define inside an engine system manager.
+     Lila::EventBus bus;
+
+     /* <-- README -->
+      * Lila::EventBus::subscribe returns a EventSubscription object.
+      * The return value MUST be captured using a variable.
+      * You can use this variable to manually disconnect the subscription.
+      * Or forget about it and automatically disconnect it when it goes out of scope.
+      */
+     auto sub = bus.subscribe<TemplateEvent>(eventFunction);
+
+     bus.emit(TemplateEvent{1234567890});
+
+     // sub.disconnect();
+
+    /*
+     * Quaternion Example
+     */
+
+     Lila::Quaternionf q = Lila::Quaternionf::fromEuler(0.0f, 0.0f, 0.0f);
+     Lila::Vec3f euler = q.toEuler();
+     LILA_DEBUG("{} {} {}", euler.x, euler.y, euler.z);
+
+     f32 dot = q.dot(Lila::Quaternionf::identity());
+     LILA_DEBUG("Dot product: {}", dot);
+
+
+     Lila::Quaternionf q90 = Lila::Quaternionf::fromEuler(0.0f, 3.1415926535f / 2.0f, 0.0f);
+     Lila::Vec3f euler90 = q90.toEuler();
+     LILA_DEBUG("{} {} {}", euler90.x, euler90.y, euler90.z);
+
+     f32 dot90 = q90.dot(Lila::Quaternionf::identity());
+     LILA_DEBUG("Dot product: {}", dot90);
+
+
+     // Multiplication oders
+     Lila::Quaternionf q1 = Lila::Quaternionf(1, 1, 0, 0);
+     Lila::Quaternionf q2 = Lila::Quaternionf(1, 0, 1, 1);
+
+     Lila::Quaternionf a = q1 * q2;
+     Lila::Quaternionf b = q2 * q1;
+
+     LILA_DEBUG("q1 * q2 = {} {} {} {}", a.w, a.x, a.y, a.z);
+     LILA_DEBUG("q2 * q1 = {} {} {} {}", b.w, b.x, b.y, b.z);
+
+     b8 check = a != b;
+     LILA_DEBUG("Quaternion multiplication order check: {}", check);
+
     /*
      * ECS Example
      */
