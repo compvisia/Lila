@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}
     Lila/src/ECS/EntityManager.h
     Lila/src/ECS/SparseSet.h
 
+    Lila/src/Event/EventBus.h
     Lila/src/Logging/LogLevel.h
     Lila/src/Logging/Logger.cpp
     Lila/src/Logging/Logger.h
