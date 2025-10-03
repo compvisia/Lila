@@ -18,7 +18,6 @@
 #include "Math/Vec2.h"
 #include "Math/Vec3.h"
 
-#include "Event/Event.h"
 #include "Event/EventBus.h"
 
 struct Transform {

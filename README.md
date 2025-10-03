@@ -9,28 +9,44 @@
 </h1>
 
 <h4 align="center">
-<i>An easy to use lightweight game engine written in C++20</i>
+<i>An easy to use lightweight game engine written in C++23</i>
 </h4>
 
 <h1>
 
 ## Overview
 
-Lila is a game engine primarily used to learn about the process of creating a game engine. The very long-term plan is for Lila to be a somewhat usable game engine.
+Lila is an **experimental** game engine. It is primarily a learning project, but the very long-term plan is for Lila to evolve into a somewhat usable game engine.
+
+## Requirements
+- CMake ≥ 3.21
+- C++23 compiler (e.g. GCC 14, Clang 17, MSVC 17.13)
+- OpenGL 4.6
 
 ## Quick Start
 
-Clone this repository and run the setup script to start build the engine.
+Clone this repository and run the setup script to start configuring the engine.
 
 ```
 git clone git@github.com:compvisia/Lila.git
 cd Lila
-./setup.sh --first-time
 ```
 
-**Lila** is designed to be natively run on **Linux** but should run on Windows (Windows not tested!)
+Afterwards use these to build and run Lila!
+Windows:
+```
+"Scripts/BuildWindows.bat"
+```
+Linux:
+```
+./Scripts/BuildLinux.sh
+```
+
+**Lila** is designed to be usable on **Windows** and **Linux**. Any platform not mentioned is untested and currently not supported!
 
 ## Contributing
+
+If you have any questions or suggestions, feel free to reach out via [Discussions](https://github.com/compvisia/Lila/discussions).
 
 Before contributing please read the [Contributor Code of Conduct](https://github.com/compvisia/Lila/blob/master/CODE_OF_CONDUCT.md).
 
