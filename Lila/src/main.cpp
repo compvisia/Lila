@@ -98,7 +98,7 @@ int main() {
      b8 check = a != b;
      LILA_DEBUG("Quaternion multiplication order check: {}", check);
 
-     LILA_DEBUG("Quaternion norm / magnitude check: {}", a.magnitude());
+     LILA_DEBUG("Quaternion norm / magnitude check: {}", a.norm());
 
      Lila::Quaternionf p = Lila::Quaternionf(0.333f, 0.666f, 0, 0);
      Lila::Quaternionf pq = p.inverse();
