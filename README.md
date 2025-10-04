@@ -63,5 +63,5 @@ This repository is also part of the [compvisia family](https://github.com/compvi
 [license-shield]: https://img.shields.io/github/license/compvisia/lila?style=flat
 [codefactor-link]: https://www.codefactor.io/repository/github/compvisia/lila
 [codefactor-shield]: https://www.codefactor.io/repository/github/compvisia/lila/badge?style=flat
-[cpp-link]: https://en.cppreference.com/w/cpp/20
-[cpp-shield]: https://img.shields.io/badge/C++-20-blue?style=flat&logo=C%2B%2B
+[cpp-link]: https://en.cppreference.com/w/cpp/23
+[cpp-shield]: https://img.shields.io/badge/C++-23-blue?style=flat&logo=C%2B%2B
