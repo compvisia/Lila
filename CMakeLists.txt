@@ -23,6 +23,7 @@ add_executable(${PROJECT_NAME}
     Lila/src/Logging/Logger.h
     Lila/src/Logging/Macros.h
 
+    Lila/src/Math/Matrix.h
     Lila/src/Math/Quaternion.h
     Lila/src/Math/Vec2.h
     Lila/src/Math/Vec3.h
