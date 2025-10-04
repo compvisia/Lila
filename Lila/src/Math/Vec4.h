@@ -9,8 +9,8 @@ namespace Lila {
     template<typename T>
     class alignas(16) Vec4 {
     public:
-        Vec4() : x(0), y(0), z(0), w(0) {}
-        Vec4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {}
+        constexpr Vec4() : x(0), y(0), z(0), w(0) {}
+        constexpr Vec4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {}
 
         T length() const {
             return std::sqrt(x * x + y * y, + z * z + w * w);
@@ -18,7 +18,10 @@ namespace Lila {
 
         Vec4<T> normalized() const {
             T len = length();
-            if (len == T(0)) return Vec4<T>(0, 0, 0, 0);
+
+            if (len == T(0))
+                return Vec4<T>(0, 0, 0, 0);
+
             return Vec4<T>(x / len, y / len, z / len, w / len);
         }
 

@@ -14,6 +14,7 @@
 #include "ECS/Components.h"
 #include "ECS/ComponentManager.h"
 
+#include "Math/Matrix.h"
 #include "Math/Quaternion.h"
 #include "Math/Vec2.h"
 #include "Math/Vec3.h"
@@ -37,6 +38,14 @@ void eventFunction(const TemplateEvent& event) {
 };
 
 int main() {
+    /*
+     * Matrix Example
+     */
+
+     Lila::Matrix4f matrix = Lila::Matrix4f::identity();
+
+     LILA_DEBUG("{} {} {} {}", matrix.get(0,0), matrix.get(1,1), matrix.get(2,2), matrix.get(3,3));
+
     /*
      * Event Example
      */
@@ -88,6 +97,17 @@ int main() {
 
      b8 check = a != b;
      LILA_DEBUG("Quaternion multiplication order check: {}", check);
+
+     LILA_DEBUG("Quaternion norm / magnitude check: {}", a.magnitude());
+
+     Lila::Quaternionf p = Lila::Quaternionf(0.333f, 0.666f, 0, 0);
+     Lila::Quaternionf pq = p.inverse();
+
+     Lila::Quaternionf c = p * pq;
+     Lila::Quaternionf d = pq * p;
+
+     LILA_DEBUG("p * p^-1 = {} {} {} {}", c.w, c.x, c.y, c.z);
+     LILA_DEBUG("p^-1 * p = {} {} {} {}", d.w, d.x, d.y, d.z);
 
     /*
      * ECS Example

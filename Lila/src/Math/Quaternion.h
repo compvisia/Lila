@@ -12,8 +12,8 @@ namespace Lila {
     template<typename T>
     class alignas(16) Quaternion {
     public:
-        Quaternion() : w(1), x(0), y(0), z(0) {}
-        Quaternion(T w, T x, T y, T z) : w(w), x(x), y(y), z(z) {}
+        constexpr Quaternion() : w(1), x(0), y(0), z(0) {}
+        constexpr Quaternion(T w, T x, T y, T z) : w(w), x(x), y(y), z(z) {}
 
         static constexpr Quaternion identity() {
             return Quaternion(1, 0, 0, 0);
@@ -28,10 +28,10 @@ namespace Lila {
             T sr = std::sin(roll * T(0.5));
 
             return Quaternion(
-                cr * cp * cy + sr * sp * sy, // w
-                sr * cp * cy - cr * sp * sy, // x
-                cr * sp * cy + sr * cp * sy, // y
-                cr * cp * sy - sr * sp * cy  // z
+                cr * cp * cy + sr * sp * sy,
+                sr * cp * cy - cr * sp * sy,
+                cr * sp * cy + sr * cp * sy,
+                cr * cp * sy - sr * sp * cy
             );
         }
 
@@ -43,13 +43,17 @@ namespace Lila {
             return w*other.w + x*other.x + y*other.y + z*other.z;
         }
 
-        T magnitude() const {
+        T norm() const {
             return std::sqrt(w * w + x * x + y * y + z * z);
         }
 
         Quaternion<T> normalized() const {
-            T mag = magnitude();
-            return Quaternion(w / mag, x / mag, y / mag, z / mag);
+            T norm = norm();
+
+            if(norm == T(0))
+                return Quaternion();
+
+            return Quaternion(w / norm, x / norm, y / norm, z / norm);
         }
 
         Quaternion<T> conjugate() const {
@@ -57,16 +61,20 @@ namespace Lila {
         }
 
         Quaternion<T> inverse() const {
-            T mag = magnitude();
-            return Quaternion(w / mag, -x / mag, -y / mag, -z / mag);
+            T norm = w * w + x * x + y * y + z * z;
+
+            if(norm == T(0))
+                return Quaternion();
+
+            return conjugate() / norm;
         }
 
 
         Quaternion<T> operator+(const Quaternion<T>& other) const {
-            return Quaternion(x + other.x, y + other.y, z + other.z, w + other.w);
+            return Quaternion(w + other.w, x + other.x, y + other.y, z + other.z);
         }
         Quaternion<T> operator-(const Quaternion<T>& other) const {
-            return Quaternion(x - other.x, y - other.y, z - other.z, w - other.w);
+            return Quaternion(w - other.w, x - other.x, y - other.y, z - other.z);
         }
         Quaternion<T> operator*(const Quaternion<T>& other) const {
             return Quaternion(
@@ -75,6 +83,9 @@ namespace Lila {
                 w * other.y - x * other.z + y * other.w + z * other.x,
                 w * other.z + x * other.y - y * other.x + z * other.w
             );
+        }
+        Quaternion<T> operator/(T scalar) const {
+            return Quaternion(w / scalar, x / scalar, y / scalar, z / scalar);
         }
 
         Quaternion<T>& operator+=(const Quaternion<T>& other) {
@@ -86,10 +97,19 @@ namespace Lila {
             return *this;
         }
         Quaternion<T>& operator*=(const Quaternion<T>& other) {
-            w = (w * other.w - x * other.x - y * other.y - z * other.z);
-            x = (w * other.x + x * other.w + y * other.z - z * other.y);
-            y = (w * other.y - x * other.z + y * other.w + z * other.x);
-            z = (w * other.z + x * other.y - y * other.x + z * other.w);
+            const T nw = w * other.w - x * other.x - y * other.y - z * other.z;
+            const T nx = w * other.x + x * other.w + y * other.z - z * other.y;
+            const T ny = w * other.y - x * other.z + y * other.w + z * other.x;
+            const T nz = w * other.z + x * other.y - y * other.x + z * other.w;
+            w = nw; x = nx; y = ny; z = nz;
+
+            return *this;
+        }
+        Quaternion<T> operator/=(T scalar) {
+            w /= scalar;
+            x /= scalar;
+            y /= scalar;
+            z /= scalar;
 
             return *this;
         }
@@ -121,7 +141,7 @@ namespace Lila {
         }
 
     public:
-        T w, x, y, z;
+        T w = 1, x = 0, y = 0, z = 0;
     };
 
     using Quaternionf = Quaternion<f32>;

@@ -9,8 +9,8 @@ namespace Lila {
     template<typename T>
     class Vec2 {
     public:
-        Vec2() : x(0), y(0) {}
-        Vec2(T x, T y) : x(x), y(y) {}
+        constexpr Vec2() : x(0), y(0) {}
+        constexpr Vec2(T x, T y) : x(x), y(y) {}
 
         T length() const {
             return std::sqrt(x * x + y * y);
@@ -18,7 +18,10 @@ namespace Lila {
 
         Vec2<T> normalized() const {
             T len = length();
-            if (len == T(0)) return Vec2<T>(0, 0, 0);
+
+            if (len == T(0))
+                return Vec2<T>(0, 0);
+
             return Vec2<T>(x / len, y / len);
         }
 
