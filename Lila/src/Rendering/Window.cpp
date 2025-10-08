@@ -32,7 +32,7 @@ namespace Lila {
         return Vec2i(windowWidth_m, windowHeight_m);
     }
 
-    GLFWwindow* Window::getHandle() {
+    GLFWwindow* Window::getHandle() const {
         return windowHandle_m;
     }
 

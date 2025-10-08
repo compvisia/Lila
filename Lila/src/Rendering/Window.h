@@ -21,7 +21,7 @@ namespace Lila {
         void setSize(const Vec2i& windowSize);
         Vec2i getSize() const;
 
-        GLFWwindow* getHandle();
+        GLFWwindow* getHandle() const;
 
         Window(const Window&) = delete;
         Window& operator=(const Window&) = delete;

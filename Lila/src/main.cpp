@@ -154,8 +154,8 @@ int main() {
 
     /*
      * Render Example
+
      */
-    Unique<Lila::Window> window = unique<Lila::Window>("Lila Engine", Lila::Vec2i(1280, 720));
 
     std::vector<f32> vertices {
          1,  1, -1,   1, 1,
@@ -172,7 +172,7 @@ int main() {
     Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>(Lila::ASSET_PATH / "default.vert", Lila::ASSET_PATH / "default.frag");
 
     glEnable(GL_DEPTH_TEST);
-    while(!glfwWindowShouldClose(window->getHandle())) {
+    while(!glfwWindowShouldClose(window.getHandle())) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
 
@@ -180,7 +180,7 @@ int main() {
         geometry->render();
         shader->unbind();
 
-        window->update();
+        window.update();
     }
 
     LILA_INFO("Exiting...");
