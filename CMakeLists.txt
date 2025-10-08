@@ -19,6 +19,7 @@ add_executable(${PROJECT_NAME}
 
     Lila/src/Event/EventBus.h
 
+    Lila/src/Input/Keyboard.h
     Lila/src/Logging/LogLevel.h
     Lila/src/Logging/Logger.h
     Lila/src/Logging/Macros.h
