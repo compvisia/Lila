@@ -23,14 +23,14 @@ namespace Lila {
             other.invalidate();
         };
 
-        ~EventSubscription() {
-            disconnect();
+        ~EventSubscription();
+
+        b8 isValid() const {
+            return bus_m != nullptr && id_m != 0;
         }
 
-        void disconnect();
-
     private:
-        EventSubscription(void* bus, std::type_index type, u64 id)
+        EventSubscription(EventBus* bus, std::type_index type, u64 id)
             : bus_m(bus), type_m(type), id_m(id) {}
 
         void invalidate() {
@@ -39,7 +39,7 @@ namespace Lila {
         }
 
     private:
-        void* bus_m = nullptr;
+        EventBus* bus_m = nullptr;
         std::type_index type_m{typeid(void)};
         u64 id_m = 0;
     };
@@ -114,11 +114,11 @@ namespace Lila {
         u64 nextId_m{1};
     };
 
-    // WHY? This function is defined here because it needs the definition of EventBus.
-    inline void EventSubscription::disconnect() {
-        if (!bus_m || id_m == 0) return;
-        static_cast<EventBus*>(bus_m)->unsubscribe(*this);
-        invalidate();
-    };
+    inline EventSubscription::~EventSubscription() {
+        if(isValid()) {
+            static_cast<EventBus*>(bus_m)->unsubscribe(*this);
+            invalidate();
+        }
+    }
 
 } // namespace Lila
