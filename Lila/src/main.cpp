@@ -21,6 +21,8 @@
 
 #include "Event/EventBus.h"
 
+#include "Input/Keyboard.h"
+
 struct Transform {
     f32 x, y, z;
 };
@@ -29,13 +31,9 @@ struct Tag {
     u64 tag;
 };
 
-struct TemplateEvent {
-    u64 test;
-};
-
-void eventFunction(const TemplateEvent& event) {
-    LILA_DEBUG("Event function called {}", event.test);
-};
+void keyEventFunction(Lila::KeyEvent event) {
+    LILA_DEBUG("Key {}, Action {}", event.key, event.action);
+}
 
 int main() {
     /*
@@ -45,25 +43,6 @@ int main() {
      Lila::Matrix4f matrix = Lila::Matrix4f::identity();
 
      LILA_DEBUG("{} {} {} {}", matrix.get(0,0), matrix.get(1,1), matrix.get(2,2), matrix.get(3,3));
-
-    /*
-     * Event Example
-     */
-
-     // TODO: Define inside an engine system manager.
-     Lila::EventBus bus;
-
-     /* <-- README -->
-      * Lila::EventBus::subscribe returns a EventSubscription object.
-      * The return value MUST be captured using a variable.
-      * You can use this variable to manually disconnect the subscription.
-      * Or forget about it and automatically disconnect it when it goes out of scope.
-      */
-     auto sub = bus.subscribe<TemplateEvent>(eventFunction);
-
-     bus.emit(TemplateEvent{1234567890});
-
-     // sub.disconnect();
 
     /*
      * Quaternion Example
@@ -152,10 +131,22 @@ int main() {
 
     systemFunction();
 
-    /*
-     * Render Example
+    Lila::Window window = Lila::Window("Lila Engine", Lila::Vec2i(1280, 720));
 
+    // TODO: Define inside an engine system manager.
+    Lila::EventBus bus;
+
+    /* <-- README -->
+     * Lila::EventBus::subscribe returns a EventSubscription object.
+     * The return value MUST be captured using a variable.
+     * You can use this variable to manually disconnect the subscription.
+     * Or forget about it and automatically disconnect it when it goes out of scope.
      */
+    auto sub = bus.subscribe<Lila::KeyEvent>(keyEventFunction);
+    Lila::setCallback(window, &bus);
+
+
+
 
     std::vector<f32> vertices {
          1,  1, -1,   1, 1,
