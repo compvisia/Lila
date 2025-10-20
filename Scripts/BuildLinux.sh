@@ -35,7 +35,7 @@ make
 echo "========================"
 echo "Lila build finished!"
 
-./LilaEngine
+./App
 
 cd ../
 

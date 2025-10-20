@@ -10,6 +10,9 @@ test/
 # General
 [Bb]uild*/
 
+#CMake
+__cmake*/
+
 # Make
 Makefile
 *.make

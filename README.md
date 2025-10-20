@@ -19,7 +19,7 @@
 Lila is an **experimental** game engine. It is primarily a learning project, but the very long-term plan is for Lila to evolve into a somewhat usable game engine.
 
 ## Requirements
-- CMake ≥ 3.21
+- CMake ≥ 3.20
 - C++23 compiler (e.g. GCC 14, Clang 17, MSVC 17.13)
 - OpenGL 4.6
 
@@ -32,7 +32,7 @@ git clone git@github.com:compvisia/Lila.git
 cd Lila
 ```
 
-Afterwards use these to build and run Lila!
+Afterwards use these to build Lila and run the Application!
 Windows:
 ```
 "Scripts/BuildWindows.bat"
@@ -42,7 +42,7 @@ Linux:
 ./Scripts/BuildLinux.sh
 ```
 
-**Lila** is designed to be usable on **Windows** and **Linux**. Any platform not mentioned is untested and currently not supported!
+**Lila** is designed to be usable on **Windows** and **Linux**. Any platform not mentioned is untested and currently not supported.
 
 ## Contributing
 

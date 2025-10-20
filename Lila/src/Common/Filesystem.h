@@ -1,37 +1,69 @@
 #pragma once
 
-#include "Types.h"
+#include <filesystem>
+#include <fstream>
+#include <string>
 
 #include "Logging/Macros.h"
 
-#include <fstream>
-#include <filesystem>
+#ifdef _WIN32
+    // All these lines need to be defined because of shitty Windows.h
+    #define WIN32_LEAN_AND_MEAN
+    #define NOMINMAX
+
+    #include <Windows.h>
+
+    // These too! Because Microsoft cannot create its own aliases and needs to define them
+    #ifdef ERROR
+        #undef ERROR
+    #endif
+    #ifdef INFO
+        #undef INFO
+    #endif
+    #ifdef DEBUG
+        #undef DEBUG
+    #endif
+    #ifdef WARNING
+        #undef WARNING
+    #endif
+#elif defined(__linux__)
+    #include <linux/limits.h>
+    #include <unistd.h>
+#else
+    #error "Unsupported platform: Cannot determine executable path."
+#endif
 
 namespace Lila {
 
-    #define EXECUTABLE_PATH std::filesystem::current_path()
+    static std::filesystem::path getExecutionPath() {
+        #if defined(_WIN32)
+            wchar_t path[MAX_PATH] = {0};
 
-    #define PROJECT_NAME "Lila"
-
-    static std::filesystem::path getProjectPath() {
-        std::filesystem::path projectPath = EXECUTABLE_PATH;
-        u8 limit = 5;
-
-        for(u8 i = 0; i < limit; i++) {
-            if(projectPath.filename() == PROJECT_NAME) {
-                break;
+            if(GetModuleFileNameW(NULL, path, MAX_PATH) == 0) {
+                LILA_FATAL("Could not get execution path!");
+                return "";
             }
-            projectPath = projectPath.parent_path();
-        }
 
-        if(projectPath.filename() != PROJECT_NAME) {
-            LILA_ERROR("Couldn't find project path!");
-        }
+            return std::filesystem::path(path).parent_path();
+        #elif defined(__linux__)
+            char path[PATH_MAX] = {0};
 
-        return projectPath;
+            ssize_t count = readlink("/proc/self/exe", path, PATH_MAX);
+
+            if(count <= 0) {
+                LILA_FATAL("Could not get execution path!");
+                return "";
+            }
+
+            return std::filesystem::path(path).parent_path();
+        #else
+            #error "Unsupported platform"
+        #endif
     }
 
-    static const std::filesystem::path ASSET_PATH = getProjectPath() / "Lila" / "assets";
+    static std::filesystem::path getAssetPath() {
+       return getExecutionPath() / "assets";
+    }
 
     static std::string getContentsByPath(const std::filesystem::path& filepath) {
         if(!std::filesystem::exists(filepath)) {

@@ -30,14 +30,14 @@ cd %BUILD_DIR%
 
 @echo on
 
-msbuild /m LilaEngine.sln
+msbuild /m Lila.sln
 
 @echo off
 
 echo ========================
 echo Lila build finished!
 
-"./Debug/LilaEngine.exe"
+"./App/Debug/App.exe"
 
 cd ..
 
