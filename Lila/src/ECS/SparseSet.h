@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstdint>
 
-#include "Logging/Macros.h"
+#include "Log/Macros.h"
 
 #include "Entity.h"
 

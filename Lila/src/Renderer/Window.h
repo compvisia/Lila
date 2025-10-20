@@ -11,15 +11,24 @@
 
 namespace Lila {
 
+    struct WindowSpecs {
+        std::string name = "Lila Application Window";
+        u32 width = 1280;
+        u32 height = 720;
+    };
+
     class Window {
     public:
-        Window(std::string windowName, const Vec2i& windowSize);
+        Window(const WindowSpecs& windowSpecs);
         ~Window();
 
         void update();
 
-        void setSize(const Vec2i& windowSize);
-        Vec2i getSize() const;
+        void setWindowSpecs(const WindowSpecs& windowSpecs);
+        WindowSpecs getWindowSpecs() const;
+
+        void setSize(const Vec2u& windowSize);
+        Vec2u getSize() const;
 
         GLFWwindow* getHandle() const;
 
@@ -35,8 +44,6 @@ namespace Lila {
 
     private:
         GLFWwindow* windowHandle_m;
-        std::string windowName_m;
-        u32 windowWidth_m;
-        u32 windowHeight_m;
+        WindowSpecs windowSpecs_m;
     };
 } // namespace Lila

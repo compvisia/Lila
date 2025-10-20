@@ -4,7 +4,7 @@
 
 #include "Common/Types.h"
 #include "Common/Filesystem.h"
-#include "Rendering/Shader.h"
+#include "Renderer/Shader.h"
 
 namespace OpenGL {
 

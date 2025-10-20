@@ -4,7 +4,7 @@
 
 #include "Event/EventBus.h"
 
-#include "Rendering/Window.h"
+#include "Renderer/Window.h"
 #include <glfw/glfw3.h>
 
 #include "Common/Types.h"

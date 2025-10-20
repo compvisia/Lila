@@ -3,7 +3,7 @@
 #include <string>
 #include <format>
 #include <sstream>
-#include <iostream>
+#include <print>
 
 #include "Common/Types.h"
 
@@ -22,14 +22,16 @@ namespace Lila {
         void log(const LogLevel& logLevel, const std::string& profile, const std::string& fmt, Args&&... args) {
             std::string formattedMsg = std::vformat(fmt, std::make_format_args(args...));
 
-            std::string printable = std::format("{} ({}) {} \033[0m",
+            std::string printable = std::format("{} ({}) {}\033[0m",
                 prefixes[static_cast<int>(logLevel)],
                 profile,
                 formattedMsg
             );
 
-            std::cout << printable << std::endl;
+            // Sadly std::print doesn't allow for direct string printing
+            std::println("{}", printable);
         }
+
     private:
         Logger() = default;
         Logger(const Logger&) = delete;

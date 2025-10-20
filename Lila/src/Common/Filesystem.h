@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-#include "Logging/Macros.h"
+#include "Log/Macros.h"
 
 #ifdef _WIN32
     // All these lines need to be defined because of shitty Windows.h

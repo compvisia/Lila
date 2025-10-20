@@ -1,13 +1,11 @@
 #include "Window.h"
 
-#include "Logging/Macros.h"
+#include "Log/Macros.h"
 
 namespace Lila {
 
-    Window::Window(std::string windowName, const Vec2i& windowSize) {
-        windowName_m = windowName;
-        windowWidth_m = windowSize.x;
-        windowHeight_m = windowSize.y;
+    Window::Window(const WindowSpecs& windowSpecs) {
+        windowSpecs_m = windowSpecs;
 
         create();
     }
@@ -19,21 +17,6 @@ namespace Lila {
     void Window::update() {
         glfwSwapBuffers(windowHandle_m);
         glfwPollEvents();
-    }
-
-
-    void Window::setSize(const Vec2i& windowSize) {
-        windowWidth_m = windowSize.x;
-        windowHeight_m = windowSize.y;
-        glfwSetWindowSize(windowHandle_m, windowWidth_m, windowHeight_m);
-    }
-
-    Vec2i Window::getSize() const {
-        return Vec2i(windowWidth_m, windowHeight_m);
-    }
-
-    GLFWwindow* Window::getHandle() const {
-        return windowHandle_m;
     }
 
     void Window::initGlad() {
@@ -58,7 +41,7 @@ namespace Lila {
     void Window::create() {
         initGlfw();
 
-        windowHandle_m = glfwCreateWindow(windowWidth_m, windowHeight_m, windowName_m.c_str(), NULL, NULL);
+        windowHandle_m = glfwCreateWindow(windowSpecs_m.width, windowSpecs_m.height, windowSpecs_m.name.c_str(), NULL, NULL);
 
         glfwShowWindow(windowHandle_m);
         glfwFocusWindow(windowHandle_m);
@@ -73,5 +56,31 @@ namespace Lila {
     void Window::destroy() {
         glfwDestroyWindow(windowHandle_m);
         glfwTerminate();
+    }
+
+    void Window::setWindowSpecs(const WindowSpecs& windowSpecs) {
+        windowSpecs_m = windowSpecs;
+
+        glfwSetWindowTitle(windowHandle_m, windowSpecs.name.c_str());
+        glfwSetWindowSize(windowHandle_m, windowSpecs_m.width, windowSpecs_m.height);
+    }
+
+    WindowSpecs Window::getWindowSpecs() const {
+        return windowSpecs_m;
+    }
+
+    void Window::setSize(const Vec2u& windowSize) {
+        windowSpecs_m.width = windowSize.x;
+        windowSpecs_m.height = windowSize.y;
+
+        glfwSetWindowSize(windowHandle_m, windowSpecs_m.width, windowSpecs_m.height);
+    }
+
+    Vec2u Window::getSize() const {
+        return Vec2u(windowSpecs_m.width, windowSpecs_m.height);
+    }
+
+    GLFWwindow* Window::getHandle() const {
+        return windowHandle_m;
     }
 } // namespace Lila

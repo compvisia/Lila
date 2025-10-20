@@ -4,7 +4,7 @@
 
 #include "Common/Types.h"
 
-#include "Rendering/Geometry.h"
+#include "Renderer/Geometry.h"
 
 namespace OpenGL {
 

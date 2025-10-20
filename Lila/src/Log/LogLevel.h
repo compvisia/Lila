@@ -20,8 +20,8 @@ namespace Lila {
     constexpr const c8* prefixes[] = {
         "\x1b[41m[FATAL]",
         "\x1b[91m[ERROR]",
-        "\x1b[93m[WARN] ",
-        "\x1b[94m[INFO] ",
+        "\x1b[93m[WARN]",
+        "\x1b[94m[INFO]",
         "\x1b[96m[DEBUG]",
         "\x1b[36m[TRACE]",
         "\x1b[1;41m[ASSERT]",

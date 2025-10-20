@@ -2,8 +2,6 @@
 
 #include <glad/glad.h>
 
-#include <vector>
-
 namespace OpenGL {
 
     GLShader::GLShader(std::filesystem::path vertexPath, std::filesystem::path fragmentPath) {
@@ -65,7 +63,7 @@ namespace OpenGL {
             std::vector<c8> errorLog(maxLength+1);
             glGetShaderInfoLog(shaderObject, maxLength, &maxLength, &errorLog[0]);
             std::string error(begin(errorLog), end(errorLog));
-            LILA_ERROR("Shader could not compile: %s", error.c_str());
+            LILA_ERROR("Shader could not compile: {}", error.c_str());
 
             return false;
         }
@@ -87,7 +85,7 @@ namespace OpenGL {
             std::vector<c8> errorLog(maxLength+1);
             glGetProgramInfoLog(program_m, maxLength, &maxLength, &errorLog[0]);
             std::string error(begin(errorLog), end(errorLog));
-            LILA_ERROR("Program could not link: %s", error.c_str());
+            LILA_ERROR("Program could not link: {}", error.c_str());
 
             return false;
         }
