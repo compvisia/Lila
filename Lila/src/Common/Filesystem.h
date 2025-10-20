@@ -29,6 +29,7 @@
 #elif defined(__linux__)
     #include <linux/limits.h>
     #include <unistd.h>
+    #include <system_error>
 #else
     #error "Unsupported platform: Cannot determine executable path."
 #endif
@@ -48,14 +49,16 @@ namespace Lila {
         #elif defined(__linux__)
             char path[PATH_MAX] = {0};
 
-            ssize_t count = readlink("/proc/self/exe", path, PATH_MAX);
+            std::error_code errorCode;
 
-            if(count <= 0) {
-                LILA_FATAL("Could not get execution path!");
+            std::filesystem::path path = std::filesystem::read_symlink("/proc/self/exe", ec);
+
+            if(ec) {
+                LILA_FATAL("Could not get execution path: {}", errorCode.message());
                 return "";
             }
 
-            return std::filesystem::path(path).parent_path();
+            return path.parent_path();
         #else
             #error "Unsupported platform"
         #endif
