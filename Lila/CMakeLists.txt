@@ -37,6 +37,9 @@ set(SOURCES
     src/Renderer/Shader.h
     src/Renderer/Window.cpp
     src/Renderer/Window.h
+
+    src/World/Camera.cpp
+    src/World/Camera.h
 )
 
 add_library(Lila STATIC)
