@@ -50,6 +50,7 @@ add_compile_definitions(
 target_link_libraries(Lila
     glfw
     glad
+    glm
 )
 
 target_include_directories(Lila PUBLIC "src" "deps/stb")
