@@ -44,10 +44,10 @@ namespace OpenGL {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo_m);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount_m * sizeof(u32), &indices[0], GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(f32), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(f32), (void*)0);
     	glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(f32), (void*)(3 * sizeof(f32)));
-    	glEnableVertexAttribArray(1);
+     //    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(f32), (void*)(3 * sizeof(f32)));
+    	// glEnableVertexAttribArray(1);
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
