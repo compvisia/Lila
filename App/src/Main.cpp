@@ -31,6 +31,7 @@ struct Tag {
 
 f32 camX = 0, camY = 0, camZ = 0;
 f32 camSpeed = 0.05;
+b8 disconnectSubscription = false;
 
 void keyEventFunction(Lila::KeyEvent event) {
     if(event.key == 65)
@@ -47,6 +48,9 @@ void keyEventFunction(Lila::KeyEvent event) {
         camX += camSpeed;
     if(event.key == 83)
         camX -= camSpeed;
+
+    if(event.key == 82) // R
+        disconnectSubscription = true;
 }
 
 
@@ -82,6 +86,7 @@ int main() {
      * Lila::EventBus::subscribe returns a EventSubscription object.
      * This EventSubscription object MUST be captured by using a variable, else the subscription is invalidated.
      * When it goes out of scope the subscription object will automatically disconnect.
+     * Or call disconnect() to invalidate and close the subscription
      */
     auto sub = bus.subscribe<Lila::KeyEvent>(keyEventFunction);
 
@@ -147,6 +152,11 @@ int main() {
             "view",
             view
         );
+
+        if(disconnectSubscription) {
+            sub.disconnect();
+            disconnectSubscription = false;
+        }
 
         geometry->render();
         shader->unbind();

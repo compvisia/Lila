@@ -23,10 +23,14 @@ namespace Lila {
             other.invalidate();
         };
 
-        ~EventSubscription();
+        void disconnect();
+
+        ~EventSubscription() {
+            disconnect();
+        }
 
         b8 isValid() const {
-            return bus_m != nullptr && id_m != 0;
+            return bus_m && id_m != 0;
         }
 
     private:
@@ -114,11 +118,12 @@ namespace Lila {
         u64 nextId_m{1};
     };
 
-    inline EventSubscription::~EventSubscription() {
-        if(isValid()) {
-            static_cast<EventBus*>(bus_m)->unsubscribe(*this);
-            invalidate();
-        }
+    inline void EventSubscription::disconnect() {
+        if(!bus_m)
+            return;
+
+        static_cast<EventBus*>(bus_m)->unsubscribe(*this);
+        invalidate();
     }
 
 } // namespace Lila
