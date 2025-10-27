@@ -27,6 +27,11 @@ namespace OpenGL {
         glDeleteProgram(program_m);
     }
 
+    void GLShader::uniformMatrix(const std::string& name, const glm::mat4& matrix) {
+        i32 location = glGetUniformLocation(program_m, name.c_str());
+        glUniformMatrix4fv(location, 1, false, &matrix[0][0]);
+    }
+
     void GLShader::create() {
         program_m = glCreateProgram();
 

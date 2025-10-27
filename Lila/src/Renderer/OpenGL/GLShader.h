@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include <glm/mat4x4.hpp>
+
 #include "Common/Types.h"
 #include "Common/Filesystem.h"
 #include "Renderer/Shader.h"
@@ -17,6 +19,8 @@ namespace OpenGL {
         void unbind() override;
 
         void destroy() override;
+
+        void uniformMatrix(const std::string& name, const glm::mat4& matrix);
 
     private:
         void create();
