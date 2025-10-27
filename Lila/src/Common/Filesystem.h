@@ -7,25 +7,8 @@
 #include "Log/Macros.h"
 
 #ifdef _WIN32
-    // All these lines need to be defined because of shitty Windows.h
-    #define WIN32_LEAN_AND_MEAN
-    #define NOMINMAX
-
-    #include <Windows.h>
-
-    // These too! Because Microsoft cannot create its own aliases and needs to define them
-    #ifdef ERROR
-        #undef ERROR
-    #endif
-    #ifdef INFO
-        #undef INFO
-    #endif
-    #ifdef DEBUG
-        #undef DEBUG
-    #endif
-    #ifdef WARNING
-        #undef WARNING
-    #endif
+    extern "C" __declspec(dllimport)
+    unsigned long __stdcall GetModuleFileNameW(void* hModule, wchar_t* lpFilename, unsigned long nSize);
 #elif defined(__linux__)
     #include <linux/limits.h>
     #include <unistd.h>
@@ -38,9 +21,9 @@ namespace Lila {
 
     static std::filesystem::path getExecutionPath() {
         #if defined(_WIN32)
-            wchar_t path[MAX_PATH] = {0};
+            wchar_t path[32768] = {0};
 
-            if(GetModuleFileNameW(NULL, path, MAX_PATH) == 0) {
+            if(GetModuleFileNameW(NULL, path, sizeof(path) / sizeof(wchar_t)) == 0) {
                 LILA_FATAL("Could not get execution path!");
                 return "";
             }
