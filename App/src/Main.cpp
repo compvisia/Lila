@@ -84,9 +84,8 @@ int main() {
 
     /* <-- IMPORTANT -->
      * Lila::EventBus::subscribe returns a EventSubscription object.
-     * This EventSubscription object MUST be captured by using a variable, else the subscription is invalidated.
-     * When it goes out of scope the subscription object will automatically disconnect.
-     * Or call disconnect() to invalidate and close the subscription
+     * This EventSubscription object MUST be captured by using a variable, else the subscription will be invalidated.
+     * When the subscription goes out of scope, or when calling disconnect(), the object will automatically disconnect.
      */
     auto sub = bus.subscribe<Lila::KeyEvent>(keyEventFunction);
 
