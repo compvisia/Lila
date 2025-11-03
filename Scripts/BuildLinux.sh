@@ -30,12 +30,12 @@ echo "Lila setup finished!"
 
 cd $BUILD_DIR
 
-make
+cmake --build .
 
 echo "========================"
 echo "Lila build finished!"
 
-./App
+./App/App
 
 cd ../
 

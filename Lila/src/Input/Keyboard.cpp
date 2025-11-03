@@ -1,9 +1,10 @@
 #include "Keyboard.h"
 
+#include "Event/EventBus.h"
+
 namespace Lila {
 
-    void setCallback(const Window& window, EventBus* bus) {
-        glfwSetWindowUserPointer(window.getHandle(), bus);
+    void setKeyCallback(const Window& window) {
         glfwSetKeyCallback(window.getHandle(), keyCallback);
     }
 

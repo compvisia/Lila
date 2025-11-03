@@ -34,14 +34,14 @@ namespace Lila {
 
             std::error_code errorCode;
 
-            std::filesystem::path path = std::filesystem::read_symlink("/proc/self/exe", ec);
+            std::filesystem::path execPath = std::filesystem::read_symlink("/proc/self/exe", errorCode);
 
-            if(ec) {
+            if(errorCode) {
                 LILA_FATAL("Could not get execution path: {}", errorCode.message());
                 return "";
             }
 
-            return path.parent_path();
+            return execPath.parent_path();
         #else
             #error "Unsupported platform"
         #endif

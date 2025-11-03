@@ -11,6 +11,8 @@
 
 namespace Lila {
 
+    class EventBus;
+
     class EventSubscription {
         friend class EventBus;
     public:

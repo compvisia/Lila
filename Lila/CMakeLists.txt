@@ -16,6 +16,8 @@ set(SOURCES
 
     src/Input/Keyboard.cpp
     src/Input/Keyboard.h
+    src/Input/Mouse.cpp
+    src/Input/Mouse.h
 
     src/Log/LogLevel.h
     src/Log/Logger.h
@@ -33,8 +35,11 @@ set(SOURCES
     src/Renderer/OpenGL/GLGeometry.h
     src/Renderer/OpenGL/GLShader.cpp
     src/Renderer/OpenGL/GLShader.h
+    src/Renderer/OpenGL/GLTexture.cpp
+    src/Renderer/OpenGL/GLTexture.h
     src/Renderer/Geometry.h
     src/Renderer/Shader.h
+    src/Renderer/Texture.h
     src/Renderer/Window.cpp
     src/Renderer/Window.h
 
