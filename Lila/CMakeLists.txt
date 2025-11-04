@@ -53,8 +53,7 @@ set(SOURCES
     src/World/Camera.h
 )
 
-add_library(Lila STATIC
-        src/Renderer/RenderInfo.h)
+add_library(Lila STATIC)
 
 target_sources(Lila PRIVATE ${SOURCES})
 
