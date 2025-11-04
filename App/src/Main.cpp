@@ -12,7 +12,6 @@
 
 #include "ECS/Entity.h"
 #include "ECS/EntityManager.h"
-#include "ECS/Components.h"
 #include "ECS/ComponentManager.h"
 
 #include "Event/EventBus.h"
@@ -127,7 +126,9 @@ int main() {
     #endif
 
     Lila::WindowSpecs windowSpecs;
-
+    windowSpecs.width = 1280;
+    windowSpecs.height = 720;
+    windowSpecs.name = app.getName();
     Lila::Window window = Lila::Window(windowSpecs);
 
     // TODO: Define inside an engine system manager.
