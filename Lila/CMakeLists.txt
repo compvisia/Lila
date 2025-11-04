@@ -1,10 +1,15 @@
 # Lila Engine
 
 set(SOURCES
+    src/Application/Application.h
+
     src/Common/Filesystem.h
     src/Common/Pointers.h
     src/Common/Types.h
+    src/Common/UUID.h
+    src/Common/UUID.cpp
 
+    src/ECS/ComponentManager.cpp
     src/ECS/ComponentManager.h
     src/ECS/Components.h
     src/ECS/Entity.h
@@ -38,6 +43,7 @@ set(SOURCES
     src/Renderer/OpenGL/GLTexture.cpp
     src/Renderer/OpenGL/GLTexture.h
     src/Renderer/Geometry.h
+    src/Renderer/RenderInfo.h
     src/Renderer/Shader.h
     src/Renderer/Texture.h
     src/Renderer/Window.cpp
@@ -47,7 +53,8 @@ set(SOURCES
     src/World/Camera.h
 )
 
-add_library(Lila STATIC)
+add_library(Lila STATIC
+        src/Renderer/RenderInfo.h)
 
 target_sources(Lila PRIVATE ${SOURCES})
 

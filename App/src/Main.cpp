@@ -100,6 +100,12 @@ struct MeshComponent {
 };
 
 int main() {
+    Lila::RenderProfile profile;
+    profile.renderApi = Lila::RenderApi::OpenGL;
+    Lila::Application app("My Application", profile);
+
+    auto& cm = Lila::ECS::createComponentManager(app);
+
     // C++ Version
     #ifdef _MSVC_LANG
     LILA_INFO("C++ version {}", _MSVC_LANG)
@@ -174,7 +180,6 @@ int main() {
      * ECS Example
      */
     Lila::ECS::EntityManager em;
-    Lila::ECS::ComponentManager cm;
 
     cm.registerComponent<Lila::CameraComponent>();
 
