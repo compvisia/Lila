@@ -1,11 +1,7 @@
 #pragma once
 
-#include <array>
-
-#include "Event/EventBus.h"
-
 #include "Renderer/Window.h"
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 
 #include "Common/Types.h"
 
@@ -18,7 +14,7 @@ namespace Lila {
         u32 mods;
     };
 
-    void setCallback(const Window& window, EventBus* bus);
+    void setKeyCallback(const Window& window);
 
     void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
