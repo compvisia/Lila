@@ -11,7 +11,7 @@ test/
 [Bb]uild*/
 
 #CMake
-__cmake*/
+*[Cc][Mm][Aa][Kk][Ee]*/
 
 # Make
 Makefile
