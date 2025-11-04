@@ -7,67 +7,62 @@
 
 namespace Lila {
 
-    // TODO: Make other more efficient classes for Matrix4 and Matrix3
-    template <typename T, u8 Rows, u8 Columns>
-    class alignas(16) Matrix {
+    template <typename T>
+    class alignas(16) Matrix4 {
     public:
-        constexpr Matrix() = default;
-        constexpr Matrix(std::array<T, Rows * Columns> data) : data_m(data) {}
+        constexpr Matrix4() = default;
+        constexpr Matrix4(std::array<T, 16> data) : data_m(data) {}
 
+        static constexpr Matrix4 identity() {
+            std::array<T, 16> identity{};
 
-        static constexpr Matrix identity() {
-            std::array<T, Rows * Columns> identity{};
-
-            for (size_t i = 0; i < Rows && i < Columns; ++i) {
-                identity[i * Columns + i] = T(1);
+            for (size_t i = 0; i < 4 && i < 4; ++i) {
+                identity[i * 4 + i] = T(1);
             }
 
-            return Matrix(identity);
+            return Matrix4(identity);
         }
 
-        Matrix<T, Rows, Columns> inverse() const {
-            if(Rows != Columns)
-                return Matrix();
-
+        Matrix4<T> inverse() const {
             // TODO: Make an Inverse algorithm for NxN Matrices
 
-            return Matrix();
+            return Matrix4();
         }
 
         T get(u8 row, u8 column) const {
-            return data_m[row * Columns + column];
+            return data_m[row * 4 + column];
         }
 
         void set(u8 row, u8 column, T value) {
-            data_m[row * Columns + column] = value;
+            data_m[row * 4 + column] = value;
         }
 
-        Matrix<T, Rows, Columns> operator+(const Matrix<T, Rows, Columns>& other) const {
-            Matrix result;
+        Matrix4<T> operator+(const Matrix4<T>& other) const {
+            Matrix4 result;
 
             for(u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] + other.data_m[i];
 
             return result;
         }
-        Matrix<T, Rows, Columns> operator-(const Matrix<T, Rows, Columns>& other) const {
-            Matrix result;
+        Matrix4<T> operator-(const Matrix4<T>& other) const {
+            Matrix4 result;
 
             for(u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] - other.data_m[i];
 
             return result;
         }
-        Matrix<T, Rows, Columns> operator*(const Matrix<T, Rows, Columns>& other) const {
-            Matrix result;
+        Matrix4<T> operator*(const Matrix4<T>& other) const {
+            Matrix4 result;
 
             for(u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] * other.data_m[i];
 
             return result;
         }
-        Matrix<T, Rows, Columns> operator/(const Matrix<T, Rows, Columns>& other) const {
-            Matrix result;
+        Matrix4<T> operator/(const Matrix4<T>& other) const {
+            Matrix4 result;
 
             for(u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] / other.data_m[i];
@@ -75,25 +70,25 @@ namespace Lila {
             return result;
         }
 
-        Matrix<T, Rows, Columns>& operator+=(const Matrix<T, Rows, Columns>& other) {
+        Matrix4<T>& operator+=(const Matrix4<T>& other) {
             for(u64 i = 0; i < data_m.size(); i++)
                 data_m[i] += other.data_m[i];
 
             return *this;
         }
-        Matrix<T, Rows, Columns>& operator-=(const Matrix<T, Rows, Columns>& other) {
+        Matrix4<T>& operator-=(const Matrix4<T>& other) {
             for(u64 i = 0; i < data_m.size(); i++)
                 data_m[i] -= other.data_m[i];
 
             return *this;
         }
-        Matrix<T, Rows, Columns>& operator*=(const Matrix<T, Rows, Columns>& other) {
+        Matrix4<T>& operator*=(const Matrix4<T>& other) {
             for(u64 i = 0; i < data_m.size(); i++)
                 data_m[i] *= other.data_m[i];
 
             return *this;
         }
-        Matrix<T, Rows, Columns>& operator/=(const Matrix<T, Rows, Columns>& other) {
+        Matrix4<T>& operator/=(const Matrix4<T>& other) {
             for(u64 i = 0; i < data_m.size(); i++)
                 data_m[i] /= other.data_m[i];
 
@@ -101,10 +96,10 @@ namespace Lila {
         }
 
     private:
-        std::array<T, Rows * Columns> data_m{};
+        std::array<T, 16> data_m{0};
     };
 
-    using Matrix4f = Matrix<f32, 4, 4>;
-    using Matrix4d = Matrix<f64, 4, 4>;
+    using Matrix4f = Matrix4<f32>;
+    using Matrix4d = Matrix4<f64>;
 
 } // namespace Lila
