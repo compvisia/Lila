@@ -2,7 +2,6 @@
 
 #include <string>
 #include <format>
-#include <sstream>
 #include <print>
 
 #include "Common/Types.h"
@@ -13,6 +12,9 @@ namespace Lila {
 
     class Logger {
     public:
+        Logger(const Logger&) = delete;
+        Logger& operator=(const Logger&) = delete;
+
         static Logger& get() {
             static Logger instance;
             return instance;
@@ -34,7 +36,5 @@ namespace Lila {
 
     private:
         Logger() = default;
-        Logger(const Logger&) = delete;
-        Logger& operator=(const Logger&) = delete;
     };
 } // namespace Lila
