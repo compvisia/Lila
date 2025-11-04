@@ -1,7 +1,8 @@
 #include "EntityManager.h"
 
-namespace Lila::ECS {
+#include <algorithm>
 
+namespace Lila::ECS {
 
     Entity EntityManager::createEntity() {
         Entity e = nextEntity++;
@@ -11,14 +12,12 @@ namespace Lila::ECS {
     }
 
     void EntityManager::destroyEntity(Entity e) {
-        // remove from aliveEntities
-            aliveEntities.erase(
-                std::remove(aliveEntities.begin(), aliveEntities.end(), e),
-                aliveEntities.end()
-            );
+        aliveEntities.erase(
+            std::remove(aliveEntities.begin(), aliveEntities.end(), e),
+            aliveEntities.end()
+        );
 
-            // remove signature
-            signatures.erase(e);
+        signatures.erase(e);
     }
 
     const std::vector<Entity>& EntityManager::getAliveEntities() const {
