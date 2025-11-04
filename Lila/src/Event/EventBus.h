@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <typeindex>
 #include <functional>
+#include <ranges>
 #include <type_traits>
 #include <unordered_map>
 
@@ -31,7 +32,7 @@ namespace Lila {
             disconnect();
         }
 
-        b8 isValid() const {
+        [[nodiscard]] b8 isValid() const {
             return bus_m && id_m != 0;
         }
 
@@ -61,7 +62,7 @@ namespace Lila {
         EventSubscription subscribe(Function&& function) {
             using TypeCleanup = std::decay_t<EventType>;
 
-            std::type_index type = std::type_index(typeid(TypeCleanup));
+            auto type = std::type_index(typeid(TypeCleanup));
             u64 id = nextId_m++;
 
             auto wrapper = std::function<void(const void*)>(
@@ -72,24 +73,23 @@ namespace Lila {
 
             listeners_m[type].emplace_back(id, std::move(wrapper));
 
-            return EventSubscription(this, type, id);
+            return {this, type, id};
         }
 
         void unsubscribe(const EventSubscription& EventSubscription) {
-            auto it = listeners_m.find(EventSubscription.type_m);
+            const auto it = listeners_m.find(EventSubscription.type_m);
 
             if(it == listeners_m.end())
                 return;
 
             auto &listenerEntries = it->second;
 
-            listenerEntries.erase(std::remove_if(
-                listenerEntries.begin(),
-                listenerEntries.end(),
+            std::erase_if(
+                listenerEntries,
                 [&](const ListenerEntry& entry) {
                     return entry.first == EventSubscription.id_m;
                 }
-            ), listenerEntries.end());
+            );
 
             if(listenerEntries.empty())
                 listeners_m.erase(it);
@@ -99,16 +99,16 @@ namespace Lila {
         void emit(const EventType& event) {
             using TypeCleanup = std::decay_t<EventType>;
 
-            std::type_index type = std::type_index(typeid(TypeCleanup));
-            auto it = listeners_m.find(type);
+            const auto type = std::type_index(typeid(TypeCleanup));
+            const auto it = listeners_m.find(type);
 
             if(it == listeners_m.end())
                 return;
 
             auto &listenerEntries = it->second;
 
-            for(auto& entry : listenerEntries) {
-                entry.second(static_cast<const void*>(&event));
+            for(auto &val: listenerEntries | std::views::values) {
+                val(static_cast<const void*>(&event));
             }
         }
 
