@@ -6,11 +6,6 @@
 
 #include "Entity.h"
 #include "SparseSet.h"
-#include "Application/Application.h"
-
-namespace Lila {
-    class Application;
-}
 
 namespace Lila::ECS {
 
@@ -68,7 +63,5 @@ namespace Lila::ECS {
     private:
         std::unordered_map<std::type_index, std::shared_ptr<IComponentArray>> componentArrays;
     };
-
-    ComponentManager& createComponentManager(Application& app);
 
 } // namespace Lila::ECS

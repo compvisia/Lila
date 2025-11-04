@@ -1,3 +1,6 @@
+#include "Application/Application.h"
+#include "Renderer/RenderInfo.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -101,9 +104,15 @@ struct MeshComponent {
 int main() {
     Lila::RenderProfile profile;
     profile.renderApi = Lila::RenderApi::OpenGL;
-    Lila::Application app("My Application", profile);
+    Lila::Application app(profile);
 
-    auto& cm = Lila::ECS::createComponentManager(app);
+    auto& cm = Lila::createComponentManager(app);
+    auto& em = Lila::createEntityManager(app);
+
+    auto& bus = Lila::createEventBus(app);
+
+    LILA_DEBUG("Name: {}", app.getName());
+    LILA_DEBUG("UUID: {}", (u64)app.getUniqueId());
 
     // C++ Version
     #ifdef _MSVC_LANG
@@ -131,9 +140,6 @@ int main() {
     windowSpecs.name = app.getName();
     Lila::Window window = Lila::Window(windowSpecs);
 
-    // TODO: Define inside an engine system manager.
-    Lila::EventBus bus;
-
     glfwSetWindowUserPointer(window.getHandle(), &bus);
 
     // TODO: Rework the Key Callback so multiple keys can be pressed at once.
@@ -142,9 +148,10 @@ int main() {
     Lila::setMousePositionCallback(window);
 
     /* <-- IMPORTANT -->
-     * Lila::EventBus::subscribe returns a EventSubscription object.
-     * This EventSubscription object MUST be captured by using a variable, else the subscription is invalidated.
+     * `Lila::EventBus::subscribe` returns a `Lila::EventSubscription` object.
+     * The event subscription object **MUST** be captured using a variable, else the subscription is invalid.
      * When it goes out of scope the subscription object will automatically disconnect.
+     * You can also manually disconnect using the `disconnect();` method.
      */
     auto subKeyEvent = bus.subscribe<Lila::KeyEvent>(keyEventFunction);
     auto subMousePos = bus.subscribe<Lila::MousePositionEvent>(mousePositionEventFunction);
@@ -180,7 +187,6 @@ int main() {
     /*
      * ECS Example
      */
-    Lila::ECS::EntityManager em;
 
     cm.registerComponent<Lila::CameraComponent>();
 

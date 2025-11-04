@@ -1,6 +1,7 @@
 # Lila Engine
 
 set(SOURCES
+    src/Application/Application.cpp
     src/Application/Application.h
 
     src/Common/Filesystem.h
@@ -9,7 +10,6 @@ set(SOURCES
     src/Common/UUID.h
     src/Common/UUID.cpp
 
-    src/ECS/ComponentManager.cpp
     src/ECS/ComponentManager.h
     src/ECS/Components.h
     src/ECS/Entity.h
