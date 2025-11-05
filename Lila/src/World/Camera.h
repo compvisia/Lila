@@ -2,6 +2,8 @@
 
 #include <glm/mat4x4.hpp>
 
+#include "Renderer/Window.h"
+
 #include "Common/Types.h"
 
 namespace Lila {
@@ -19,6 +21,6 @@ namespace Lila {
         f32 far = 100.0f;
     };
 
-    glm::mat4 getProjection(const CameraComponent& camera);
+    glm::mat4 getProjection(const CameraComponent& camera, const Window& window);
 
 } // namespace Lila

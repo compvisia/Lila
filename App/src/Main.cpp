@@ -190,7 +190,7 @@ int main() {
 
         shader->uniformMatrix(
             "projection",
-            Lila::getProjection(cm.getComponent<Lila::CameraComponent>(camera))
+            Lila::getProjection(cm.getComponent<Lila::CameraComponent>(camera), window)
         );
 
         shader->uniformMatrix(
