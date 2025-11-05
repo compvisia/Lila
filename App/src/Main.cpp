@@ -96,9 +96,9 @@ void mousePositionEventFunction(Lila::MousePositionEvent event) {
  * - Material data.
  */
 struct MeshComponent {
-     // Shader Object Reference
-     // Mesh Object Reference
-     // Material Object Reference
+    // Shader Object Reference
+    // Mesh Object Reference
+    // Material Object Reference
 };
 
 int main() {
@@ -112,33 +112,14 @@ int main() {
     auto& bus = Lila::createEventBus(app);
 
     LILA_DEBUG("Name: {}", app.getName());
-    LILA_DEBUG("UUID: {}", (u64)app.getUniqueId());
-
-    // C++ Version
-    #ifdef _MSVC_LANG
-    LILA_INFO("C++ version {}", _MSVC_LANG)
-    #elif defined(__cplusplus)
-    LILA_INFO("C++ version {}", __cplusplus)
-    #else
-    LILA_WARN("Failed identify C++ version")
-    #endif
-
-    // Compiler Version
-    #ifdef _MSC_VER
-    LILA_INFO("MSVC version {}", _MSC_VER)
-    #elif defined(__GNUC__)
-    LILA_INFO("GNU g++ version {}.{}.{}", __GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
-    #elif defined(__clang__)
-    LILA_INFO("LLVM clang version {}.{}.{}", __clang_major__, __clang_minor__, __clang_patchlevel__)
-    #else
-    LILA_WARN("Failed identify C++ compiler")
-    #endif
 
     Lila::WindowSpecs windowSpecs;
     windowSpecs.width = 1280;
     windowSpecs.height = 720;
     windowSpecs.name = app.getName();
     Lila::Window window = Lila::Window(windowSpecs);
+    LILA_DEBUG("Platform: {}", app.getRenderProfile().platform);
+    LILA_DEBUG("UUID: {}", static_cast<u64>(app.getUniqueId()));
 
     glfwSetWindowUserPointer(window.getHandle(), &bus);
 
@@ -151,7 +132,7 @@ int main() {
      * `Lila::EventBus::subscribe` returns a `Lila::EventSubscription` object.
      * The event subscription object **MUST** be captured using a variable, else the subscription is invalid.
      * When it goes out of scope the subscription object will automatically disconnect.
-     * You can also manually disconnect using the `disconnect();` method.
+     * You can also manually disconnect using the `disconnect()` method.
      */
     auto subKeyEvent = bus.subscribe<Lila::KeyEvent>(keyEventFunction);
     auto subMousePos = bus.subscribe<Lila::MousePositionEvent>(mousePositionEventFunction);
@@ -190,7 +171,7 @@ int main() {
 
     cm.registerComponent<Lila::CameraComponent>();
 
-    Lila::ECS::Entity camera = em.createEntity();
+    const Lila::ECS::Entity camera = em.createEntity();
 
     cm.addComponent(camera, Lila::CameraComponent{});
 
@@ -203,7 +184,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
 
-		view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+		glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
 		shader->bind();
 
