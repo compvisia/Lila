@@ -2,10 +2,7 @@
 
 #include <string>
 
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
-#include "Math/Vec2.h"
 
 #include "Common/Types.h"
 
@@ -22,23 +19,24 @@ namespace Lila {
         Window(const WindowSpecs& windowSpecs);
         ~Window();
 
-        void update();
+        void update() const;
 
         void setWindowSpecs(const WindowSpecs& windowSpecs);
         WindowSpecs getWindowSpecs() const;
 
-        void setSize(const Vec2u& windowSize);
-        Vec2u getSize() const;
+        void setSize(u32 width, u32 height);
+
+        u32 getWidth() const;
+        u32 getHeight() const;
 
         GLFWwindow* getHandle() const;
 
         Window(const Window&) = delete;
         Window& operator=(const Window&) = delete;
 
-    private:
-        void initGlad();
-        void initGlfw();
+        bool isRunning() const;
 
+    private:
         void create();
         void destroy();
 

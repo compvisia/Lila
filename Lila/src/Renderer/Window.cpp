@@ -14,33 +14,16 @@ namespace Lila {
         destroy();
     }
 
-    void Window::update() {
+    void Window::update() const {
         glfwSwapBuffers(windowHandle_m);
         glfwPollEvents();
     }
 
-    void Window::initGlad() {
-        if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-            LILA_FATAL("GLAD failed to initialize!");
-            exit(1);
-        }
-
-        LILA_INFO("OpenGL version {}", (const char*)glGetString(GL_VERSION));
-    }
-
-    void Window::initGlfw() {
-        if(!glfwInit()) {
-            LILA_FATAL("Couldn't initialize GLFW! {}", glfwGetError(nullptr));
-            exit(1);
-        }
-
-        LILA_INFO("GLFW version {}.{}.{}", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
-        LILA_INFO("GLFW platform {}", glfwGetPlatform());
+    bool Window::isRunning() const {
+        return !glfwWindowShouldClose(windowHandle_m);;
     }
 
     void Window::create() {
-        initGlfw();
-
         windowHandle_m = glfwCreateWindow(windowSpecs_m.width, windowSpecs_m.height, windowSpecs_m.name.c_str(), NULL, NULL);
 
         glfwShowWindow(windowHandle_m);
@@ -48,9 +31,7 @@ namespace Lila {
 
         glfwMakeContextCurrent(windowHandle_m);
 
-        initGlad();
-
-        LILA_INFO("Window Created!");
+        LILA_INFO("Created Window")
     }
 
     void Window::destroy() {
@@ -69,15 +50,19 @@ namespace Lila {
         return windowSpecs_m;
     }
 
-    void Window::setSize(const Vec2u& windowSize) {
-        windowSpecs_m.width = windowSize.x;
-        windowSpecs_m.height = windowSize.y;
+    void Window::setSize(const u32 width, const u32 height) {
+        windowSpecs_m.width = width;
+        windowSpecs_m.height = height;
 
         glfwSetWindowSize(windowHandle_m, windowSpecs_m.width, windowSpecs_m.height);
     }
 
-    Vec2u Window::getSize() const {
-        return Vec2u(windowSpecs_m.width, windowSpecs_m.height);
+    u32 Window::getWidth() const {
+        return windowSpecs_m.width;
+    }
+
+    u32 Window::getHeight() const {
+        return windowSpecs_m.height;
     }
 
     GLFWwindow* Window::getHandle() const {

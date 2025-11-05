@@ -34,6 +34,8 @@ set(SOURCES
     src/Math/Vec3.h
     src/Math/Vec4.h
 
+    src/Platform/Graphics.cpp
+    src/Platform/Graphics.h
     src/Platform/Platform.h
 
     src/Renderer/OpenGL/GLGeometry.cpp

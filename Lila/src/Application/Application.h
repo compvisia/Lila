@@ -12,6 +12,7 @@
 #include "Event/EventBus.h"
 #include "ECS/ComponentManager.h"
 #include "ECS/EntityManager.h"
+#include "Renderer/Window.h"
 
 namespace Lila {
     class Application;
@@ -28,8 +29,8 @@ namespace Lila {
      */
     class Application {
     public:
-        Application(const RenderProfile& profile): profile_m(profile) {}
-        Application(std::string name, const RenderProfile& profile): name_m(std::move(name)), profile_m(profile) {}
+        Application(const RenderProfile& profile);
+        Application(const std::string &name, const RenderProfile& profile);
         ~Application();
 
         Application(const Application& other) = delete;
@@ -41,6 +42,7 @@ namespace Lila {
         [[nodiscard]] const std::string& getName() const { return name_m; }
         [[nodiscard]] const RenderProfile& getRenderProfile() const { return profile_m; }
 
+        const Window& getWindow() const { return *window_m; }
         const EventBus& getEventBus() const { return *eventBus_m; }
         const ECS::EntityManager& getEntityManager() const { return *entityManager_m; }
         const ECS::ComponentManager& getComponentManager() const { return *componentManager_m; }
@@ -56,6 +58,7 @@ namespace Lila {
         friend ECS::ComponentManager& createComponentManager(Application& app);
 
     private:
+        Unique<Window> window_m;
         Unique<EventBus> eventBus_m;
         Unique<ECS::EntityManager> entityManager_m;
         Unique<ECS::ComponentManager> componentManager_m;

@@ -24,6 +24,8 @@
 
 #include "World/Camera.h"
 
+#include <glad/glad.h>
+
 struct Transform {
     f32 x, y, z;
 };
@@ -106,18 +108,14 @@ int main() {
     profile.renderApi = Lila::RenderApi::OpenGL;
     Lila::Application app(profile);
 
-    auto& cm = Lila::createComponentManager(app);
-    auto& em = Lila::createEntityManager(app);
+    auto& window = app.getWindow();
 
     auto& bus = Lila::createEventBus(app);
 
-    LILA_DEBUG("Name: {}", app.getName());
+    auto& em = Lila::createEntityManager(app);
+    auto& cm = Lila::createComponentManager(app);
 
-    Lila::WindowSpecs windowSpecs;
-    windowSpecs.width = 1280;
-    windowSpecs.height = 720;
-    windowSpecs.name = app.getName();
-    Lila::Window window = Lila::Window(windowSpecs);
+    LILA_DEBUG("Name: {}", app.getName());
     LILA_DEBUG("Platform: {}", app.getRenderProfile().platform);
     LILA_DEBUG("UUID: {}", static_cast<u64>(app.getUniqueId()));
 
@@ -176,7 +174,7 @@ int main() {
     cm.addComponent(camera, Lila::CameraComponent{});
 
     glEnable(GL_DEPTH_TEST);
-    while(!glfwWindowShouldClose(window.getHandle())) {
+    while(window.isRunning()) {
         window.update();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
