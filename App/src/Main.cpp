@@ -175,8 +175,6 @@ int main() {
 
     cm.addComponent(camera, Lila::CameraComponent{});
 
-    glm::mat4 view;
-
     glEnable(GL_DEPTH_TEST);
     while(!glfwWindowShouldClose(window.getHandle())) {
         window.update();
