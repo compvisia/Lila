@@ -23,7 +23,7 @@ namespace Lila::Internal {
             exit(1);
         }
 
-        LILA_INFO("OpenGL version {}", glGetString(GL_VERSION));
+        LILA_INFO("OpenGL version {}", reinterpret_cast<const char*>(glGetString(GL_VERSION)));
     }
 
 } // namespace Lila::Internal
