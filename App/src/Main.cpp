@@ -26,6 +26,8 @@
 
 #include <glad/glad.h>
 
+#include "Renderer/Renderer.h"
+
 struct Transform {
     f32 x, y, z;
 };
@@ -79,29 +81,6 @@ void mousePositionEventFunction(Lila::MousePositionEvent event) {
 
     cameraFront = glm::normalize(direction);
 }
-
-/*
- * This component will be used to render meshes using ECS.
- * A system will be made to render the mesh reference object with the shader object reference.
- *
- * The mesh object will contain:
- * - Mesh type (Only position, position + normal, etc.)
- * - The reference to the actual mesh data object
- *
- * The shader object will contain:
- * - Shader type (Vertex, Fragment, etc.)
- * - Extension of the shader (.glsl, .hlsl, .spir-v)
- * - The reference to the actual shader data object
- *
- * The material object will contain:
- * - Material type (Basic, Phong, etc.)
- * - Material data.
- */
-struct MeshComponent {
-    // Shader Object Reference
-    // Mesh Object Reference
-    // Material Object Reference
-};
 
 int main() {
     Lila::RenderProfile profile;
@@ -160,9 +139,6 @@ int main() {
         4, 5, 7
     };
 
-    Unique<OpenGL::GLGeometry> geometry = unique<OpenGL::GLGeometry>(vertices, indices);
-    Unique<OpenGL::GLShader> shader = unique<OpenGL::GLShader>(Lila::getAssetPath() / "default.vert", Lila::getAssetPath() / "default.frag");
-
     /*
      * ECS Example
      */
@@ -170,8 +146,19 @@ int main() {
     cm.registerComponent<Lila::CameraComponent>();
 
     const Lila::ECS::Entity camera = em.createEntity();
-
     cm.addComponent(camera, Lila::CameraComponent{});
+
+    cm.registerComponent<Lila::Testing::MeshComponent>();
+
+    const Lila::ECS::Entity entity = em.createEntity();
+    cm.addComponent(entity, Lila::Testing::MeshComponent{
+    vertices,
+    indices,
+    Lila::getAssetPath() / "default.vert",
+    Lila::getAssetPath() / "default.frag"
+    });
+
+    Lila::Testing::registerForRendering(app, entity);
 
     glEnable(GL_DEPTH_TEST);
     while(window.isRunning()) {
@@ -180,22 +167,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
 
-		glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-
-		shader->bind();
-
-        shader->uniformMatrix(
-            "projection",
-            Lila::getProjection(cm.getComponent<Lila::CameraComponent>(camera), window)
-        );
-
-        shader->uniformMatrix(
-            "view",
-            view
-        );
-
-        geometry->render();
-        shader->unbind();
+		Lila::Testing::render();
     }
 
     LILA_INFO("Exiting...");

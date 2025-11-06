@@ -45,6 +45,7 @@ set(SOURCES
     src/Renderer/OpenGL/GLTexture.cpp
     src/Renderer/OpenGL/GLTexture.h
     src/Renderer/Geometry.h
+    src/Renderer/Renderer.h
     src/Renderer/RenderInfo.h
     src/Renderer/Shader.h
     src/Renderer/Texture.h
