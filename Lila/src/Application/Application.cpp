@@ -13,22 +13,23 @@ namespace Lila {
         profile_m = profile;
 
         const RenderApi api = profile_m.renderApi;
-        switch(api) {
-            case RenderApi::OpenGL: {
-                Internal::initializeGlfw();
-                WindowSpecs specs;
-                specs.name = name_m;
-                window_m = unique<Window>(specs);
-                Internal::initializeGlad();
-                break;
-            }
-            case RenderApi::None: {
-                window_m = nullptr;
-                break;
-            }
+
+        if(api != RenderApi::None) {
+            Internal::initializeGlfw();
+            WindowSpecs specs;
+            specs.name = name_m;
+            window_m = unique<Window>(specs);
         }
 
-        LILA_INFO("Created Application")
+        switch(api) {
+            case RenderApi::OpenGL:
+                Internal::initializeGlad();
+                break;
+            case RenderApi::None:
+                break;
+        }
+
+        LILA_INFO("Created Application");
     }
 
     Application::~Application() = default;
