@@ -37,17 +37,17 @@ namespace Lila::ECS {
 
         template<typename T>
         void addComponent(Entity entity, T component) {
-            std::static_pointer_cast<ComponentArray<T>>(componentArrays[typeid(T)])->insert(entity, component);
+            std::static_pointer_cast<ComponentArray<T>>(componentArrays.at(typeid(T)))->insert(entity, component);
         }
 
         template<typename T>
-        T& getComponent(Entity entity) {
-            return std::static_pointer_cast<ComponentArray<T>>(componentArrays[typeid(T)])->get(entity);
+        T& getComponent(Entity entity) const {
+            return std::static_pointer_cast<ComponentArray<T>>(componentArrays.at(typeid(T)))->get(entity);
         }
 
         template<typename T>
-        bool hasComponent(Entity entity) {
-            return std::static_pointer_cast<ComponentArray<T>>(componentArrays[typeid(T)])->has(entity);
+        bool hasComponent(Entity entity) const {
+            return std::static_pointer_cast<ComponentArray<T>>(componentArrays.at(typeid(T)))->has(entity);
         }
 
         template<typename T>
