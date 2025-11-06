@@ -152,10 +152,10 @@ int main() {
 
     const Lila::ECS::Entity entity = em.createEntity();
     cm.addComponent(entity, Lila::Testing::MeshComponent{
-    vertices,
-    indices,
-    Lila::getAssetPath() / "default.vert",
-    Lila::getAssetPath() / "default.frag"
+        vertices,
+        indices,
+        Lila::getAssetPath() / "default.vert",
+        Lila::getAssetPath() / "default.frag"
     });
 
     Lila::Testing::registerForRendering(app, entity);
