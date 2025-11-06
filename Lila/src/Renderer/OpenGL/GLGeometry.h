@@ -8,16 +8,16 @@
 
 namespace OpenGL {
 
-    class GLGeometry : public Lila::Geometry {
+    class GLGeometry final : public Lila::Geometry {
     public:
-        GLGeometry(std::vector<f32> vertices, std::vector<u32> indices);
-        ~GLGeometry();
+        GLGeometry(const std::vector<f32>& vertices, const std::vector<u32>& indices);
+        ~GLGeometry() override;
 
         void render() override;
         void destroy() override;
 
     private:
-        void create(std::vector<f32> vertices, std::vector<u32> indices);
+        void create(const std::vector<f32>& vertices, const std::vector<u32>& indices);
 
     private:
         u32 vao_m, vbo_m, ebo_m;

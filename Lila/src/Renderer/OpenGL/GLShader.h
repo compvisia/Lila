@@ -10,23 +10,23 @@
 
 namespace OpenGL {
 
-    class GLShader : public Lila::Shader {
+    class GLShader final : public Lila::Shader {
     public:
-        GLShader(std::filesystem::path vertexPath, std::filesystem::path fragmentPath);
-        ~GLShader();
+        GLShader(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath);
+        ~GLShader() override;
 
         void bind() override;
         void unbind() override;
 
         void destroy() override;
 
-        void uniformMatrix(const std::string& name, const glm::mat4& matrix);
+        void uniformMatrix(const std::string& name, const glm::mat4& matrix) const;
 
     private:
         void create();
 
-        b8 createShader(u32& shaderObject, std::string& shaderContents);
-        b8 createProgram(u32& vso, u32& fso);
+        static b8 createShader(const u32& shaderObject, const std::string& shaderContents);
+        b8 createProgram(const u32& vso, const u32& fso) const;
 
     private:
         std::filesystem::path vertexPath_m, fragmentPath_m;

@@ -8,11 +8,11 @@
 
 namespace OpenGL {
 
-    class GLTexture : public Lila::Texture {
+    class GLTexture final : public Lila::Texture {
     public:
         GLTexture();
-        GLTexture(std::filesystem::path path);
-        ~GLTexture();
+        GLTexture(const std::filesystem::path &path);
+        ~GLTexture() override;
 
         void bind() override;
         void unbind() override;

@@ -10,7 +10,7 @@ namespace OpenGL {
         create();
     }
 
-    GLTexture::GLTexture(std::filesystem::path path) {
+    GLTexture::GLTexture(const std::filesystem::path &path) {
         path_m = path;
         create();
     }
@@ -37,13 +37,17 @@ namespace OpenGL {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-         u8* imageData = stbi_load(path_m.string().c_str(), &width_m, &height_m, &channels_m, 0);
+        u8* imageData = stbi_load(path_m.string().c_str(), &width_m, &height_m, &channels_m, 0);
 
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width_m, height_m, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 
         glBindTexture(GL_TEXTURE_2D, 0);
 
         stbi_image_free(imageData);
+    }
+
+    void GLTexture::destroy() {
+
     }
 
 

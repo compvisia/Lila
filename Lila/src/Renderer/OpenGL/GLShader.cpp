@@ -4,7 +4,7 @@
 
 namespace OpenGL {
 
-    GLShader::GLShader(std::filesystem::path vertexPath, std::filesystem::path fragmentPath) {
+    GLShader::GLShader(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath) {
         vertexPath_m = vertexPath;
         fragmentPath_m = fragmentPath;
 
@@ -12,7 +12,7 @@ namespace OpenGL {
     }
 
     GLShader::~GLShader() {
-        destroy();
+        GLShader::destroy();
     }
 
     void GLShader::bind() {
@@ -27,7 +27,7 @@ namespace OpenGL {
         glDeleteProgram(program_m);
     }
 
-    void GLShader::uniformMatrix(const std::string& name, const glm::mat4& matrix) {
+    void GLShader::uniformMatrix(const std::string& name, const glm::mat4& matrix) const {
         i32 location = glGetUniformLocation(program_m, name.c_str());
         glUniformMatrix4fv(location, 1, false, &matrix[0][0]);
     }
@@ -54,9 +54,9 @@ namespace OpenGL {
         glDeleteShader(fso);
     }
 
-    b8 GLShader::createShader(u32& shaderObject, std::string& shaderContents) {
+    b8 GLShader::createShader(const u32& shaderObject, const std::string& shaderContents) {
         const char* contentsPointer = shaderContents.c_str();
-        glShaderSource(shaderObject, 1, &contentsPointer, 0);
+        glShaderSource(shaderObject, 1, &contentsPointer, nullptr);
 
         i32 success = 0;
 
@@ -76,7 +76,7 @@ namespace OpenGL {
         return true;
     }
 
-    b8 GLShader::createProgram(u32& vso, u32& fso) {
+    b8 GLShader::createProgram(const u32& vso, const u32& fso) const {
         glAttachShader(program_m, vso);
         glAttachShader(program_m, fso);
 
