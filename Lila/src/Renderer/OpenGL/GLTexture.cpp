@@ -16,7 +16,7 @@ namespace OpenGL {
     }
 
     GLTexture::~GLTexture() {
-        glDeleteTextures(1, &id_m);
+        destroy();
     }
 
     void GLTexture::bind() {
@@ -47,8 +47,7 @@ namespace OpenGL {
     }
 
     void GLTexture::destroy() {
-
+        glDeleteTextures(1, &id_m);
     }
-
 
 } // namespace OpenGL
