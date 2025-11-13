@@ -24,6 +24,7 @@ namespace OpenGL {
     }
 
     void GLShader::destroy() {
+        glUseProgram(0);
         glDeleteProgram(program_m);
     }
 
@@ -41,14 +42,22 @@ namespace OpenGL {
         u32 vso = glCreateShader(GL_VERTEX_SHADER);
         u32 fso = glCreateShader(GL_FRAGMENT_SHADER);
 
-        if(!createShader(vso, vertexShader))
+        if(!createShader(vso, vertexShader)) {
             destroy();
+            return;
+        }
 
-        if(!createShader(fso, fragmentShader))
-            destroy();
 
-        if(!createProgram(vso, fso))
+        if(!createShader(fso, fragmentShader)) {
             destroy();
+            return;
+        }
+
+
+        if(!createProgram(vso, fso)) {
+            destroy();
+            return;
+        }
 
         glDeleteShader(vso);
         glDeleteShader(fso);

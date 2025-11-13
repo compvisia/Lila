@@ -170,5 +170,7 @@ int main() {
 		Lila::Testing::render();
     }
 
+    Lila::Testing::destroy();
+
     LILA_INFO("Exiting...");
 }

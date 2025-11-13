@@ -26,11 +26,11 @@ namespace OpenGL {
         void create();
 
         static b8 createShader(const u32& shaderObject, const std::string& shaderContents);
-        b8 createProgram(const u32& vso, const u32& fso) const;
+        [[nodiscard]] b8 createProgram(const u32& vso, const u32& fso) const;
 
     private:
         std::filesystem::path vertexPath_m, fragmentPath_m;
-        u32 program_m;
+        u32 program_m{};
     };
 
 } // namespace OpenGL

@@ -81,4 +81,15 @@ namespace Lila::Testing {
         }
     }
 
+    inline void destroy() {
+        for(const auto &geometry: geometryMap_S | std::views::values)
+            geometry->destroy();
+
+        for(const auto &shader: shaderMap_S | std::views::values)
+            shader->destroy();
+
+        geometryMap_S.clear();
+        shaderMap_S.clear();
+    }
+
 } // namespace Lila::Testing
