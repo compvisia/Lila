@@ -71,9 +71,20 @@ namespace Lila::Testing {
      *
      * Renderer manages the Meshes and Shaders of each entity.
      */
-    inline void render() {
+    inline void render(const Application& app) {
+        glm::mat4 projection(1.0f);
+        if(app.getComponentManager().hasComponent<CameraComponent>(app.getActiveCamera())) {
+            const auto& camera = app.getComponentManager().getComponent<CameraComponent>(app.getActiveCamera());
+
+            projection = getProjection(camera, app.getWindow());
+        }
+
         for(const auto&[entity, geometry] : geometryMap_S) {
             const auto& shader = shaderMap_S.at(entity);
+
+            if (const auto* glShader = dynamic_cast<OpenGL::GLShader*>(shader.get())) {
+                glShader->uniformMatrix("projection", projection);
+            }
 
             shader->bind();
             geometry->render();

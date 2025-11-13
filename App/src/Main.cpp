@@ -158,6 +158,8 @@ int main() {
         Lila::getAssetPath() / "default.frag"
     });
 
+    app.setActiveCamera(camera);
+
     Lila::Testing::registerForRendering(app, entity);
 
     glEnable(GL_DEPTH_TEST);
@@ -167,7 +169,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
 
-		Lila::Testing::render();
+		Lila::Testing::render(app);
     }
 
     Lila::Testing::destroy();

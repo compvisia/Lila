@@ -13,6 +13,7 @@
 #include "ECS/ComponentManager.h"
 #include "ECS/EntityManager.h"
 #include "Renderer/Window.h"
+#include "World/Camera.h"
 
 namespace Lila {
     class Application;
@@ -42,6 +43,10 @@ namespace Lila {
         [[nodiscard]] const std::string& getName() const { return name_m; }
         [[nodiscard]] const RenderProfile& getRenderProfile() const { return profile_m; }
 
+
+        void setActiveCamera(ECS::Entity camera);
+        const ECS::Entity getActiveCamera() const { return camera_m; }
+
         const Window& getWindow() const { return *window_m; }
         const EventBus& getEventBus() const { return *eventBus_m; }
         const ECS::EntityManager& getEntityManager() const { return *entityManager_m; }
@@ -51,6 +56,7 @@ namespace Lila {
         UUID uuid_m;
         std::string name_m = "My Application";
         RenderProfile profile_m;
+        ECS::Entity camera_m;
 
     private:
         friend EventBus& createEventBus(Application& app);

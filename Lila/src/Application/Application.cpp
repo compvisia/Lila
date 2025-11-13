@@ -34,6 +34,15 @@ namespace Lila {
 
     Application::~Application() = default;
 
+    void Application::setActiveCamera(ECS::Entity camera) {
+        LILA_ASSERT(entityManager_m != nullptr, "setActiveCamera requires an Entity Manager to work!");
+        LILA_ASSERT(componentManager_m != nullptr, "setActiveCamera requires an Component Manager to work!");
+
+        if(componentManager_m->hasComponent<CameraComponent>(camera))
+            camera_m = camera;
+    }
+
+
     EventBus& createEventBus(Application& app) {
         LILA_ASSERT(!app.eventBus_m, "EventBus is already created for this Application!");
         app.eventBus_m = unique<EventBus>();
