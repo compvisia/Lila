@@ -40,7 +40,7 @@ namespace Lila {
         Matrix4<T> operator+(const Matrix4<T>& other) const {
             Matrix4 result;
 
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] + other.data_m[i];
 
             return result;
@@ -48,7 +48,7 @@ namespace Lila {
         Matrix4<T> operator-(const Matrix4<T>& other) const {
             Matrix4 result;
 
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] - other.data_m[i];
 
             return result;
@@ -56,7 +56,7 @@ namespace Lila {
         Matrix4<T> operator*(const Matrix4<T>& other) const {
             Matrix4 result;
 
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] * other.data_m[i];
 
             return result;
@@ -64,32 +64,32 @@ namespace Lila {
         Matrix4<T> operator/(const Matrix4<T>& other) const {
             Matrix4 result;
 
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 result.data_m[i] = data_m[i] / other.data_m[i];
 
             return result;
         }
 
         Matrix4<T>& operator+=(const Matrix4<T>& other) {
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 data_m[i] += other.data_m[i];
 
             return *this;
         }
         Matrix4<T>& operator-=(const Matrix4<T>& other) {
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 data_m[i] -= other.data_m[i];
 
             return *this;
         }
         Matrix4<T>& operator*=(const Matrix4<T>& other) {
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 data_m[i] *= other.data_m[i];
 
             return *this;
         }
         Matrix4<T>& operator/=(const Matrix4<T>& other) {
-            for(u64 i = 0; i < data_m.size(); i++)
+            for (u64 i = 0; i < data_m.size(); i++)
                 data_m[i] /= other.data_m[i];
 
             return *this;

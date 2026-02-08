@@ -12,10 +12,10 @@ namespace Lila::ECS {
     class SparseSet {
     public:
         void insert(Entity entity, const Component& component) {
-            if(entity >= sparse.size())
+            if (entity >= sparse.size())
                 sparse.resize(entity + 1, invalidIndex);
 
-            if(sparse[entity] != invalidIndex) {
+            if (sparse[entity] != invalidIndex) {
                 dense[sparse[entity]] = component;
                 return;
             }

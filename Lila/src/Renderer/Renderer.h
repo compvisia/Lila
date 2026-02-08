@@ -47,14 +47,14 @@ namespace Lila::Testing {
     inline void registerForRendering(const Application& app, const ECS::Entity entity) {
         RenderProfile profile = app.getRenderProfile();
 
-        if(profile.renderApi == RenderApi::None) {
+        if (profile.renderApi == RenderApi::None) {
             LILA_WARN("registerForRendering requires Application to be graphical!");
             return;
         }
 
         auto& cm = app.getComponentManager();
 
-        if(!cm.hasComponent<MeshComponent>(entity)) {
+        if (!cm.hasComponent<MeshComponent>(entity)) {
             LILA_WARN("Entity does not have a MeshComponent!");
             return;
         }
@@ -73,13 +73,13 @@ namespace Lila::Testing {
      */
     inline void render(const Application& app) {
         glm::mat4 projection(1.0f);
-        if(app.getComponentManager().hasComponent<CameraComponent>(app.getActiveCamera())) {
+        if (app.getComponentManager().hasComponent<CameraComponent>(app.getActiveCamera())) {
             const auto& camera = app.getComponentManager().getComponent<CameraComponent>(app.getActiveCamera());
 
             projection = getProjection(camera, app.getWindow());
         }
 
-        for(const auto&[entity, geometry] : geometryMap_S) {
+        for (const auto&[entity, geometry] : geometryMap_S) {
             const auto& shader = shaderMap_S.at(entity);
 
             if (const auto* glShader = dynamic_cast<OpenGL::GLShader*>(shader.get())) {
@@ -93,10 +93,10 @@ namespace Lila::Testing {
     }
 
     inline void destroy() {
-        for(const auto &geometry: geometryMap_S | std::views::values)
+        for (const auto &geometry: geometryMap_S | std::views::values)
             geometry->destroy();
 
-        for(const auto &shader: shaderMap_S | std::views::values)
+        for (const auto &shader: shaderMap_S | std::views::values)
             shader->destroy();
 
         geometryMap_S.clear();

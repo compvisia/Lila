@@ -14,18 +14,19 @@ namespace Lila {
 
         const RenderApi api = profile_m.renderApi;
 
-        if(api != RenderApi::None) {
+        if (api != RenderApi::None) {
             Internal::initializeGlfw();
             WindowSpecs specs;
             specs.name = name_m;
             window_m = unique<Window>(specs);
         }
 
-        switch(api) {
+        switch (api) {
             case RenderApi::OpenGL:
                 Internal::initializeGlad();
                 break;
-            case RenderApi::None:
+            default:
+                LILA_WARN("No rendering api has been given");
                 break;
         }
 
@@ -45,18 +46,21 @@ namespace Lila {
 
     EventBus& createEventBus(Application& app) {
         LILA_ASSERT(!app.eventBus_m, "EventBus is already created for this Application!");
+
         app.eventBus_m = unique<EventBus>();
         return *app.eventBus_m;
     }
 
     ECS::EntityManager& createEntityManager(Application& app) {
         LILA_ASSERT(!app.entityManager_m, "EntityManager is already created for this Application!");
+
         app.entityManager_m = unique<ECS::EntityManager>();
         return *app.entityManager_m;
     }
 
     ECS::ComponentManager& createComponentManager(Application& app) {
         LILA_ASSERT(!app.componentManager_m, "ComponentManager is already created for this Application!");
+
         app.componentManager_m = unique<ECS::ComponentManager>();
         return *app.componentManager_m;
     }

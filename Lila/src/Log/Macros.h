@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Platform/Platform.h"
+
 #include "Logger.h"
 
 namespace Lila {
@@ -18,7 +20,7 @@ namespace Lila {
     #endif
 
     #define LILA_ASSERT(expr, fmt, ...) { \
-        if(!(expr)) { \
+        if (!(expr)) { \
             Lila::Logger::get().log(Lila::LogLevel::ASSERT, #expr, fmt, ##__VA_ARGS__); \
             Lila::Logger::get().log(Lila::LogLevel::ERROR, "Assertion at:", "{}:{} {}(...)", __FILE__, __LINE__, __func__); \
             LILA_TRAP(); \

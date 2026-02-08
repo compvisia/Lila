@@ -79,7 +79,7 @@ namespace Lila {
         void unsubscribe(const EventSubscription& EventSubscription) {
             const auto it = listeners_m.find(EventSubscription.type_m);
 
-            if(it == listeners_m.end())
+            if (it == listeners_m.end())
                 return;
 
             auto &listenerEntries = it->second;
@@ -91,7 +91,7 @@ namespace Lila {
                 }
             );
 
-            if(listenerEntries.empty())
+            if (listenerEntries.empty())
                 listeners_m.erase(it);
         }
 
@@ -102,12 +102,12 @@ namespace Lila {
             const auto type = std::type_index(typeid(TypeCleanup));
             const auto it = listeners_m.find(type);
 
-            if(it == listeners_m.end())
+            if (it == listeners_m.end())
                 return;
 
             auto &listenerEntries = it->second;
 
-            for(auto &val: listenerEntries | std::views::values) {
+            for (auto &val: listenerEntries | std::views::values) {
                 val(static_cast<const void*>(&event));
             }
         }
@@ -121,7 +121,7 @@ namespace Lila {
     };
 
     inline void EventSubscription::disconnect() {
-        if(!bus_m)
+        if (!bus_m)
             return;
 
         static_cast<EventBus*>(bus_m)->unsubscribe(*this);

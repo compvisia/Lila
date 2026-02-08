@@ -6,9 +6,10 @@
 
 #include "Log/Macros.h"
 
+#include "Platform/Platform.h"
+
 #ifdef _WIN32
-    extern "C" __declspec(dllimport)
-    unsigned long __stdcall GetModuleFileNameW(void* hModule, wchar_t* lpFilename, unsigned long nSize);
+    extern "C" __declspec(dllimport) unsigned long __stdcall GetModuleFileNameW(void* hModule, wchar_t* lpFilename, unsigned long nSize);
 #elif defined(__linux__)
     #include <linux/limits.h>
     #include <unistd.h>
@@ -23,9 +24,9 @@ namespace Lila {
         #if defined(_WIN32)
             wchar_t path[32768] = {0};
 
-            if(GetModuleFileNameW(NULL, path, sizeof(path) / sizeof(wchar_t)) == 0) {
+            if (GetModuleFileNameW(NULL, path, sizeof(path) / sizeof(wchar_t)) == 0) {
                 LILA_FATAL("Could not get execution path!");
-                return "";
+                return ""; // TODO: Fix error state
             }
 
             return std::filesystem::path(path).parent_path();
@@ -36,9 +37,9 @@ namespace Lila {
 
             std::filesystem::path execPath = std::filesystem::read_symlink("/proc/self/exe", errorCode);
 
-            if(errorCode) {
+            if (errorCode) {
                 LILA_FATAL("Could not get execution path: {}", errorCode.message());
-                return "";
+                return ""; // TODO: Fix error state
             }
 
             return execPath.parent_path();
@@ -52,7 +53,7 @@ namespace Lila {
     }
 
     static std::string getContentsByPath(const std::filesystem::path& filepath) {
-        if(!std::filesystem::exists(filepath)) {
+        if (!std::filesystem::exists(filepath)) {
             LILA_ERROR("File not found! ({})", filepath.string().c_str());
             return "";
         }

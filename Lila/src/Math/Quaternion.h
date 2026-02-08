@@ -63,7 +63,7 @@ namespace Lila {
         Quaternion<T> inverse() const {
             T norm = w * w + x * x + y * y + z * z;
 
-            if(norm == T(0))
+            if (norm == T(0))
                 return Quaternion();
 
             return conjugate() / norm;

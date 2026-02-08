@@ -42,19 +42,19 @@ namespace OpenGL {
         u32 vso = glCreateShader(GL_VERTEX_SHADER);
         u32 fso = glCreateShader(GL_FRAGMENT_SHADER);
 
-        if(!createShader(vso, vertexShader)) {
+        if (!createShader(vso, vertexShader)) {
             destroy();
             return;
         }
 
 
-        if(!createShader(fso, fragmentShader)) {
+        if (!createShader(fso, fragmentShader)) {
             destroy();
             return;
         }
 
 
-        if(!createProgram(vso, fso)) {
+        if (!createProgram(vso, fso)) {
             destroy();
             return;
         }
@@ -72,7 +72,7 @@ namespace OpenGL {
         glCompileShader(shaderObject);
         glGetShaderiv(shaderObject, GL_COMPILE_STATUS, &success);
 
-        if(!success) {
+        if (!success) {
             i32 maxLength = 128;
             std::vector<c8> errorLog(maxLength+1);
             glGetShaderInfoLog(shaderObject, maxLength, &maxLength, &errorLog[0]);
@@ -94,7 +94,7 @@ namespace OpenGL {
         glLinkProgram(program_m);
         glGetProgramiv(program_m, GL_LINK_STATUS, &success);
 
-        if(!success) {
+        if (!success) {
             i32 maxLength = 128;
             std::vector<c8> errorLog(maxLength+1);
             glGetProgramInfoLog(program_m, maxLength, &maxLength, &errorLog[0]);
