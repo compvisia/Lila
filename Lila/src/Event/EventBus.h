@@ -26,6 +26,15 @@ namespace Lila {
             other.invalidate();
         };
 
+        EventSubscription&& operator=(EventSubscription&& other) noexcept {
+            bus_m = other.bus_m;
+            type_m = other.type_m;
+            id_m = other.id_m;
+
+            other.invalidate();
+        };
+
+
         void disconnect();
 
         ~EventSubscription() {
