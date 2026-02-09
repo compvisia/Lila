@@ -30,7 +30,7 @@ cd %BUILD_DIR%
 
 @echo on
 
-msbuild /m Lila.sln
+cmake --build .
 
 @echo off
 
