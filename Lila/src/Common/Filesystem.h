@@ -8,9 +8,9 @@
 
 #include "Platform/Platform.h"
 
-#ifdef _WIN32
+#ifdef LILA_PLATFORM_WINDOWS
     extern "C" __declspec(dllimport) unsigned long __stdcall GetModuleFileNameW(void* hModule, wchar_t* lpFilename, unsigned long nSize);
-#elif defined(__linux__)
+#elif LILA_PLATFORM_LINUX
     #include <linux/limits.h>
     #include <unistd.h>
     #include <system_error>
