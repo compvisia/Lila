@@ -31,8 +31,6 @@ namespace Lila {
 
             return std::filesystem::path(path).parent_path();
         #elif defined(__linux__)
-            char path[PATH_MAX] = {0};
-
             std::error_code errorCode;
 
             std::filesystem::path execPath = std::filesystem::read_symlink("/proc/self/exe", errorCode);
