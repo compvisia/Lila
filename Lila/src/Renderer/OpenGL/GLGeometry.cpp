@@ -5,8 +5,8 @@
 namespace OpenGL {
 
     GLGeometry::GLGeometry(const std::vector<f32>& vertices, const std::vector<u32>& indices) {
-        vertexCount_m = vertices.size();
-        indexCount_m = indices.size();
+        vertexCount_m = static_cast<i32>(vertices.size());
+        indexCount_m = static_cast<GLsizei>(indices.size());
 
         create(vertices, indices);
     }

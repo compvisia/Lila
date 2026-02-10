@@ -72,7 +72,7 @@ namespace Lila::ECS {
         }
 
     private:
-        inline const static size_t invalidIndex = -1;
+        inline const static size_t invalidIndex = SIZE_MAX;
         std::vector<Component> dense;
         std::vector<Entity> entities;
         std::vector<size_t> sparse;

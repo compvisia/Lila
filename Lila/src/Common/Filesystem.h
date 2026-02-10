@@ -20,7 +20,7 @@
 
 namespace Lila {
 
-    static std::filesystem::path getExecutionPath() {
+    inline std::filesystem::path getExecutionPath() {
         #if defined(_WIN32)
             wchar_t path[32768] = {0};
 
@@ -48,11 +48,11 @@ namespace Lila {
         #endif
     }
 
-    static std::filesystem::path getAssetPath() {
+    inline std::filesystem::path getAssetPath() {
        return getExecutionPath() / "assets";
     }
 
-    static std::string getContentsByPath(const std::filesystem::path& filepath) {
+    inline std::string getContentsByPath(const std::filesystem::path& filepath) {
         if (!std::filesystem::exists(filepath)) {
             LILA_ERROR("File not found! ({})", filepath.string().c_str());
             return "";

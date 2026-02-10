@@ -21,7 +21,7 @@ namespace OpenGL {
 
     private:
         u32 vao_m, vbo_m, ebo_m;
-        u32 vertexCount_m, indexCount_m;
+        i32 vertexCount_m, indexCount_m;
     };
 
 } // namespace OpenGL
