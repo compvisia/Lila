@@ -45,7 +45,7 @@ namespace Lila {
 
 
         void setActiveCamera(ECS::Entity camera);
-        const ECS::Entity getActiveCamera() const { return camera_m; }
+        ECS::Entity getActiveCamera() const { return camera_m; }
 
         const Window& getWindow() const { return *window_m; }
         const EventBus& getEventBus() const { return *eventBus_m; }
