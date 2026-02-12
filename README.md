@@ -5,6 +5,7 @@
 [![][license-shield]][license-link]
 [![][codefactor-shield]][codefactor-link]
 [![][cpp-shield]][cpp-link]
+[![][matrix-shield]][matrix-link]
 
 </h1>
 
@@ -65,3 +66,5 @@ This repository is also part of the [compvisia family](https://github.com/compvi
 [codefactor-shield]: https://www.codefactor.io/repository/github/compvisia/lila/badge?style=flat
 [cpp-link]: https://en.cppreference.com/w/cpp/23
 [cpp-shield]: https://img.shields.io/badge/C++-23-blue?style=flat&logo=C%2B%2B
+[matrix-link]: https://matrix.to/#/#lila:matrix.org
+[matrix-shield]: https://img.shields.io/badge/Matrix.org-%23lila-silver?style=flat&logo=matrix
