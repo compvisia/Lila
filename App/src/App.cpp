@@ -82,10 +82,12 @@ void mousePositionEventFunction(Lila::MousePositionEvent event) {
     cameraFront = glm::normalize(direction);
 }
 
-const Lila::Application& GameEntry() {
+extern "C" LILA_API void AppMain(int argc, char** argv);
+
+void AppMain(int argc, char** argv) {
     Lila::RenderProfile profile;
     profile.renderApi = Lila::RenderApi::OpenGL;
-    static Lila::Application app = Lila::Application(profile);
+    Lila::Application app = Lila::Application(profile);
 
     auto& window = app.getWindow();
 
@@ -162,21 +164,15 @@ const Lila::Application& GameEntry() {
 
     Lila::Testing::registerForRendering(app, entity);
 
-  //   glEnable(GL_DEPTH_TEST);
-  //   while (window.isRunning()) {
-  //       window.update();
+    glEnable(GL_DEPTH_TEST);
+    while (window.isRunning()) {
+        window.update();
 
-  //       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.9f, 0.5f, 0.81f, 1.0f);
 
-		// Lila::Testing::render(app);
-  //   }
+		Lila::Testing::render(app);
+    }
 
     Lila::Testing::destroy();
-
-    return app;
-}
-
-extern "C" LILA_API const Lila::Application& CreateApplication() {
-    return GameEntry();
 }
