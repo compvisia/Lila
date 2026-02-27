@@ -1,10 +1,14 @@
 # App
 
 set(SOURCES
-    src/Main.cpp
+    src/App.cpp
 )
 
-add_executable(App)
+set(APP_NAME App)
+
+add_library(App SHARED)
+
+add_dependencies(App Lila)
 
 target_sources(App PRIVATE ${SOURCES})
 
@@ -12,7 +16,7 @@ add_compile_definitions(
     GLFW_INCLUDE_NONE
 )
 
-target_link_libraries(App Lila)
+target_link_libraries(App PRIVATE Lila)
 
 target_include_directories(App PRIVATE Source)
 
