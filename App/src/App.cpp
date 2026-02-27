@@ -84,7 +84,7 @@ void mousePositionEventFunction(Lila::MousePositionEvent event) {
 
 extern "C" LILA_API void AppMain(int argc, char** argv);
 
-void AppMain(int argc, char** argv) {
+void AppMain(int, char**) {
     Lila::RenderProfile profile;
     profile.renderApi = Lila::RenderApi::OpenGL;
     Lila::Application app = Lila::Application(profile);

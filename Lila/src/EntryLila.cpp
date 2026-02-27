@@ -38,7 +38,7 @@ namespace Lila {
 #elif defined(LILA_PLATFORM_LINUX)
         auto handle = dlopen(config.applicationLibrary.c_str(), RTLD_NOW | RTLD_LOCAL);;
 
-        if (!handle)) {
+        if (!handle) {
             LILA_FATAL("Failed to load library: {}!", config.applicationLibrary);
         }
 
