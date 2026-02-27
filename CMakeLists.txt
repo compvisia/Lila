@@ -31,3 +31,4 @@ endif()
 # Projects
 add_subdirectory(Lila)
 add_subdirectory(App)
+add_subdirectory(Launcher)

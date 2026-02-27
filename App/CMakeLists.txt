@@ -27,5 +27,15 @@ add_custom_command(
         "${CMAKE_CURRENT_SOURCE_DIR}/assets"
         "$<TARGET_FILE_DIR:App>/assets"
 
+    COMMAND ${CMAKE_COMMAND}
+        -DOUTPUT_FILE="$<TARGET_FILE_DIR:Launcher>/launchinfo.txt"
+        -DLIB_NAME="${APP_NAME}"
+        -DLIB_FILE="$<TARGET_FILE_NAME:App>"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/LaunchInfo.cmake"
+
+    COMMAND ${CMAKE_COMMAND} -E copy
+        "$<TARGET_FILE:App>"
+        "$<TARGET_FILE_DIR:Launcher>/$<TARGET_FILE_NAME:App>"
+
     COMMENT "Copying assets to executable directory..."
 )

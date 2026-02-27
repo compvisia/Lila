@@ -39,3 +39,9 @@
 #define LILA_ACTIVE_PLATFORM LILA_PLATFORM_VALUE_UNKNOWN
 #error "Unknown platform"
 #endif
+
+#ifdef LILA_PLATFORM_WINDOWS
+#define LILA_API __declspec(dllexport)
+#else
+#define LILA_API __attribute__((visibility("default")))
+#endif

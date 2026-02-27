@@ -54,6 +54,9 @@ set(SOURCES
 
     src/World/Camera.cpp
     src/World/Camera.h
+
+    src/EntryLila.cpp
+    src/EntryLila.h
 )
 
 add_library(Lila STATIC)
