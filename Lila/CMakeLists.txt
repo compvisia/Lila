@@ -57,6 +57,8 @@ set(SOURCES
 
     src/EntryLila.cpp
     src/EntryLila.h
+
+    deps/stb/stb_image.cpp
 )
 
 add_library(Lila STATIC)
