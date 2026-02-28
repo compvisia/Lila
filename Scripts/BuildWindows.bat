@@ -37,7 +37,7 @@ cmake --build .
 echo ========================
 echo Lila build finished!
 
-"./App/Debug/App.exe"
+"./Build/Debug/Launcher.exe"
 
 cd ..
 

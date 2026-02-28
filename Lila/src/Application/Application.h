@@ -70,6 +70,4 @@ namespace Lila {
         Unique<ECS::ComponentManager> componentManager_m;
     };
 
-
-
 } // namespace Lila

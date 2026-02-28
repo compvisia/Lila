@@ -39,12 +39,12 @@ struct Tag {
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 0.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f,  0.0f);
-f32 cameraSpeed = 0.05;
+f32 cameraSpeed = 0.05f;
 
 void keyEventFunction(Lila::KeyEvent event) {
-    if(event.key == 65) // A
+    if (event.key == 65) // A
         cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-    if(event.key == 68) // D
+    if (event.key == 68) // D
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 
     // if(event.key == 340) // Shift
@@ -52,9 +52,9 @@ void keyEventFunction(Lila::KeyEvent event) {
     // if(event.key == 32) // Space
     //     camY += camSpeed;
 
-    if(event.key == 87) // W
+    if (event.key == 87) // W
         cameraPos += cameraSpeed * cameraFront;
-    if(event.key == 83) // S
+    if (event.key == 83) // S
         cameraPos -= cameraSpeed * cameraFront;
 }
 
@@ -75,17 +75,19 @@ void mousePositionEventFunction(Lila::MousePositionEvent event) {
     yaw += offsetX;
     pitch += offsetY;
 
-    direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    direction.y = sin(glm::radians(pitch));
-    direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    direction.x = static_cast<f32>(cos(glm::radians(yaw)) * cos(glm::radians(pitch)));
+    direction.y = static_cast<f32>(sin(glm::radians(pitch)));
+    direction.z = static_cast<f32>(sin(glm::radians(yaw)) * cos(glm::radians(pitch)));
 
     cameraFront = glm::normalize(direction);
 }
 
-int main() {
+extern "C" LILA_API void AppMain(int argc, char** argv);
+
+void AppMain(int, char**) {
     Lila::RenderProfile profile;
     profile.renderApi = Lila::RenderApi::OpenGL;
-    Lila::Application app(profile);
+    Lila::Application app = Lila::Application(profile);
 
     auto& window = app.getWindow();
 
@@ -163,7 +165,7 @@ int main() {
     Lila::Testing::registerForRendering(app, entity);
 
     glEnable(GL_DEPTH_TEST);
-    while(window.isRunning()) {
+    while (window.isRunning()) {
         window.update();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -173,6 +175,4 @@ int main() {
     }
 
     Lila::Testing::destroy();
-
-    LILA_INFO("Exiting...");
 }

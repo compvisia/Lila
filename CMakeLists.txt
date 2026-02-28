@@ -8,6 +8,14 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Set correct output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Build)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Build)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Build)
+
+# Enable Position Independent Code (needed for shared libraries)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 # Dependencies
 include(Dependencies.cmake)
 
@@ -26,3 +34,4 @@ endif()
 # Projects
 add_subdirectory(Lila)
 add_subdirectory(App)
+add_subdirectory(Launcher)
