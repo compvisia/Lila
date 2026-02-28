@@ -32,10 +32,10 @@ jobs:
       - name: Configure CMake
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.config }} -DSTRICT_MODE=ON
 
-      - name: Build Engine
-        run: |
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            cmake --build build --config ${{ matrix.config }} -- /m
-          else
-            cmake --build build --config ${{ matrix.config }} -- -j$(nproc)
-          fi
+      - name: Build Engine (Linux)
+        if: runner.os == 'Linux'
+        run: cmake --build build --config ${{ matrix.config }} -- -j$(nproc)
+
+      - name: Build Engine (Windows)
+        if: runner.os == 'Windows'
+        run: cmake --build build --config ${{ matrix.config }} -- /m
