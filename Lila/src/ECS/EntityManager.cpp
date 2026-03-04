@@ -7,7 +7,7 @@ namespace Lila::ECS {
 
     Entity EntityManager::createEntity() {
         Entity e = nextEntity++;
-        signatures.try_emplace(e, ComponentSignature());
+        signatures.emplace(e, ComponentSignature{});
         aliveEntities.push_back(e);
         return e;
     }
