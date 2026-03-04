@@ -23,12 +23,10 @@ namespace Lila {
 
         template<typename Format, typename... Args>
         void log(const LogLevel& logLevel, std::string_view profile, Format&& fmt, Args&&... args) {
-            if constexpr (sizeof...(args) > 0 && std::is_convertible_v<Format, std::string_view>) {
+            if constexpr (sizeof...(args) > 0 && std::is_convertible_v<Format, std::string_view>)
                 writeLog(logLevel, profile, std::vformat(fmt, std::make_format_args(args...)));
-                return;
-            }
-
-            writeLog(logLevel, profile, std::format("{}", std::forward<Format>(fmt)));
+            else
+                writeLog(logLevel, profile, std::format("{}", std::forward<Format>(fmt)));
         }
 
     private:
