@@ -8,7 +8,7 @@ namespace Lila::Platform {
         if (!handle_m)
             return;
 
-        if (dlclose(handle) != 0)
+        if (dlclose(handle_m) != 0)
             LILA_FATAL("Failed to close library!");
     }
 
