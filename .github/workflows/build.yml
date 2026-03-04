@@ -62,9 +62,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y xorg-dev libgl1-mesa-dev
           if [ "${{ matrix.compiler }}" = "clang" ]; then
-            sudo apt-get install -y clang
-            echo "CC=clang" >> $GITHUB_ENV
-            echo "CXX=clang++" >> $GITHUB_ENV
+            sudo apt-get install -y clang-17 clang++-17
+            echo "CC=clang-17" >> $GITHUB_ENV
+            echo "CXX=clang++-17" >> $GITHUB_ENV
           else
             sudo apt-get install -y g++-14
             echo "CC=gcc-14" >> $GITHUB_ENV
