@@ -2,40 +2,84 @@ name: Engine Build Check
 
 on:
   push:
-    branches: ["master", "dev"]
+    branches: ["master", "dev", "feat/*"]
   pull_request:
     branches: ["master", "dev"]
   workflow_dispatch:
 
 jobs:
-  build:
-    name: ${{ matrix.os }} (${{ matrix.config }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [Ubuntu-latest, Windows-latest]
-        config: [Debug, Release]
+  sanitize:
+    name: Sanitize Check
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-
+            
       - name: Install Linux Dependencies
-        if: runner.os == 'Linux'
         run: |
-          sudo apt-get install -y software-properties-common
-          sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
           sudo apt-get update
           sudo apt-get install -y g++-14 xorg-dev libgl1-mesa-dev
           echo "CC=gcc-14" >> $GITHUB_ENV
           echo "CXX=g++-14" >> $GITHUB_ENV
+          
+      - name: Configure CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer"
 
+      - name: Build Engine
+        run: cmake --build build -- -j$(nproc)
+        
+  build-windows:
+    name: ${{ matrix.os }} MSVC (${{ matrix.config }})
+    runs-on: ${{ matrix.os }}
+    needs: sanitize
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-2022, windows-2025-vs2026 ]
+        config: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+    
+      - name: Configure CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.config }} -DSTRICT_MODE=ON
+        
+      - name: Build Engine
+        run: cmake --build build --config ${{ matrix.config }} -- /m
+        
+  build-linux:
+    name: ubuntu-24.04 ${{ matrix.compiler }} (${{ matrix.config }})
+    runs-on: ubuntu-24.04
+    needs: sanitize
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [Debug, Release]
+        compiler: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xorg-dev libgl1-mesa-dev
+          if [ "${{ matrix.compiler }}" = "clang" ]; then
+            sudo apt-get install -y clang
+            echo "CC=clang" >> $GITHUB_ENV
+            echo "CXX=clang++" >> $GITHUB_ENV
+          else
+            sudo apt-get install -y g++-14
+            echo "CC=gcc-14" >> $GITHUB_ENV
+            echo "CXX=g++-14" >> $GITHUB_ENV
+          fi
+          
       - name: Configure CMake
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.config }} -DSTRICT_MODE=ON
 
-      - name: Build Engine (Linux)
-        if: runner.os == 'Linux'
+      - name: Build Engine
         run: cmake --build build --config ${{ matrix.config }} -- -j$(nproc)
 
-      - name: Build Engine (Windows)
-        if: runner.os == 'Windows'
-        run: cmake --build build --config ${{ matrix.config }} -- /m
+      # TODO: Uncomment this
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: build-${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.config }}
+      #     path: build/
