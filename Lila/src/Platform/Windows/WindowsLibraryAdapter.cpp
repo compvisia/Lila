@@ -15,7 +15,7 @@ namespace Lila::Platform {
     }
 
     void LibraryAdapter::loadLibrary(const std::filesystem::path& path) {
-        handle_m = LoadLibrary(std::filesystem::absolute(path).string().c_str());
+        handle_m = LoadLibraryEx(std::filesystem::absolute(path).string().c_str(), nullptr, LOAD_LIBRARY_SEARCH_APPLICATION_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
 
         if (!handle_m)
             LILA_FATAL("Failed to load library: {}!", path.string());
