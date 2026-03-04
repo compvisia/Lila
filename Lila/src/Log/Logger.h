@@ -3,6 +3,7 @@
 #include <string>
 #include <format>
 #include <print>
+#include <type_traits>
 
 #include "Common/Types.h"
 
@@ -20,20 +21,27 @@ namespace Lila {
             return instance;
         }
 
-        template<typename... Args>
-        void log(const LogLevel& logLevel, const std::string& profile, const std::string& fmt, Args&&... args) {
-            std::string formattedMsg = std::vformat(fmt, std::make_format_args(args...));
+        template<typename Format, typename... Args>
+        void log(const LogLevel& logLevel, std::string_view profile, Format&& fmt, Args&&... args) {
+            if constexpr (sizeof...(args) > 0 && std::is_convertible_v<Format, std::string_view>) {
+                writeLog(logLevel, profile, std::vformat(fmt, std::make_format_args(args...)));
+                return;
+            }
 
-            std::string printable = std::format("{} {} {}\033[0m",
-                prefixes[static_cast<int>(logLevel)],
-                profile,
-                formattedMsg
-            );
-
-            std::println("{}", printable);
+            writeLog(logLevel, profile, std::format("{}", std::forward<Format>(fmt)));
         }
 
     private:
         Logger() = default;
+
+        void writeLog(const LogLevel& logLevel, std::string_view profile, std::string_view contents) {
+            std::string printable = std::format("{} {} {}\033[0m",
+                prefixes[static_cast<int>(logLevel)],
+                profile,
+                contents
+            );
+
+            std::println("{}", printable);
+        }
     };
 } // namespace Lila
