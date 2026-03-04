@@ -19,6 +19,15 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # Dependencies
 include(Dependencies.cmake)
 
+# Clang
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    if (UNIX AND NOT APPLE)
+        add_compile_options(-stdlib=libc++)
+        add_link_options(-stdlib=libc++)
+    endif()
+endif()
+
+# Strict mode
 if(STRICT_MODE)
     message(STATUS "LILA ENGINE: Strict mode activated. Warnings are now errors.")
 
