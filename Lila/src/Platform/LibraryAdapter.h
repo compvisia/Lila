@@ -20,6 +20,7 @@ namespace Lila::Platform {
         void* getFunctionImpl(const std::string& functionName);
 
     public:
+        // TODO: Change std::string to proper error
         template<typename T>
         std::expected<T, std::string> getFunction(const std::string& functionName) {
             void* function = getFunctionImpl(functionName);
@@ -27,7 +28,7 @@ namespace Lila::Platform {
             if (function)
                 return reinterpret_cast<T>(function);
 
-            return std::unexpected("Function not found: " + functionName);
+            return std::unexpected<std::string>{"Function not found: " + functionName};
         }
 
     private:
