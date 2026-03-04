@@ -2,6 +2,8 @@
 
 #include <dlfcn.h>
 
+#include "Log/Macros.h"
+
 namespace Lila::Platform {
 
     LibraryAdapter::~LibraryAdapter() {
@@ -13,7 +15,7 @@ namespace Lila::Platform {
     }
 
     void LibraryAdapter::loadLibrary(const std::filesystem::path& path) {
-        handle_m = dlopen(std::filesystem::weakly_canonical(path).string().c_str());
+        handle_m = dlopen(std::filesystem::weakly_canonical(path).string().c_str(), RTLD_LAZY | RTLD_LOCAL);
 
         if (!handle_m)
             LILA_FATAL("Failed to load library: {}!", path.string());
