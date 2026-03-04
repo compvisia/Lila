@@ -1,4 +1,5 @@
 #include "EntityManager.h"
+#include "Components.h"
 
 #include <algorithm>
 
@@ -6,7 +7,7 @@ namespace Lila::ECS {
 
     Entity EntityManager::createEntity() {
         Entity e = nextEntity++;
-        signatures[e] = {};
+        signatures.try_emplace(e, ComponentSignature());
         aliveEntities.push_back(e);
         return e;
     }
