@@ -165,6 +165,8 @@ void AppMain(int, char**) {
     Lila::Testing::registerForRendering(app, entity);
 
     glEnable(GL_DEPTH_TEST);
+
+    // TODO: Make some sort of bypass for CI
     while (window.isRunning()) {
         window.update();
 
