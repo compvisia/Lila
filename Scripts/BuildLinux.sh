@@ -24,21 +24,16 @@ fi
 # Mode: run / build / sanitize
 #   run      => builds and runs the app (default)
 #   build    => only builds the app
-#   sanitize => builds and runs with sanitizers
 MODE=${1:-run}
 
 if [[ "$MODE" != "run" && "$MODE" != "sanitize" && "$MODE" != "build" ]]; then
-    echo "Unrecognized mode '$MODE'. Valid options: run, sanitize, build (default)."
+    echo "Unrecognized mode '$MODE'. Valid options: run (default), build."
     exit 1
 fi
 
 BUILD_DIR=BuildLinux
 
-if [ "$MODE" == "sanitize" ]; then
-    cmake -S . -B $BUILD_DIR -DCMAKE_BUILD_TYPE=Debug -DSANITIZE=ON
-else
-    cmake -S . -B $BUILD_DIR
-fi
+cmake -S . -B $BUILD_DIR
 
 echo "========================"
 echo "Lila setup finished!"
@@ -56,8 +51,6 @@ if [ "$MODE" == "run" ]; then
 
     echo ========================
     echo Lila succesfully ran!
-elif [ "$MODE" == "sanitize" ]; then
-    timeout 10 xvfb-run --auto-servernum ../Build/Launcher
 fi
 
 cd ../

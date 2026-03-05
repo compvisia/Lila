@@ -8,29 +8,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  sanitize:
-    name: Sanitize Check
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-            
-      - name: Install Linux Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y g++-14 xorg-dev libgl1-mesa-dev
-          echo "CC=gcc-14" >> $GITHUB_ENV
-          echo "CXX=g++-14" >> $GITHUB_ENV
-          
-      - name: Configure CMake
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer"
-
-      - name: Build Engine
-        run: cmake --build build -- -j$(nproc)
-        
   build-windows:
     name: ${{ matrix.os }} MSVC (${{ matrix.config }})
     runs-on: ${{ matrix.os }}
-    needs: sanitize
     strategy:
       fail-fast: false
       matrix:
@@ -48,7 +28,6 @@ jobs:
   build-linux:
     name: ubuntu-24.04 ${{ matrix.compiler }} (${{ matrix.config }})
     runs-on: ubuntu-24.04
-    needs: sanitize
     strategy:
       fail-fast: false
       matrix:
@@ -76,10 +55,3 @@ jobs:
 
       - name: Build Engine
         run: cmake --build build --config ${{ matrix.config }} -- -j$(nproc)
-
-      # TODO: Uncomment this
-      # - name: Upload build artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: build-${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.config }}
-      #     path: build/

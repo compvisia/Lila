@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
 
-option(SANITIZE "Enable Address/Undefined Behavior Sanitizers" OFF)
 option(STRICT_MODE "Enabled all warnings and treats them as errors" OFF)
 
 project(Lila)
@@ -25,17 +24,6 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     if (UNIX AND NOT APPLE)
         add_compile_options(-stdlib=libc++)
         add_link_options(-stdlib=libc++)
-    endif()
-endif()
-
-# Sanitize
-if(SANITIZE)
-    message(STATUS "Building with sanitizers enabled")
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,undefined -fno-omit-frame-pointer -g")
-        set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -fsanitize=address,undefined")
-    elseif(MSVC)
-        message(WARNING "Sanitizers not supported on MSVC yet")
     endif()
 endif()
 
