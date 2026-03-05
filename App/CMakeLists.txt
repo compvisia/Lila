@@ -30,7 +30,7 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND}
         -DOUTPUT_FILE="$<TARGET_FILE_DIR:Launcher>/launchinfo.txt"
         -DLIB_NAME="${APP_NAME}"
-        -DLIB_FILE="$<TARGET_FILE_NAME:App>"
+        -DLIB_FILE="$<TARGET_FILE:App>"
         -P "${CMAKE_CURRENT_SOURCE_DIR}/LaunchInfo.cmake"
 
     COMMAND ${CMAKE_COMMAND} -E copy
