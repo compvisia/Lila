@@ -21,9 +21,19 @@ if [ ! -d "$SRC_DIR" ]; then
     exit 1
 fi
 
+MODE=${1:-run}
+if [[ "$MODE" != "run" && "$MODE" != "sanitize" && "$MODE" != "build" ]]; then
+    echo "Unrecognized mode '$MODE'. Valid options: run, sanitize, build (default)."
+    exit 1
+fi
+
 BUILD_DIR=BuildLinux
 
-cmake -S . -B $BUILD_DIR
+if [ "$MODE" == "sanitize" ]; then
+    cmake -S . -B $BUILD_DIR -DCMAKE_BUILD_TYPE=Debug -DSANITIZE=ON
+else
+    cmake -S . -B $BUILD_DIR
+fi
 
 echo "========================"
 echo "Lila setup finished!"
@@ -35,9 +45,16 @@ cmake --build .
 echo "========================"
 echo "Lila build finished!"
 
-./App/App
+if [ "$MODE" == "run" ]; then
+
+    ./Build/Launcher
+
+    echo ========================
+    echo Lila succesfully ran!
+elif [ "$MODE" == "sanitize" ]; then
+    timeout 10 xvfb-run --auto-servernum ../Build/Launcher
+fi
 
 cd ../
 
-echo ========================
-echo Lila succesfully ran!
+echo "Done!"
