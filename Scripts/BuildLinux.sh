@@ -21,7 +21,12 @@ if [ ! -d "$SRC_DIR" ]; then
     exit 1
 fi
 
+# Mode: run / build / sanitize
+#   run      => builds and runs the app (default)
+#   build    => only builds the app
+#   sanitize => builds and runs with sanitizers
 MODE=${1:-run}
+
 if [[ "$MODE" != "run" && "$MODE" != "sanitize" && "$MODE" != "build" ]]; then
     echo "Unrecognized mode '$MODE'. Valid options: run, sanitize, build (default)."
     exit 1
