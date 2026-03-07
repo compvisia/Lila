@@ -26,4 +26,5 @@ namespace Lila {
             LILA_TRAP(); \
         } \
     }
+
 } // namespace Lila
