@@ -2,6 +2,8 @@
 
 #include <glad/glad.h>
 
+#include "Log/Macros.h"
+
 namespace OpenGL {
 
     GLShader::GLShader(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath) {

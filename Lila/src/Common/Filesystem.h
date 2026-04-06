@@ -6,8 +6,6 @@
 #include <string>
 #include <expected>
 
-#include "Log/Macros.h"
-
 #include "Platform/Platform.h"
 
 #ifdef LILA_PLATFORM_WINDOWS
