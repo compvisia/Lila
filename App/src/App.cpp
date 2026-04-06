@@ -141,6 +141,13 @@ void AppMain(int, char**) {
         4, 5, 7
     };
 
+    auto assetPath = Lila::getAssetPath();
+
+    if (!assetPath) {
+        LILA_ERROR("Error with assetPath: ", assetPath.error());
+        return;
+    }
+
     /*
      * ECS Example
      */
@@ -156,8 +163,8 @@ void AppMain(int, char**) {
     cm.addComponent(entity, Lila::Testing::MeshComponent{
         vertices,
         indices,
-        Lila::getAssetPath() / "default.vert",
-        Lila::getAssetPath() / "default.frag"
+        *assetPath / "default.vert",
+        *assetPath / "default.frag"
     });
 
     app.setActiveCamera(camera);

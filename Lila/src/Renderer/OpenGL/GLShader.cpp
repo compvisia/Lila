@@ -36,19 +36,29 @@ namespace OpenGL {
     void GLShader::create() {
         program_m = glCreateProgram();
 
-        std::string vertexShader = Lila::getContentsByPath(vertexPath_m);
-        std::string fragmentShader = Lila::getContentsByPath(fragmentPath_m);
+        auto vertexShader = Lila::getContentsByPath(vertexPath_m);
+        auto fragmentShader = Lila::getContentsByPath(fragmentPath_m);
+
+        if (!vertexShader) {
+            LILA_ERROR("Contents of vertexShader failed: ", vertexShader.error());
+            return;
+        }
+
+        if (!fragmentShader) {
+            LILA_ERROR("Contents of fragmentShader failed: ", fragmentShader.error());
+            return;
+        }
 
         u32 vso = glCreateShader(GL_VERTEX_SHADER);
         u32 fso = glCreateShader(GL_FRAGMENT_SHADER);
 
-        if (!createShader(vso, vertexShader)) {
+        if (!createShader(vso, *vertexShader)) {
             destroy();
             return;
         }
 
 
-        if (!createShader(fso, fragmentShader)) {
+        if (!createShader(fso, *fragmentShader)) {
             destroy();
             return;
         }

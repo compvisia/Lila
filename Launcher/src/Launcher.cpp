@@ -60,9 +60,22 @@ int main(int argc, char** argv) {
 
     // TODO: Initialize critical systems (Setup environment) (AT A LATER STAGE WHEN NECESSARY)
 
-    std::filesystem::path launchInfoFile = Lila::getExecutionPath() / "launchinfo.txt";
-    std::string launchInfo = Lila::getContentsByPath(launchInfoFile);
-    auto map = parseLaunchInfo(launchInfo);
+    auto executionPath = Lila::getExecutionPath();
+
+    if (!executionPath) {
+        LILA_ERROR("Error with executionPath: ", executionPath.error());
+        return 1;
+    }
+
+    std::filesystem::path launchInfoFile = *executionPath / "launchinfo.txt";
+    auto launchInfo = Lila::getContentsByPath(launchInfoFile);
+
+    if (!launchInfo) {
+        LILA_ERROR("Error with launchInfo: ", launchInfo.error());
+        return 1;
+    }
+
+    auto map = parseLaunchInfo(*launchInfo);
 
     Lila::RuntimeConfig config;
     config.applicationName = map["name"];

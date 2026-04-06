@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <expected>
 
 #include "Log/Macros.h"
 
@@ -21,13 +22,16 @@
 
 namespace Lila {
 
-    inline std::filesystem::path getExecutionPath() {
+    using FilesystemError = std::string;
+
+    inline std::expected<std::filesystem::path, FilesystemError> getExecutionPath() {
         #if defined(_WIN32)
             wchar_t path[32768] = {0};
 
             if (GetModuleFileNameW(NULL, path, sizeof(path) / sizeof(wchar_t)) == 0) {
-                LILA_FATAL("Could not get execution path!");
-                return ""; // TODO: Fix error state
+                return std::unexpected<FilesystemError>{
+                    "Could not get execution path!"
+                };
             }
 
             return std::filesystem::path(path).parent_path();
@@ -37,8 +41,9 @@ namespace Lila {
             std::filesystem::path execPath = std::filesystem::read_symlink("/proc/self/exe", errorCode);
 
             if (errorCode) {
-                LILA_FATAL("Could not get execution path: {}", errorCode.message());
-                return ""; // TODO: Fix error state
+                return std::unexpected<FilesystemError>{
+                    "Could not get execution path: " + errorCode.message()
+                };
             }
 
             return execPath.parent_path();
@@ -47,17 +52,29 @@ namespace Lila {
         #endif
     }
 
-    inline std::filesystem::path getAssetPath() {
-       return getExecutionPath() / "assets";
+    inline std::expected<std::filesystem::path, FilesystemError> getAssetPath() {
+        auto path = getExecutionPath();
+        if (!path)
+            return std::unexpected<FilesystemError>{path.error()};
+
+        return *path / "assets";
     }
 
-    inline std::string getContentsByPath(const std::filesystem::path& filepath) {
+    inline std::expected<std::string, FilesystemError> getContentsByPath(const std::filesystem::path& filepath) {
         if (!std::filesystem::exists(filepath)) {
-            LILA_ERROR("File not found! ({})", filepath.string().c_str());
-            return "";
+            return std::unexpected<FilesystemError>{
+                "File not found: " + filepath.string()
+            };
         }
 
         std::ifstream file(filepath);
+
+        if (!file.is_open()) {
+            return std::unexpected<FilesystemError>{
+                "Could not open file: " + filepath.string()
+            };
+        }
+
         std::stringstream stream;
         stream << file.rdbuf();
         file.close();
