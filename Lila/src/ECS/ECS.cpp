@@ -28,7 +28,7 @@ namespace Lila::ECS {
     }
 
     void ECS::destroyEntity(Entity entity) {
-
+        entityManager_m.destroyEntity(entity);
     }
 
 } // namespace Lila::ECS
