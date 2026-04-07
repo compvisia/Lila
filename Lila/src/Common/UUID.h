@@ -13,8 +13,8 @@ namespace Lila {
             return uuid_m;
         }
 
-        UUID(const UUID& other) = delete;
-        UUID& operator=(const UUID& other) = delete;
+        UUID(const UUID& other) = default;
+        UUID& operator=(const UUID& other) = default;
 
         UUID(UUID&& other) = default;
         UUID& operator=(UUID&& other) = default;
