@@ -12,6 +12,8 @@ set(SOURCES
 
     src/ECS/ComponentManager.h
     src/ECS/Components.h
+    src/ECS/ECS.cpp
+    src/ECS/ECS.h
     src/ECS/Entity.h
     src/ECS/EntityManager.cpp
     src/ECS/EntityManager.h
