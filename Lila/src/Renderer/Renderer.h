@@ -5,7 +5,7 @@
 
 #include "Application/Application.h"
 
-#include "ECS/ComponentManager.h"
+#include "ECS/ECS.h"
 
 #include "Common/Pointers.h"
 
@@ -52,14 +52,14 @@ namespace Lila::Testing {
             return;
         }
 
-        auto& cm = app.getComponentManager();
+        auto& ecs = app.getECS();
 
-        if (!cm.hasComponent<MeshComponent>(entity)) {
+        if (!ecs.hasComponent<MeshComponent>(entity)) {
             LILA_WARN("Entity does not have a MeshComponent!");
             return;
         }
 
-        auto& mesh = cm.getComponent<MeshComponent>(entity);
+        auto& mesh = ecs.getComponent<MeshComponent>(entity);
 
         geometryMap_S[entity] = unique<OpenGL::GLGeometry>(mesh.vertices, mesh.indices);
         shaderMap_S[entity] = unique<OpenGL::GLShader>(mesh.vertexPath, mesh.fragmentPath);
@@ -73,8 +73,8 @@ namespace Lila::Testing {
      */
     inline void render(const Application& app) {
         glm::mat4 projection(1.0f);
-        if (app.getComponentManager().hasComponent<CameraComponent>(app.getActiveCamera())) {
-            const auto& camera = app.getComponentManager().getComponent<CameraComponent>(app.getActiveCamera());
+        if (app.getECS().hasComponent<CameraComponent>(app.getActiveCamera())) {
+            const auto& camera = app.getECS().getComponent<CameraComponent>(app.getActiveCamera());
 
             projection = getProjection(camera, app.getWindow());
         }

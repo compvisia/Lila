@@ -36,10 +36,9 @@ namespace Lila {
     Application::~Application() = default;
 
     void Application::setActiveCamera(ECS::Entity camera) {
-        LILA_ASSERT(entityManager_m != nullptr, "setActiveCamera requires an Entity Manager to work!");
-        LILA_ASSERT(componentManager_m != nullptr, "setActiveCamera requires an Component Manager to work!");
+        LILA_ASSERT(ecs_m != nullptr, "setActiveCamera requires an Entity Manager to work!");
 
-        if(componentManager_m->hasComponent<CameraComponent>(camera))
+        if(ecs_m->hasComponent<CameraComponent>(camera))
             camera_m = camera;
     }
 
@@ -51,18 +50,11 @@ namespace Lila {
         return *app.eventBus_m;
     }
 
-    ECS::EntityManager& createEntityManager(Application& app) {
-        LILA_ASSERT(!app.entityManager_m, "EntityManager is already created for this Application!");
+    ECS::ECS& createECS(Application& app) {
+        LILA_ASSERT(!app.ecs_m, "ECS is already created for this Application!");
 
-        app.entityManager_m = unique<ECS::EntityManager>();
-        return *app.entityManager_m;
-    }
-
-    ECS::ComponentManager& createComponentManager(Application& app) {
-        LILA_ASSERT(!app.componentManager_m, "ComponentManager is already created for this Application!");
-
-        app.componentManager_m = unique<ECS::ComponentManager>();
-        return *app.componentManager_m;
+        app.ecs_m = unique<ECS::ECS>();
+        return *app.ecs_m;
     }
 
 } // namespace Lila

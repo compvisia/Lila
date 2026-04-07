@@ -13,9 +13,7 @@
 
 #include "Renderer/Window.h"
 
-#include "ECS/Entity.h"
-#include "ECS/EntityManager.h"
-#include "ECS/ComponentManager.h"
+#include "ECS/ECS.h"
 
 #include "Event/EventBus.h"
 
@@ -85,8 +83,7 @@ void AppMain(int, char**) {
 
     auto& bus = Lila::createEventBus(app);
 
-    auto& em = Lila::createEntityManager(app);
-    auto& cm = Lila::createComponentManager(app);
+    auto& ecs = Lila::createECS(app);
 
     LILA_DEBUG("Name: {}", app.getName());
     LILA_DEBUG("Platform: {}", app.getRenderProfile().platform);
@@ -144,15 +141,15 @@ void AppMain(int, char**) {
      * ECS Example
      */
 
-    cm.registerComponent<Lila::CameraComponent>();
+    ecs.registerComponent<Lila::CameraComponent>();
 
-    const Lila::ECS::Entity camera = em.createEntity();
-    cm.addComponent(camera, Lila::CameraComponent{});
+    const Lila::ECS::Entity camera = ecs.createEntity();
+    ecs.addComponent(camera, Lila::CameraComponent{});
 
-    cm.registerComponent<Lila::Testing::MeshComponent>();
+    ecs.registerComponent<Lila::Testing::MeshComponent>();
 
-    const Lila::ECS::Entity entity = em.createEntity();
-    cm.addComponent(entity, Lila::Testing::MeshComponent{
+    const Lila::ECS::Entity entity = ecs.createEntity();
+    ecs.addComponent(entity, Lila::Testing::MeshComponent{
         vertices,
         indices,
         *assetPath / "default.vert",

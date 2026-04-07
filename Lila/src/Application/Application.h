@@ -10,8 +10,7 @@
 #include "Common/Pointers.h"
 
 #include "Event/EventBus.h"
-#include "ECS/ComponentManager.h"
-#include "ECS/EntityManager.h"
+#include "ECS/ECS.h"
 #include "Renderer/Window.h"
 #include "World/Camera.h"
 
@@ -19,8 +18,7 @@ namespace Lila {
     class Application;
 
     EventBus& createEventBus(Application& app);
-    ECS::EntityManager& createEntityManager(Application& app);
-    ECS::ComponentManager& createComponentManager(Application& app);
+    ECS::ECS& createECS(Application& app);
 
     /* Application Functionality
      *
@@ -49,8 +47,7 @@ namespace Lila {
 
         const Window& getWindow() const { return *window_m; }
         const EventBus& getEventBus() const { return *eventBus_m; }
-        const ECS::EntityManager& getEntityManager() const { return *entityManager_m; }
-        const ECS::ComponentManager& getComponentManager() const { return *componentManager_m; }
+        const ECS::ECS& getECS() const { return *ecs_m; }
 
     private:
         UUID uuid_m;
@@ -60,14 +57,12 @@ namespace Lila {
 
     private:
         friend EventBus& createEventBus(Application& app);
-        friend ECS::EntityManager& createEntityManager(Application& app);
-        friend ECS::ComponentManager& createComponentManager(Application& app);
+        friend ECS::ECS& createECS(Application& app);
 
     private:
         Unique<Window> window_m;
         Unique<EventBus> eventBus_m;
-        Unique<ECS::EntityManager> entityManager_m;
-        Unique<ECS::ComponentManager> componentManager_m;
+        Unique<ECS::ECS> ecs_m;
     };
 
 } // namespace Lila
