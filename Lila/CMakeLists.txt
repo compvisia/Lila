@@ -62,10 +62,10 @@ set(SOURCES
 )
 
 if(WIN32)
-    list(APPEND SOURCES "src/Platform/Windows/PlatformWindows.h")
-    list(APPEND SOURCES "src/Platform/Windows/WindowsLibraryAdapter.cpp")
+  list(APPEND SOURCES "src/Platform/Windows/PlatformWindows.h")
+  list(APPEND SOURCES "src/Platform/Windows/WindowsLibraryAdapter.cpp")
 elseif(UNIX)
-    list(APPEND SOURCES "src/Platform/Linux/LinuxLibraryAdapter.cpp")
+  list(APPEND SOURCES "src/Platform/Linux/LinuxLibraryAdapter.cpp")
 endif()
 
 add_library(Lila STATIC)
