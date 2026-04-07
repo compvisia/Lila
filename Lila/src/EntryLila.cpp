@@ -1,7 +1,5 @@
 #include "EntryLila.h"
 
-#include "Platform/Platform.h"
-
 #include "Common/Pointers.h"
 
 #include "Platform/LibraryAdapter.h"
