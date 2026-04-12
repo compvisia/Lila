@@ -6,8 +6,8 @@
 
 namespace Lila {
 
-    enum class RenderApi {
-        None,
+    enum class RenderApi : u8 {
+        None = 0,
         OpenGL
     };
 
