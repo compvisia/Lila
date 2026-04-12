@@ -8,7 +8,8 @@
 
 namespace Lila {
 
-    enum class CameraType {
+    enum class CameraType : u8 {
+        None = 0,
         Perspective,
         Orthographic
     };
