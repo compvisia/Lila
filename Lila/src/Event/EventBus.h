@@ -61,6 +61,11 @@ namespace Lila {
         u64 id_m = 0;
     };
 
+    struct ListenerEntry {
+        u64 id;
+        std::function<void(const void*)> function;
+    };
+
     class EventBus {
     public:
         EventBus() = default;
@@ -81,7 +86,7 @@ namespace Lila {
                 }
             );
 
-            listeners_m[type].emplace_back(id, std::move(wrapper));
+            listeners_m[type].emplace_back(ListenerEntry{id, std::move(wrapper)});
 
             return {this, type, id};
         }
@@ -97,7 +102,7 @@ namespace Lila {
             std::erase_if(
                 listenerEntries,
                 [&](const ListenerEntry& entry) {
-                    return entry.first == EventSubscription.id_m;
+                    return entry.id == EventSubscription.id_m;
                 }
             );
 
