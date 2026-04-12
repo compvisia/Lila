@@ -17,7 +17,7 @@ namespace Lila::ECS {
         });
         componentManager_m.addComponent(entity, Transform{
             glm::vec3(0, 0, 0),
-            glm::quat(),
+            glm::quat(1, 0, 0, 0),
             glm::vec3(1, 1, 1)
         });
 

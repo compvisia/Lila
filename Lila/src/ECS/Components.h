@@ -17,9 +17,9 @@ namespace Lila::ECS {
     };
 
     struct Transform {
-        glm::vec3 position;
-        glm::quat rotation;
-        glm::vec3 scalar;
+        glm::vec3 position{0.0f};
+        glm::quat rotation{1.0f, 0.0f, 0.0f, 0.0f};
+        glm::vec3 scalar{1.0f};
     };
 
 } // namespace Lila::ECS
