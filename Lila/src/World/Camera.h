@@ -15,7 +15,7 @@ namespace Lila {
 
     struct CameraComponent {
         CameraType type = CameraType::Perspective;
-        f32 fov = 110.0f; // Degrees, only used for Perspective
+        f32 fov = 110.0f; // INFO: Value is in degrees (only used for CameraType::Perspective)
 
         f32 near = 0.1f;
         f32 far = 100.0f;
