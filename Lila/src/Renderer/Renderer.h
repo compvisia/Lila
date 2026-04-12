@@ -74,7 +74,7 @@ namespace Lila::Testing {
     inline void render(const Application& app) {
         glm::mat4 projection(1.0f);
         if (app.getECS().hasComponent<CameraComponent>(app.getActiveCamera())) {
-            const auto& camera = app.getECS().getComponent<CameraComponent>(app.getActiveCamera());
+            const CameraComponent& cameraComponent = app.getECS().getComponent<CameraComponent>(app.getActiveCamera());
 
             projection = getProjection(camera, app.getWindow());
         }

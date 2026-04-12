@@ -102,8 +102,8 @@ void AppMain(int, char**) {
      * When it goes out of scope the subscription object will automatically disconnect.
      * You can also manually disconnect using the `disconnect()` method (REMEMBER: you cannot reconnect afterwards).
      */
-    auto subKeyEvent = bus.subscribe<Lila::KeyEvent>(keyEventFunction);
-    auto subMousePos = bus.subscribe<Lila::MousePositionEvent>(mousePositionEventFunction);
+    Lila::EventSubscription subKeyEvent = bus.subscribe<Lila::KeyEvent>(keyEventFunction);
+    Lila::EventSubscription subMousePos = bus.subscribe<Lila::MousePositionEvent>(mousePositionEventFunction);
 
     std::vector<f32> vertices {
         -1, -1,  1,

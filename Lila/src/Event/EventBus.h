@@ -77,10 +77,10 @@ namespace Lila {
         EventSubscription subscribe(Function&& function) {
             using TypeCleanup = std::decay_t<EventType>;
 
-            auto type = std::type_index(typeid(TypeCleanup));
+            std::type_index type = std::type_index(typeid(TypeCleanup));
             u64 id = nextId_m++;
 
-            auto wrapper = std::function<void(const void*)>(
+            std::function<void(const void*)> wrapper = std::function<void(const void*)>(
                 [forward = std::forward<Function>(function)](const void* event) {
                     forward(*static_cast<const TypeCleanup*>(event));
                 }
@@ -97,7 +97,7 @@ namespace Lila {
             if (it == listeners_m.end())
                 return;
 
-            auto &listenerEntries = it->second;
+            std::vector<ListenerEntry>& listenerEntries = it->second;
 
             std::erase_if(
                 listenerEntries,
@@ -112,17 +112,15 @@ namespace Lila {
 
         template<typename EventType>
         void emit(const EventType& event) {
-            using TypeCleanup = std::decay_t<EventType>;
-
-            const auto type = std::type_index(typeid(TypeCleanup));
+            std::type_index type = std::type_index(typeid(std::decay_t<EventType>));
             const auto it = listeners_m.find(type);
 
             if (it == listeners_m.end())
                 return;
 
-            auto &listenerEntries = it->second;
+            std::vector<ListenerEntry>& listenerEntries = it->second;
 
-            for (auto &val: listenerEntries | std::views::values) {
+            for (auto& [_, val] : listenerEntries) {
                 val(static_cast<const void*>(&event));
             }
         }
