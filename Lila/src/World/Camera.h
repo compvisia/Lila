@@ -22,6 +22,4 @@ namespace Lila {
         f32 far = 100.0f;
     };
 
-    glm::mat4 getProjection(const CameraComponent& camera, const Window& window);
-
 } // namespace Lila

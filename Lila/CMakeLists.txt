@@ -54,8 +54,9 @@ set(SOURCES
     src/Renderer/Window.cpp
     src/Renderer/Window.h
 
-    src/World/Camera.cpp
     src/World/Camera.h
+    src/World/MVP.cpp
+    src/World/MVP.h
 
     src/EntryLila.cpp
     src/EntryLila.h

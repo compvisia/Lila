@@ -13,6 +13,7 @@
 
 #include "Renderer/Window.h"
 
+#include "ECS/Components.h"
 #include "ECS/ECS.h"
 
 #include "Event/EventBus.h"
@@ -144,6 +145,7 @@ void AppMain(int, char**) {
     ecs.registerComponent<Lila::CameraComponent>();
 
     const Lila::ECS::Entity camera = ecs.createEntity();
+
     ecs.addComponent(camera, Lila::CameraComponent{});
 
     ecs.registerComponent<Lila::Testing::MeshComponent>();
@@ -155,6 +157,8 @@ void AppMain(int, char**) {
         *assetPath / "default.vert",
         *assetPath / "default.frag"
     });
+    Lila::ECS::Transform& transform = ecs.getComponent<Lila::ECS::Transform>(entity);
+    transform.position += glm::vec3(2.0f, 1.0f, -4.0f);
 
     app.setActiveCamera(camera);
 

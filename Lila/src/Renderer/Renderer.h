@@ -5,6 +5,7 @@
 
 #include "Application/Application.h"
 
+#include "ECS/Components.h"
 #include "ECS/ECS.h"
 
 #include "Common/Pointers.h"
@@ -13,6 +14,9 @@
 #include "OpenGL/GLShader.h"
 
 #include "Log/Macros.h"
+
+#include "World/Camera.h"
+#include "World/MVP.h"
 
 namespace Lila::Testing {
 
@@ -73,17 +77,26 @@ namespace Lila::Testing {
      */
     inline void render(const Application& app) {
         glm::mat4 projection(1.0f);
+        glm::mat4 view(1.0f);
         if (app.getECS().hasComponent<CameraComponent>(app.getActiveCamera())) {
             const CameraComponent& cameraComponent = app.getECS().getComponent<CameraComponent>(app.getActiveCamera());
+            const ECS::Transform& cameraTransform = app.getECS().getComponent<ECS::Transform>(app.getActiveCamera());
 
-            projection = getProjection(camera, app.getWindow());
+            projection = getProjectionMatrix(cameraComponent, app.getWindow());
+            view = getViewMatrix(cameraTransform);
         }
 
         for (const auto&[entity, geometry] : geometryMap_S) {
             const auto& shader = shaderMap_S.at(entity);
 
+            const ECS::Transform& transform = app.getECS().getComponent<ECS::Transform>(entity);
+
+            glm::mat4 model = Lila::getModelMatrix(transform);
+
             if (const auto* glShader = dynamic_cast<OpenGL::GLShader*>(shader.get())) {
                 glShader->uniformMatrix("projection", projection);
+                glShader->uniformMatrix("view", view);
+                glShader->uniformMatrix("model", model);
             }
 
             shader->bind();
