@@ -96,8 +96,8 @@ void AppMain(int, char**) {
 
     Lila::setMousePositionCallback(window);
 
-    /* <-- IMPORTANT -->
-     * `Lila::EventBus::subscribe` returns a `Lila::EventSubscription` object.
+    /* INFO:
+     * Lila::EventBus::subscribe returns a Lila::EventSubscription object.
      * The event subscription object **MUST** be captured using a variable, else the subscription will be deleted!
      * When it goes out of scope the subscription object will automatically disconnect.
      * You can also manually disconnect using the `disconnect()` method (REMEMBER: you cannot reconnect afterwards).
