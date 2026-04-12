@@ -12,70 +12,70 @@ namespace Lila::ECS {
     class SparseSet {
     public:
         void insert(Entity entity, const Component& component) {
-            if (entity >= sparse.size())
-                sparse.resize(entity + 1, invalidIndex);
+            if (entity >= sparse_m.size())
+                sparse_m.resize(entity + 1, invalidIndex_m);
 
-            if (sparse[entity] != invalidIndex) {
-                dense[sparse[entity]] = component;
+            if (sparse_m[entity] != invalidIndex_m) {
+                dense_m[sparse_m[entity]] = component;
                 return;
             }
 
-            sparse[entity] = dense.size();
-            dense.push_back(component);
-            entities.push_back(entity);
+            sparse_m[entity] = dense_m.size();
+            dense_m.push_back(component);
+            entities_m.push_back(entity);
         }
 
         void remove(Entity entity) {
-            LILA_ASSERT(entity < sparse.size() && sparse[entity] != invalidIndex, "Entity does not exist in SparseSet");
+            LILA_ASSERT(entity < sparse_m.size() && sparse_m[entity] != invalidIndex_m, "Entity does not exist in SparseSet");
 
-            size_t index = sparse[entity];
-            size_t lastIndex = dense.size() - 1;
+            size_t index = sparse_m[entity];
+            size_t lastIndex = dense_m.size() - 1;
 
-            dense[index] = dense[lastIndex];
-            Entity lastEntity = entities[lastIndex];
-            entities[index] = lastEntity;
-            sparse[lastEntity] = index;
+            dense_m[index] = dense_m[lastIndex];
+            Entity lastEntity = entities_m[lastIndex];
+            entities_m[index] = lastEntity;
+            sparse_m[lastEntity] = index;
 
-            dense.pop_back();
-            entities.pop_back();
-            sparse[entity] = invalidIndex;
+            dense_m.pop_back();
+            entities_m.pop_back();
+            sparse_m[entity] = invalidIndex_m;
         }
 
         Component& get(Entity entity) {
-            LILA_ASSERT(entity < sparse.size() && sparse[entity] != invalidIndex, "Entity does not exist in SparseSet");
+            LILA_ASSERT(entity < sparse_m.size() && sparse_m[entity] != invalidIndex_m, "Entity does not exist in SparseSet");
 
-            return dense[sparse[entity]];
+            return dense_m[sparse_m[entity]];
         }
 
         bool contains(Entity entity) const {
-            return entity < sparse.size() && sparse[entity] != invalidIndex;
+            return entity < sparse_m.size() && sparse_m[entity] != invalidIndex_m;
         }
 
         size_t size() const {
-            return dense.size();
+            return dense_m.size();
         }
 
         auto begin() {
-            return dense.begin();
+            return dense_m.begin();
         }
 
         auto end() {
-            return dense.end();
+            return dense_m.end();
         }
 
         auto entitiesBegin() {
-            return entities.begin();
+            return entities_m.begin();
         }
 
         auto entitiesEnd() {
-            return entities.end();
+            return entities_m.end();
         }
 
     private:
-        inline const static size_t invalidIndex = SIZE_MAX;
-        std::vector<Component> dense;
-        std::vector<Entity> entities;
-        std::vector<size_t> sparse;
+        inline const static size_t invalidIndex_m = SIZE_MAX;
+        std::vector<Component> dense_m;
+        std::vector<Entity> entities_m;
+        std::vector<size_t> sparse_m;
     };
 
 } // namespace Lila::ECS
