@@ -19,5 +19,4 @@ namespace Lila {
         bus->emit<MousePositionEvent>(event);
     }
 
-
-}
+} // namespace Lila

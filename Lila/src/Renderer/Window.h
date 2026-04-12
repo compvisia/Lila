@@ -44,4 +44,5 @@ namespace Lila {
         GLFWwindow* windowHandle_m;
         WindowSpecs windowSpecs_m;
     };
+
 } // namespace Lila

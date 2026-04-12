@@ -27,4 +27,5 @@ namespace Lila {
         "\x1b[1;41m[ASSERT]",
         "\x1b[1;46m[DEBUG_ASSERT]"
     };
-}
+
+} // namespace Lila

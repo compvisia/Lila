@@ -17,7 +17,7 @@ namespace Lila::ECS {
         ECS(ECS&& other) noexcept = delete;
         ECS& operator=(ECS&& other) noexcept = delete;
 
-        ~ECS();
+        ~ECS() = default;
 
         Entity createEntity();
         void destroyEntity(Entity entity);

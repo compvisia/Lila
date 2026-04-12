@@ -68,4 +68,5 @@ namespace Lila {
     GLFWwindow* Window::getHandle() const {
         return windowHandle_m;
     }
+
 } // namespace Lila

@@ -1,19 +1,20 @@
-#include "Log/Macros.h"
-#include "EntryLila.h"
-
 #include <sstream>
 #include <string>
 #include <unordered_map>
 
+#include "EntryLila.h"
+#include "Log/Macros.h"
 #include "Common/Filesystem.h"
 
-// Parses the launchinfo.txt file into a key/value map.
-// Default behaviour:
-// - Namespaces start with [ (NOT IMPLEMENTED)
-// - Lines with # are ignored
-// - Keys must have values separated by '='
-// - Values are single-line only
-// - Keys and Values are always strings
+/* INFO:
+ * Parsing of the launchinfo.txt file into a key/value map.
+ * Default behaviour:
+ * - Namespaces start with [ (NOT IMPLEMENTED)
+ * - Lines with # are ignored
+ * - Keys must have values separated by '='
+ * - Values are single-line only
+ * - Keys and Values are always strings
+ */
 const std::unordered_map<std::string, std::string> parseLaunchInfo(const std::string& launchInfo) {
     std::unordered_map<std::string, std::string> launchInfoMap = {};
 
@@ -27,9 +28,9 @@ const std::unordered_map<std::string, std::string> parseLaunchInfo(const std::st
         if (line.back() == '\r')
             line.pop_back();
 
-        if (line.front() == '[') { // Namespace
+        if (line.front() == '[') {
             LILA_ERROR("launchinfo.txt parse error: Found a namespace starter! Feature not implemented yet!");
-        } else { // Key & value
+        } else {
             auto const equalsPosition = line.find_last_of('=');
 
             if (equalsPosition == std::string::npos) {

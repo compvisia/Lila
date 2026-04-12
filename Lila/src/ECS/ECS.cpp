@@ -9,9 +9,6 @@ namespace Lila::ECS {
         componentManager_m.registerComponent<Transform>();
     }
 
-
-    ECS::~ECS() {}
-
     Entity ECS::createEntity() {
         const Entity entity = entityManager_m.createEntity();
 

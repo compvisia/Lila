@@ -21,5 +21,4 @@ namespace Lila {
         bus->emit<KeyEvent>(event);
     }
 
-
-}
+} // namespace Lila
