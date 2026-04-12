@@ -69,6 +69,7 @@ namespace Lila {
     class EventBus {
     public:
         EventBus() = default;
+
         ~EventBus() {
             listeners_m.clear();
         }

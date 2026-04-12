@@ -42,4 +42,5 @@ namespace Lila {
             std::println("{}", printable);
         }
     };
+
 } // namespace Lila
