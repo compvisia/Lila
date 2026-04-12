@@ -128,9 +128,6 @@ namespace Lila {
         }
 
     private:
-        using ListenerEntry = std::pair<u64, std::function<void(const void*)>>;
-
-    private:
         std::unordered_map<std::type_index, std::vector<ListenerEntry>> listeners_m;
         u64 nextId_m{1};
     };
