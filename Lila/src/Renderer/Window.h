@@ -36,6 +36,8 @@ namespace Lila {
 
         bool isRunning() const;
 
+        f64 getTime() const;
+
     private:
         void create();
         void destroy();

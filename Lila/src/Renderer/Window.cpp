@@ -69,4 +69,8 @@ namespace Lila {
         return windowHandle_m;
     }
 
+    f64 Window::getTime() const {
+        return glfwGetTime();
+    }
+
 } // namespace Lila
