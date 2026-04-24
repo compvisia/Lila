@@ -1,5 +1,6 @@
 #include <sstream>
 #include <string>
+#include <expected>
 #include <unordered_map>
 
 #include "EntryLila.h"
@@ -31,15 +32,15 @@ const std::unordered_map<std::string, std::string> parseLaunchInfo(const std::st
         if (line.front() == '[') {
             LILA_ERROR("launchinfo.txt parse error: Found a namespace starter! Feature not implemented yet!");
         } else {
-            auto const equalsPosition = line.find_last_of('=');
+            const size_t equalsPosition = line.find_last_of('=');
 
             if (equalsPosition == std::string::npos) {
                 LILA_ERROR("launchinfo.txt parse error: Couldn't find a equals sign! Line: {}", line);
                 continue;
             }
 
-            auto key = line.substr(0, equalsPosition);
-            const auto value = line.substr(equalsPosition + 1);
+            std::string key = line.substr(0, equalsPosition);
+            const std::string value = line.substr(equalsPosition + 1);
 
             key.erase(0, key.find_first_not_of(" \t"));
             key.erase(key.find_last_not_of(" \t") + 1);
@@ -61,7 +62,7 @@ int main(int argc, char** argv) {
 
     // TODO: Initialize critical systems (Setup environment) (AT A LATER STAGE WHEN NECESSARY)
 
-    auto executionPath = Lila::getExecutionPath();
+    const std::expected<std::filesystem::path, std::string> executionPath = Lila::getExecutionPath();
 
     if (!executionPath) {
         LILA_ERROR("Error with executionPath: ", executionPath.error());
@@ -69,23 +70,23 @@ int main(int argc, char** argv) {
     }
 
     std::filesystem::path launchInfoFile = *executionPath / "launchinfo.txt";
-    auto launchInfo = Lila::getContentsByPath(launchInfoFile);
+    const std::expected<std::string, std::string> launchInfo = Lila::getContentsByPath(launchInfoFile);
 
     if (!launchInfo) {
         LILA_ERROR("Error with launchInfo: ", launchInfo.error());
         return 1;
     }
 
-    auto map = parseLaunchInfo(*launchInfo);
+    const std::unordered_map<std::string, std::string> map = parseLaunchInfo(*launchInfo);
 
     Lila::RuntimeConfig config;
-    config.applicationName = map["name"];
-    config.applicationLibrary = map["library"];
+    config.applicationName = map.at("name");
+    config.applicationLibrary = map.at("library");
     config.argc = argc;
     config.argv = argv;
 
     // TODO: Change to a handshake (when Lila's runtime becomes a dynamic library)
-    int returnCode = Lila::Entrypoint(config);
+    const int returnCode = Lila::Entrypoint(config);
 
     LILA_DEBUG("Launcher Exit");
 
