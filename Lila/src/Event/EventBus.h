@@ -9,6 +9,7 @@
 #include <unordered_map>
 
 #include "Common/Types.h"
+#include "Log/Macros.h"
 
 namespace Lila {
 
@@ -16,6 +17,7 @@ namespace Lila {
 
     class EventSubscription {
         friend class EventBus;
+
     public:
         EventSubscription() = default;
         EventSubscription(const EventSubscription&) = delete;
@@ -24,7 +26,7 @@ namespace Lila {
         EventSubscription(EventSubscription&& other) noexcept
             : bus_m(other.bus_m), type_m(other.type_m), id_m(other.id_m) {
             other.invalidate();
-        };
+        }
 
         EventSubscription& operator=(EventSubscription&& other) noexcept {
             bus_m = other.bus_m;
@@ -33,8 +35,7 @@ namespace Lila {
 
             other.invalidate();
             return *this;
-        };
-
+        }
 
         void disconnect();
 
@@ -84,28 +85,23 @@ namespace Lila {
             std::function<void(const void*)> wrapper = std::function<void(const void*)>(
                 [forward = std::forward<Function>(function)](const void* event) {
                     forward(*static_cast<const TypeCleanup*>(event));
-                }
-            );
+                });
 
             listeners_m[type].emplace_back(ListenerEntry{id, std::move(wrapper)});
 
             return {this, type, id};
         }
 
-        void unsubscribe(const EventSubscription& EventSubscription) {
-            const auto it = listeners_m.find(EventSubscription.type_m);
+        void unsubscribe(const EventSubscription& eventSubscription) {
+            const auto it = listeners_m.find(eventSubscription.type_m);
 
-            if (it == listeners_m.end())
-                return;
+            LILA_ASSERT(it != listeners_m.end(), "EventSubscription is not subscribed to this EventBus!");
 
             std::vector<ListenerEntry>& listenerEntries = it->second;
 
-            std::erase_if(
-                listenerEntries,
-                [&](const ListenerEntry& entry) {
-                    return entry.id == EventSubscription.id_m;
-                }
-            );
+            std::erase_if(listenerEntries, [&](const ListenerEntry& entry) {
+                return entry.id == eventSubscription.id_m;
+            });
 
             if (listenerEntries.empty())
                 listeners_m.erase(it);
@@ -121,9 +117,8 @@ namespace Lila {
 
             std::vector<ListenerEntry>& listenerEntries = it->second;
 
-            for (auto& [_, val] : listenerEntries) {
+            for (auto& [_, val] : listenerEntries)
                 val(static_cast<const void*>(&event));
-            }
         }
 
     private:
@@ -132,7 +127,7 @@ namespace Lila {
     };
 
     inline void EventSubscription::disconnect() {
-        if (!bus_m)
+        if (!isValid())
             return;
 
         static_cast<EventBus*>(bus_m)->unsubscribe(*this);
