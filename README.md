@@ -14,6 +14,7 @@
 </h4>
 
 <h1>
+</h1>
 
 ## Overview
 
@@ -33,12 +34,13 @@ git clone git@github.com:compvisia/Lila.git
 cd Lila
 ```
 
-Afterwards use these to build Lila and run the Application!
-Windows:
+Then build and run the application:
+
+**Windows:**
 ```
-"Scripts/BuildWindows.bat"
+.\Scripts\BuildWindows.bat
 ```
-Linux:
+**Linux:**
 ```
 ./Scripts/BuildLinux.sh
 ```
