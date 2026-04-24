@@ -11,7 +11,9 @@ test/
 [Bb]uild*/
 
 #CMake
-*[Cc][Mm][Aa][Kk][Ee]*/
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
 
 # Make
 Makefile
@@ -49,6 +51,9 @@ obj/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# Zed IDE
+.zed/
 
 # Excluding
 !LICENSE
