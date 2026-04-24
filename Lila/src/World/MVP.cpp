@@ -11,7 +11,7 @@ namespace Lila {
     glm::mat4 getModelMatrix(const Lila::ECS::Transform& transform) {
         glm::mat4 translate = glm::translate(glm::mat4(1.0f), transform.position);
         glm::mat4 rotate = glm::mat4_cast(glm::normalize(transform.rotation));
-        glm::mat4 scale = glm::scale(glm::mat4(1.0f), transform.scalar);
+        glm::mat4 scale = glm::scale(glm::mat4(1.0f), transform.scale);
 
         return translate * rotate * scale;
     }
