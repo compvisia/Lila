@@ -47,11 +47,13 @@ Linux:
 
 ## Contributing
 
-If you have any questions or suggestions, feel free to reach out via [Discussions](https://github.com/compvisia/Lila/discussions).
+Contributions are highly appreciated!
 
-Before contributing please read the [Contributor Code of Conduct](https://github.com/compvisia/Lila/blob/master/CODE_OF_CONDUCT.md).
+You can help by reporting bugs, suggesting features, or contributing code or documentation.
 
-Contribute by creating pull requests or by reporting issues.
+For guidelines and more information, see the [CONTRIBUTING.md](CONTRIBUTING.md).
+
+If you're unsure where to start, feel free to open a [new discussion](https://github.com/compvisia/Lila/discussions/new/choose) or ask in our [Matrix community](https://matrix.to/#/#lila:matrix.org).
 
 ## Licensing
 
