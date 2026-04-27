@@ -117,8 +117,8 @@ namespace Lila {
 
             std::vector<ListenerEntry>& listenerEntries = it->second;
 
-            for (auto& [_, val] : listenerEntries)
-                val(static_cast<const void*>(&event));
+            for (ListenerEntry& listenerEntry : listenerEntries)
+                listenerEntry.function(static_cast<const void*>(&event));
         }
 
     private:

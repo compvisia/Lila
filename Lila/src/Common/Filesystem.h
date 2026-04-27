@@ -51,7 +51,7 @@ namespace Lila {
     }
 
     inline std::expected<std::filesystem::path, FilesystemError> getAssetPath() {
-        auto path = getExecutionPath();
+        std::expected<std::filesystem::path, FilesystemError> path = getExecutionPath();
         if (!path)
             return std::unexpected<FilesystemError>{path.error()};
 

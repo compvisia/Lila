@@ -1,5 +1,7 @@
 #include "GLShader.h"
 
+#include <expected>
+
 #include <glad/glad.h>
 
 #include "Log/Macros.h"
@@ -38,8 +40,8 @@ namespace OpenGL {
     void GLShader::create() {
         program_m = glCreateProgram();
 
-        auto vertexShader = Lila::getContentsByPath(vertexPath_m);
-        auto fragmentShader = Lila::getContentsByPath(fragmentPath_m);
+        std::expected<std::string, std::string> vertexShader = Lila::getContentsByPath(vertexPath_m);
+        std::expected<std::string, std::string> fragmentShader = Lila::getContentsByPath(fragmentPath_m);
 
         if (!vertexShader) {
             LILA_ERROR("Contents of vertexShader failed: ", vertexShader.error());

@@ -9,7 +9,7 @@ namespace Lila {
     }
 
     void keyCallback(GLFWwindow* window, const int key, const int scancode, const int action, const int mods) {
-        auto* bus = static_cast<EventBus*>(glfwGetWindowUserPointer(window));
+        EventBus* bus = static_cast<EventBus*>(glfwGetWindowUserPointer(window));
 
         const KeyEvent event = {
             (u32)key,

@@ -1,5 +1,7 @@
 #include "EntryLila.h"
 
+#include <expected>
+
 #include "Common/Pointers.h"
 
 #include "Platform/LibraryAdapter.h"
@@ -15,7 +17,7 @@ namespace Lila {
         adapter->loadLibrary(config.applicationLibrary);
 
         using AppMainFunction = void(*)(int, char**);
-        auto function = adapter->getFunction<AppMainFunction>("AppMain");
+        std::expected<AppMainFunction, std::string> function = adapter->getFunction<AppMainFunction>("AppMain");
 
         if (!function) {
             LILA_FATAL("Failed to find AppMain in {}!", config.applicationLibrary);

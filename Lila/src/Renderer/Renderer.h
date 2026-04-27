@@ -56,14 +56,14 @@ namespace Lila::Testing {
             return;
         }
 
-        auto& ecs = app.getECS();
+        const ECS::ECS& ecs = app.getECS();
 
         if (!ecs.hasComponent<MeshComponent>(entity)) {
             LILA_WARN("Entity does not have a MeshComponent!");
             return;
         }
 
-        auto& mesh = ecs.getComponent<MeshComponent>(entity);
+        const MeshComponent& mesh = ecs.getComponent<MeshComponent>(entity);
 
         geometryMap_S[entity] = unique<OpenGL::GLGeometry>(mesh.vertices, mesh.indices);
         shaderMap_S[entity] = unique<OpenGL::GLShader>(mesh.vertexPath, mesh.fragmentPath);
@@ -86,14 +86,14 @@ namespace Lila::Testing {
             view = getViewMatrix(cameraTransform);
         }
 
-        for (const auto&[entity, geometry] : geometryMap_S) {
-            const auto& shader = shaderMap_S.at(entity);
+        for (const auto& [entity, geometry] : geometryMap_S) {
+            const Unique<Shader>& shader = shaderMap_S.at(entity);
 
             const ECS::Transform& transform = app.getECS().getComponent<ECS::Transform>(entity);
 
             glm::mat4 model = Lila::getModelMatrix(transform);
 
-            if (const auto* glShader = dynamic_cast<OpenGL::GLShader*>(shader.get())) {
+            if (const OpenGL::GLShader* glShader = dynamic_cast<OpenGL::GLShader*>(shader.get())) {
                 glShader->uniformMatrix("projection", projection);
                 glShader->uniformMatrix("view", view);
                 glShader->uniformMatrix("model", model);
@@ -106,10 +106,10 @@ namespace Lila::Testing {
     }
 
     inline void destroy() {
-        for (const auto &geometry: geometryMap_S | std::views::values)
+        for (const Unique<Geometry>& geometry : geometryMap_S | std::views::values)
             geometry->destroy();
 
-        for (const auto &shader: shaderMap_S | std::views::values)
+        for (const Unique<Shader>& shader : shaderMap_S | std::views::values)
             shader->destroy();
 
         geometryMap_S.clear();

@@ -9,7 +9,7 @@ namespace Lila {
     }
 
     void mousePositionCallback(GLFWwindow* window, double xpos, double ypos) {
-        auto* bus = (EventBus*)glfwGetWindowUserPointer(window);
+        EventBus* bus = (EventBus*)glfwGetWindowUserPointer(window);
 
         MousePositionEvent event = {
             (f64)xpos,
