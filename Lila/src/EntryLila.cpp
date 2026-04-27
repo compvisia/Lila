@@ -20,7 +20,7 @@ namespace Lila {
         std::expected<AppMainFunction, std::string> function = adapter->getFunction<AppMainFunction>("AppMain");
 
         if (!function) {
-            LILA_FATAL("Failed to find AppMain in {}!", config.applicationLibrary);
+            LILA_FATAL(function.error());
             return -2;
         }
 
