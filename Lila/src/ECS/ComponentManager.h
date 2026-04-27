@@ -2,6 +2,7 @@
 
 #include <unordered_map>
 #include <typeindex>
+#include <ranges>
 
 #include "Common/Pointers.h"
 #include "Entity.h"
@@ -18,11 +19,26 @@ namespace Lila::ECS {
     template<typename T>
     class ComponentArray : public IComponentArray {
     public:
-        void insert(Entity entity, T component) { sparseSet.insert(entity, component); }
-        void remove(Entity entity) { sparseSet.remove(entity); }
-        T& get(Entity entity) { return sparseSet.get(entity); }
-        bool has(Entity entity) { return sparseSet.contains(entity); }
-        void entityDestroyed(Entity entity) override { if(has(entity)) remove(entity); }
+        void insert(Entity entity, T component) {
+            sparseSet.insert(entity, component);
+        }
+
+        void remove(Entity entity) {
+            sparseSet.remove(entity);
+        }
+
+        T& get(Entity entity) {
+            return sparseSet.get(entity);
+        }
+
+        bool has(Entity entity) {
+            return sparseSet.contains(entity);
+        }
+
+        void entityDestroyed(Entity entity) override {
+            if(has(entity))
+                remove(entity);
+        }
 
     private:
         SparseSet<T> sparseSet;
