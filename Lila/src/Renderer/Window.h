@@ -17,6 +17,10 @@ namespace Lila {
     class Window {
     public:
         Window(const WindowSpecs& windowSpecs);
+
+        Window(const Window&) = delete;
+        Window& operator=(const Window&) = delete;
+
         ~Window();
 
         void update() const;
@@ -30,9 +34,6 @@ namespace Lila {
         u32 getHeight() const;
 
         GLFWwindow* getHandle() const;
-
-        Window(const Window&) = delete;
-        Window& operator=(const Window&) = delete;
 
         bool isRunning() const;
 
