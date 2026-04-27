@@ -2,8 +2,8 @@
 
 #include <unordered_map>
 #include <typeindex>
-#include <memory>
 
+#include "Common/Pointers.h"
 #include "Entity.h"
 #include "SparseSet.h"
 
@@ -32,7 +32,7 @@ namespace Lila::ECS {
     public:
         template<typename T>
         void registerComponent() {
-            componentArrays[typeid(T)] = std::make_shared<ComponentArray<T>>();
+            componentArrays[typeid(T)] = shared<ComponentArray<T>>();
         }
 
         template<typename T>
@@ -56,12 +56,12 @@ namespace Lila::ECS {
         }
 
         void entityDestroyed(Entity entity) {
-            for (auto& [_, array] : componentArrays)
+            for (const Shared<IComponentArray>& array : componentArrays | std::views::values)
                 array->entityDestroyed(entity);
         }
 
     private:
-        std::unordered_map<std::type_index, std::shared_ptr<IComponentArray>> componentArrays;
+        std::unordered_map<std::type_index, Shared<IComponentArray>> componentArrays;
     };
 
 } // namespace Lila::ECS
