@@ -2,7 +2,7 @@ name: Engine Build Check
 
 on:
   push:
-    branches: ["master", "dev", "feat/*"]
+    branches: ["master", "dev", "feat/*", "fix/*"]
   pull_request:
     branches: ["master", "dev"]
   workflow_dispatch:
