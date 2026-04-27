@@ -5,8 +5,9 @@
 namespace Lila {
 
     struct RuntimeConfig {
-        std::string applicationName;
-        std::string applicationLibrary;
+        std::string name;
+        std::string libraryFile;
+        std::string entryName;
         int argc;
         char** argv;
     };

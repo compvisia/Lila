@@ -80,8 +80,9 @@ int main(int argc, char** argv) {
     const std::unordered_map<std::string, std::string> map = parseLaunchInfo(*launchInfo);
 
     Lila::RuntimeConfig config;
-    config.applicationName = map.at("name");
-    config.applicationLibrary = map.at("library");
+    config.name = map.at("name");
+    config.libraryFile = map.at("library");
+    config.entryName = map.at("entry");
     config.argc = argc;
     config.argv = argv;
 

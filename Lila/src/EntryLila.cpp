@@ -14,19 +14,19 @@ namespace Lila {
         LILA_DEBUG("Runtime Entry");
 
         Unique<Platform::LibraryAdapter> adapter = unique<Platform::LibraryAdapter>();
-        adapter->loadLibrary(config.applicationLibrary);
+        adapter->loadLibrary(config.libraryFile);
 
-        using AppMainFunction = void(*)(int, char**);
-        std::expected<AppMainFunction, std::string> function = adapter->getFunction<AppMainFunction>("AppMain");
+        using EntryFunction = void(*)(int, char**);
+        std::expected<EntryFunction, std::string> function = adapter->getFunction<EntryFunction>(config.entryName);
 
         if (!function) {
             LILA_FATAL(function.error());
             return -2;
         }
 
-        AppMainFunction AppMain = *function;
+        EntryFunction entry = *function;
 
-        AppMain(config.argc, config.argv);
+        entry(config.argc, config.argv);
 
         LILA_DEBUG("Runtime Exit");
 

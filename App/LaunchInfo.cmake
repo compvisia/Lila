@@ -1,2 +1,2 @@
 # DO NOT CHANGE!!! IF CHANGED THIS WILL BREAK THE APPLICATION LOADING!!!
-file(WRITE "${OUTPUT_FILE}" "name=${LIB_NAME}\nlibrary=${LIB_FILE}\n")
+file(WRITE "${OUTPUT_FILE}" "name=${LIB_NAME}\nlibrary=${LIB_FILE}\nentry=AppMain\n")
