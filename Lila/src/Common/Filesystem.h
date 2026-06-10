@@ -22,6 +22,7 @@ namespace Lila {
 
     using FilesystemError = std::string;
 
+    // TODO: Change getExecutionPath to be ran once (only at startup)
     inline std::expected<std::filesystem::path, FilesystemError> getExecutionPath() {
         #if defined(_WIN32)
             wchar_t path[32768] = {0};
