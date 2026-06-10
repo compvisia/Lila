@@ -31,27 +31,28 @@ const std::unordered_map<std::string, std::string> parseLaunchInfo(const std::st
 
         if (line.front() == '[') {
             LILA_ERROR("launchinfo.txt parse error: Found a namespace starter! Feature not implemented yet!");
-        } else {
-            const size_t equalsPosition = line.find_last_of('=');
-
-            if (equalsPosition == std::string::npos) {
-                LILA_ERROR("launchinfo.txt parse error: Couldn't find a equals sign! Line: {}", line);
-                continue;
-            }
-
-            std::string key = line.substr(0, equalsPosition);
-            const std::string value = line.substr(equalsPosition + 1);
-
-            key.erase(0, key.find_first_not_of(" \t"));
-            key.erase(key.find_last_not_of(" \t") + 1);
-
-            if (key.empty()) {
-                LILA_ERROR("launchinfo.txt parse error: Key is empty! Line: {}", line);
-                continue;
-            }
-
-            launchInfoMap[key] = value;
+            continue;
         }
+
+        const size_t equalsPosition = line.find_last_of('=');
+
+        if (equalsPosition == std::string::npos) {
+            LILA_ERROR("launchinfo.txt parse error: Couldn't find a equals sign! Line: {}", line);
+            continue;
+        }
+
+        std::string key = line.substr(0, equalsPosition);
+        const std::string value = line.substr(equalsPosition + 1);
+
+        key.erase(0, key.find_first_not_of(" \t"));
+        key.erase(key.find_last_not_of(" \t") + 1);
+
+        if (key.empty()) {
+            LILA_ERROR("launchinfo.txt parse error: Key is empty! Line: {}", line);
+            continue;
+        }
+
+        launchInfoMap[key] = value;
     }
 
     return launchInfoMap;
